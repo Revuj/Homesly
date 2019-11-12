@@ -3,20 +3,20 @@
 
 ## Mockups
  - [Home Page](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/mockups/homepage.png)
- - [Register Page](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/mockups/Register.png)
- - [Login Page](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/mockups/Login.png)
- - [Search Page](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/mockups/Searchpage.png)
- - [Item Page](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/mockups/Itempage.png)
+ - [Register Page](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/mockups/register.png)
+ - [Login Page](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/mockups/login.png)
+ - [Search Page](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/mockups/searchpage.png)
+ - [Item Page](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/mockups/itempage.png)
  
  ***
  
  ## UML Diagram
- ![UML Diagram](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/diagrams/UML.jpg)
+ ![UML Diagram](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/diagrams/uml.jpg)
  
  ***
  
   ## Sequence Diagram
- ![Sequence Diagram](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/diagrams/Sequence Diagram.jpg)
+ ![Sequence Diagram](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/diagrams/sequenceDiagram.jpg)
  
  
 
