@@ -1,0 +1,75 @@
+:root {
+    --orange: #ff6624;
+}
+
+.bgimg-1 {
+    background-image: url("../images/background.jpg");
+
+    height: 100%;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bgimg-1 p {
+    padding-left: 1rem;
+    margin-bottom: 0;
+    font-size: 200%;
+    font-weight: bolder;
+}
+
+.bgimg-1 label, .bgimg-1 input {
+    display: block;
+}
+
+.bgimg-1 section form {
+    padding: 1em;
+}
+
+.bgimg-1 label {
+    font-weight: bolder;
+}
+
+.bgimg-1 input {
+    width: 100%;
+    margin-bottom: 1em;
+    border: none;
+    border-bottom: 2px solid var(--orange);
+    padding-top: 0.5em;
+}
+
+.bgimg-1 input:focus {
+    border: none;
+    outline: none;
+    border-bottom: 3px solid var(--orange);
+}
+
+.bgimg-1 form > input:last-child {
+    width: 50%;
+    float: right;
+    color: bold;
+    font-weight: bolder;
+    border-radius: 10px;
+    border: none;
+    /* border-right: 2px solid var(--orange); */
+    transition-duration: 0.4s;
+}
+
+.bgimg-1 form > input:last-child:hover {
+    border: 2px solid var(--orange);
+    /* background-color: var(--orange); */
+}
+
+#search-1 {
+    background: white;
+    width: auto;
+    width: 20em;
+    height: 22em;
+    margin: 0 auto;
+    position: relative;
+    top: 10em;
+    border: 2px solid var(--orange);
+    border-radius: 5px;
+    box-shadow: 10px 10px 10px grey;
+}

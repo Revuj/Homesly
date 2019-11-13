@@ -17,6 +17,10 @@ body {
     margin-top: 0px;
 }
 
+/**
+* This file holds all the css related to elements that are common in most pages
+*/
+
 #navbar > ul {
     list-style: none;
     margin: 0;
@@ -27,16 +31,6 @@ body {
     text-decoration: none;
     padding: 1em;
     color: white;
-}
-
-.bgimg-1 {
-    background-image: url("../images/background.jpg");
-
-    height: 100%;
-
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 #navbar li:hover {
