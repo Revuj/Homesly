@@ -17,7 +17,7 @@ function draw_header() { ?>
     <body>
 
     <header>
-        <nav id="navbar">
+        <nav id="navbar" class="navbar">
             <a href="#"><img id="logo" src="../images/homesly.png" alt="logo"></img></a>
             <ul>
                 <li><a href="#">Book</a></li>
