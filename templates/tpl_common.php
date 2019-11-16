@@ -6,7 +6,7 @@ function draw_header() { ?>
     <html>
 
     <head>
-        <title>HOME.LY</title>
+        <title>HOMES.LY</title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="../css/style.css">
         <link rel="stylesheet" type="text/css" href="../css/mainpagestyle.css">
@@ -18,7 +18,7 @@ function draw_header() { ?>
 
     <header>
         <nav id="navbar" class="navbar">
-            <a href="#"><img id="logo" src="../images/homesly.png" alt="logo"></img></a>
+            <a href="../pages/homepage.php"><img id="logo" src="../images/homesly.png" alt="logo"></img></a>
             <ul>
                 <li><a href="../pages/placeslist.php">Book</a></li>
                 <li><a href=../pages/hostplace.php>Host</a></li>
