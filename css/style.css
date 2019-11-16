@@ -81,6 +81,10 @@ footer img {
     display: block;
 }
 
+#login, #signup {
+    display: none;
+}
+
 @media screen and (min-width: 40em) {
     .navbar {
         display: flex;

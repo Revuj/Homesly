@@ -1,5 +1,6 @@
 <?php 
-
+include_once('tpl_authentication.php');
+session_start();
 function draw_header() { ?>
     <!DOCTYPE html>
 
@@ -22,8 +23,15 @@ function draw_header() { ?>
             <ul>
                 <li><a href="../pages/placeslist.php">Book</a></li>
                 <li><a href=../pages/hostplace.php>Host</a></li>
-                <li><a href="#">Signup</a></li>
-                <li><a href="#">Login</a></li>
+                <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) { ?>
+                    <li><a id="logout_button" href="../actions/action_logout.php">Logout</a></li>
+                    <li><a id="username_button" href="#"><?=$_SESSION['username']?></a></li>
+                <?php }
+                else { ?>
+                    <li><a id="signup_button" href="#">Signup</a></li>
+                    <li><a id="login_button" href="#">Login</a></li>
+                <?php }
+                ?>
 
                 <a class="icon">
                     <i class="fa fa-bars"></i>
@@ -32,6 +40,8 @@ function draw_header() { ?>
         </nav>
     </header>
 
+    <?php draw_login();
+    draw_signup(); ?>
     <?php }
 
 function draw_footer() { ?>

@@ -20,7 +20,7 @@
 
     $options = ['cost' => 12];
 
-    $stmt = $db->prepare('INSERT INTO user VALUES(?, ?)');
-    $stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT, $options)));
+    $stmt = $db->prepare('INSERT INTO user VALUES(?, ?, ?)');
+    $stmt->execute(array(NULL, $username, password_hash($password, PASSWORD_DEFAULT, $options)));
   }
 ?>

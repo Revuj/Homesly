@@ -19,19 +19,19 @@
     font-weight: bolder;
 }
 
-.bgimg-1 label, .bgimg-1 input {
+form label, form input {
     display: block;
 }
 
-.bgimg-1 section form {
+form {
     padding: 1em;
 }
 
-.bgimg-1 label {
+form label {
     font-weight: bolder;
 }
 
-.bgimg-1 input {
+form input {
     width: 100%;
     margin-bottom: 1em;
     border: none;
@@ -39,13 +39,13 @@
     padding-top: 0.5em;
 }
 
-.bgimg-1 input:focus {
+form input:focus {
     border: none;
     outline: none;
     border-bottom: 3px solid var(--orange);
 }
 
-.bgimg-1 form > input:last-child {
+form > input:last-child {
     width: 50%;
     float: right;
     color: bold;
@@ -56,7 +56,7 @@
     transition-duration: 0.4s;
 }
 
-.bgimg-1 form > input:last-child:hover {
+form > input:last-child:hover {
     border: 2px solid var(--orange);
     /* background-color: var(--orange); */
 }
@@ -87,7 +87,7 @@
         border-radius: 0;
     }
 
-    .bgimg-1 form > input:last-child {
+    form > input:last-child {
         float: none;
         width: 100%;
         height: 5rem;
