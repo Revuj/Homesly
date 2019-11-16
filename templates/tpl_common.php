@@ -20,8 +20,8 @@ function draw_header() { ?>
         <nav id="navbar" class="navbar">
             <a href="#"><img id="logo" src="../images/homesly.png" alt="logo"></img></a>
             <ul>
-                <li><a href="#">Book</a></li>
-                <li><a href="#">Host</a></li>
+                <li><a href="../pages/placeslist.php">Book</a></li>
+                <li><a href=../pages/hostplace.php>Host</a></li>
                 <li><a href="#">Signup</a></li>
                 <li><a href="#">Login</a></li>
 
@@ -50,4 +50,15 @@ function draw_footer() { ?>
     </body>
     </html>
 <?php }
+
+// draws a search bar 
+function draw_search_bar() { ?>
+
+<?php }
+
+// draws a form that allows an user to add a new place if logged in
+function draw_input_place() { ?>
+
+<?php }
+
 ?>
