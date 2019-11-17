@@ -2,11 +2,11 @@
 ![Coverage Tests](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/mockups/homely.png)
 
 ## Mockups
- - [Home Page](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/mockups/homepage.png)
- - [Register Page](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/mockups/register.png)
- - [Login Page](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/mockups/login.png)
- - [Search Page](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/mockups/searchpage.png)
- - [Item Page](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/mockups/itempage.png)
+ - [Home Page](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/mockups/homepage.jpg)
+ - [Register Page](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/mockups/registerpage.jpg)
+ - [Login Page](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/mockups/loginpage.jpg)
+ - [Search Page](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/mockups/searchpage.jpg)
+ - [Item Page](https://github.com/Revuj/FEUP-LTW-PROJ/blob/master/docs/mockups/itempage.jpg)
  
  ***
  
