@@ -14,7 +14,7 @@ function listPlaces($places) { ?>
 }
 
 /**
- * Draws the information of a place
+ * Draws the information of a place (a alterar)
  */
 function listItem($place) { ?>
     <p> <?=$place['place_title']?> </p>

@@ -2,14 +2,14 @@
 /**
  * Draws the login section.
  */ ?>
-  <section id="login">
+  <section class="form-2" id="login">
     
-    <header><h2>Welcome Back</h2></header>
+    <h2>Welcome Back</h2>
 
     <form method="post" action="../actions/action_login.php">
       <input type="text" name="username" placeholder="username" required>
       <input type="password" name="password" placeholder="password" required>
-      <input type="submit" value="Login">
+      <button type="submit">Login</button>
     </form>
 
     <footer>
@@ -23,14 +23,14 @@
 /**
  * Draws the signup section.
  */ ?>
-  <section id="signup">
+  <section class="form-2" id="signup">
 
-    <header><h2>New Account</h2></header>
+    <h2>New Account</h2>
 
     <form method="post" action="../actions/action_signup.php">
       <input type="text" name="username" placeholder="username" required>
       <input type="password" name="password" placeholder="password" required>
-      <input type="submit" value="Signup">
+      <button type="submit">Signup</button>
     </form>
 
     <footer>

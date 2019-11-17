@@ -12,7 +12,7 @@
     background-size: cover;
 }
 
-.bgimg-1 p {
+.form-1 p {
     padding-left: 1rem;
     margin-bottom: 0;
     font-size: 200%;
@@ -45,26 +45,27 @@ form input:focus {
     border-bottom: 3px solid var(--orange);
 }
 
-form > input:last-child {
-    width: 50%;
-    float: right;
+form > button {
+    width: 100%;
+    height: 2rem;
+    /* float: right; */
     color: bold;
     font-weight: bolder;
-    border-radius: 10px;
+    border-radius: 5px;
     border: none;
     /* border-right: 2px solid var(--orange); */
     transition-duration: 0.4s;
 }
 
-form > input:last-child:hover {
+form > button:hover {
     border: 2px solid var(--orange);
-    /* background-color: var(--orange); */
+    background-color: var(--orange);
+    color: white;
 }
 
-#search-1 {
+.form-1 {
     background: white;
     width: 25rem;
-    height: 23rem;
     margin: 0 auto;
     position: relative;
     top: 10em;
@@ -78,7 +79,7 @@ form > input:last-child:hover {
 }
 
 @media screen and (max-width: 40em) {
-    #search-1 {
+    .form-1 {
         top: 0em;
         width: auto;
         height: 100%;

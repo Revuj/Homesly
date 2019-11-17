@@ -68,7 +68,16 @@ function draw_search_bar() { ?>
 
 // draws a form that allows an user to add a new place if logged in
 function draw_input_place() { ?>
-
+    <section class="form-3">
+        <h2>Host your Place!</h2>
+        <form method="post" action="../actions/action_host_place.php">
+        <label>Title<input type="text" name="title" placeholder="title" required></label>
+        <label>Description<input type="text" name="description" placeholder="about" required></label>
+        <label>Location<input type="text" name="location" placeholder="where" required></label>
+        <label>Price/Day<input type="number" name="price_per_day" placeholder="price/day" min="1" required></label>
+        <button type="submit">Host Place</button>
+        </form>
+    </section>
 <?php }
 
 ?>

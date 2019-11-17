@@ -85,6 +85,11 @@ footer img {
     display: none;
 }
 
+section[class*="form"] h2 {
+    padding-left: 1rem;
+    margin-bottom: 0;
+}
+
 @media screen and (min-width: 40em) {
     .navbar {
         display: flex;
