@@ -85,10 +85,40 @@ footer img {
     display: none;
 }
 
-section[class*="form"] h2 {
+/* The Modal (background) */
+#signup, #login {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    /* padding-top: 20%; */
+    border: none;
+    border-radius: 0%;
+}
+
+.login_content > span {
+    float: right;
+    padding: 8px 16px 8px 16px;
+}
+  
+/* Modal Content/Box */
+.login_content  {
+    background-color: #fefefe;
+    margin: auto auto auto auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 400px;
+}
+
+/* section[class*="form"] h2 {
     padding-left: 1rem;
     margin-bottom: 0;
-}
+} */
 
 @media screen and (min-width: 40em) {
     .navbar {
@@ -124,6 +154,10 @@ section[class*="form"] h2 {
         display: none;
         text-align: center;
         padding: 15px 0;
+    }
+
+    .login_content {
+        width: 100%;
     }
 
     .navbar.responsive > ul li {

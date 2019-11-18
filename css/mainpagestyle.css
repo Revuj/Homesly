@@ -12,10 +12,9 @@
     background-size: cover;
 }
 
-.form-1 p {
+.form-1 h2 {
     padding-left: 1rem;
     margin-bottom: 0;
-    font-size: 200%;
     font-weight: bolder;
 }
 

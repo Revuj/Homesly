@@ -3,7 +3,7 @@ function draw_main_page() { ?>
     <img id="main-background" src="../images/background.jpg"/>
     <div class="bgimg-1">
         <section class="form-1">
-            <p>Travel Anywhere...</p>
+            <h2>Travel Anywhere...</h2>
             <form method="post" action="../actions/action_search.php">
                 <label>Location<input type="text" name="location" placeholder="Where" ></label>
                 <label>Checkin<input type="date" name="checkin" placeholder="mm/dd/yyyy" ></label>
