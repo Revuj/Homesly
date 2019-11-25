@@ -1,0 +1,37 @@
+.full_width_image {
+    width: 100%;
+    height: auto;
+}
+
+.container_detail_content {
+    margin: 16px 50px 16px 50px;
+}
+
+.detail_location {
+    color: gray;
+}
+
+
+#col-1 {
+    position: relative;
+    width: 50%;
+    float: left;
+    height: 100%;
+}
+  
+#col-2 {
+    position: relative;
+    width: 50%;
+    float: left;
+    height: 100%;
+    text-align: center;
+}
+
+.user_detail_content {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+img.user_detail_content {
+    margin: 0px 32px;
+}
