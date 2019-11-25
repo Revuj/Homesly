@@ -29,6 +29,7 @@ catch(e) {
   //user is logged in
 }
 
+try {
 let loginButton = document.getElementById("login_button");
 
 loginButton.addEventListener('click', function() {
@@ -42,4 +43,8 @@ loginButton.addEventListener('click', function() {
     signupForm.style.display = "none";
   }
 })
+}
+ catch(e) {
+    //user is logged in
+ }
 
