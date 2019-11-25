@@ -29,7 +29,7 @@ body {
     padding: 0;
 }
 
-.navbar a {
+a {
     text-decoration: none;
     padding: 1em;
     color: white;

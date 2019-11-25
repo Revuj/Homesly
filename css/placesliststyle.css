@@ -1,5 +1,23 @@
 article.place_overview {
-    width: 30%;
-    float: left;
-    margin: 1.66% 1.66% 1.66% 1.66%;
+    margin: 2.5% 2.5% 2.5% 2.5%;
+    flex: 1 0 21%;
+}
+
+.place_overview img {
+    width: 100%;
+}
+
+.place_overview p {
+    padding-left: 1em;
+}
+
+.places_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.place_overview a {
+    text-decoration: none;
+    color: black;
 }
