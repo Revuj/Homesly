@@ -13,10 +13,10 @@ navbarToggle.addEventListener('click', function () {
 
 try {
   let signupButton = document.getElementById("signup_button");
-  signupButton.addEventListener('click', function() {
+  signupButton.addEventListener('click', function () {
     let signupForm = document.getElementById("signup");
     let loginForm = document.getElementById("login");
-    
+
     if (signupForm.style.display === "block")
       signupForm.style.display = "none";
     else {
@@ -25,26 +25,41 @@ try {
     }
   })
 }
-catch(e) {
+catch (e) {
   //user is logged in
 }
 
 try {
-let loginButton = document.getElementById("login_button");
+  let loginButton = document.getElementById("login_button");
 
-loginButton.addEventListener('click', function() {
-  let loginForm = document.getElementById("login");
-  let signupForm = document.getElementById("signup");
+  loginButton.addEventListener('click', function () {
+    let loginForm = document.getElementById("login");
+    let signupForm = document.getElementById("signup");
 
-  if (loginForm.style.display === "block")
-    loginForm.style.display = "none";
-  else {
-    loginForm.style.display = "block";
-    signupForm.style.display = "none";
-  }
-})
+    if (loginForm.style.display === "block")
+      loginForm.style.display = "none";
+    else {
+      loginForm.style.display = "block";
+      signupForm.style.display = "none";
+    }
+  })
 }
- catch(e) {
-    //user is logged in
- }
+catch (e) {
+  //user is logged in
+}
+
+let searchBar = document.getElementById('inpt_search');
+let searchBarLabel = document.getElementsByClassName('search')[0];
+
+
+searchBar.addEventListener('focus', function () {
+  searchBar.placeholder = "Location..."
+  searchBarLabel.classList.add('active')
+});
+
+searchBar.addEventListener('blur', function () {
+  searchBar.placeholder = ""
+  if (searchBar.value.length == 0)
+    searchBarLabel.classList.remove('active')
+});
 

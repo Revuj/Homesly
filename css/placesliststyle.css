@@ -2,6 +2,44 @@
     --orange: #ff6624;
 }
 
+.form-2 {
+    margin-left: 1.25%;
+    padding-left: 0;
+}
+
+.form-2 form {
+    padding-left: 0;
+    display: flex;
+    align-items: flex-end;
+}
+
+.form-2 form label {
+    height: 1rem;
+    margin-right: 2rem;
+}
+
+.form-2 form label input {
+    font-weight: bold;
+    height: 1rem;
+    padding-left: 1em;
+    border: 2px solid var(--orange);
+    border-radius: 5px;
+}
+
+.form-2 form label input:focus {
+    border-color: white;
+    border-bottom: 2px solid var(--orange);
+    border-radius: 0;
+    transition-duration: 0.4s;
+}
+
+.form-2 button {
+    width: 5em;
+    height: 1.8rem;
+    position: relative;
+    top: 1em;
+}
+
 article.place_overview {
     margin: 1.25% 1.25% 1.25% 1.25%; 
     width: 22.5%;
@@ -65,6 +103,11 @@ article.place_overview {
     font-style: italic;
 }
 @media (max-width:60em) {
+
+    .form-2 {
+        margin-left: 1.66%;
+    }
+
     article.place_overview {
         margin: 1.66% 1.66% 1.66% 1.66%; 
         width: 30%;
@@ -72,13 +115,23 @@ article.place_overview {
 }
 
 @media (max-width:50em) {
+
+    .form-2 {
+        margin-left: 2.5%;
+    }
+
     article.place_overview {
         margin: 2.5% auto; 
         width: 45%;
     }
 }
 
-@media (max-width:40em) {
+@media (max-width:40em) { 
+
+    .form-2 {
+        margin-left: 2.5%;
+    }
+
     article.place_overview {
         margin: 2.5% 2.5% 2.5% 2.5%; 
         width: 100%;

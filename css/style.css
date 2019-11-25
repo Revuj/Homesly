@@ -122,6 +122,16 @@ footer img {
     margin-bottom: 0;
 } */
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
 @media screen and (min-width: 40em) {
     .navbar {
         display: flex;

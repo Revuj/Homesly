@@ -3,6 +3,15 @@
  * Draws a list of places that receives as an arguement
  */
 function listPlaces($places) { ?>
+  <section class="form-2">
+      <form method="post" action="../actions/action_search.php">
+          <label><input type="text" value="" name="location" placeholder="Where" ></label>
+          <label><input type="date" value="" name="checkin" placeholder="mm/dd/yyyy" ></label>
+          <label><input type="date" value="" name="checkout" placeholder="mm/dd/yyyy" ></label>
+          <label><input type="number" value="" min="0" name="guests" placeholder="Guests" ></label>
+          <button type="submit"><i class="fas fa-search"></i></button>
+      </form>
+  </section>
   <article class="places_list">
       <?php
         foreach($places as $place) { 
