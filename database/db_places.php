@@ -6,9 +6,16 @@ include_once('../includes/database.php');
 */
 function getAllPlaces() {
     $db = Database::instance()->db();
-    $stmt = $db->prepare('SELECT * FROM place');
+    $stmt = $db->prepare("SELECT * FROM place");
     $stmt->execute();
     return $stmt->fetchAll();
+}   
+
+function getPlaceWithId($id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare("SELECT * FROM place WHERE place_id = $id");
+    $stmt->execute();
+    return $stmt->fetch();
 }   
 
 /**
@@ -19,12 +26,12 @@ function getPlacesFiltered($location, $checkin, $checkout, $guests) {
     echo $location;
     if ($location != '') {
         echo 'oi';
-        $stmt = $db->prepare('SELECT * FROM place WHERE place_location = ?');
+        $stmt = $db->prepare("SELECT * FROM place WHERE place_location = ?");
         $stmt->execute(array($location));
     }
     else {
         echo 'helolol';
-        $stmt = $db->prepare('SELECT * FROM place');
+        $stmt = $db->prepare("SELECT * FROM place");
         $stmt->execute();
     }
     return $stmt->fetchAll();
@@ -35,7 +42,7 @@ function getPlacesFiltered($location, $checkin, $checkout, $guests) {
  */
 function insertPlace($place_title, $place_description, $place_location, $place_price, $place_owner) {
     $db = Database::instance()->db();
-    $stmt = $db->prepare('INSERT INTO place VALUES(?, ?, ?, ?, ?, ?)');
+    $stmt = $db->prepare("INSERT INTO place VALUES(?, ?, ?, ?, ?, ?)");
     $stmt->execute(array(NULL, $place_title, $place_description, $place_location, $place_price, $place_owner));   
 }
 ?>

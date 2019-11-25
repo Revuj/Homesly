@@ -6,7 +6,12 @@
   if (!isset($_GET['id']))
     die("No id!");
 
+  $place = getPlaceWithId($_GET['id']);
+
+  if (!isset($place))
+    die("The place you where looking for is unnavailable!");
+
   draw_header();
-  //draw_place($_GET['id']); //a implementar em tpl_places que faz uma query com db_places
+  pageDetailItem($place);
   draw_footer();
 ?>

@@ -37,4 +37,24 @@ function listItem($place) { ?>
     </a>
   </article>
 <?php }
+
+/**
+ * Draws the detailed information of a place 
+ */
+function pageDetailItem($place) { ?>
+  <div>
+    <!-- <a href="../pages/item.php?id=<?=$place['place_id']?>"> -->
+      <img src="../images/test.jpg" />
+      <!-- <i class="far fa-heart"></i>
+      <i class="fas fa-heart"></i> -->
+      <p class="place_title"> <?=$place['place_title']?> </p>
+      <p class="place_location"> <?=$place['place_location']?> </p>
+      <p class=""> <?=$place['place_description']?> </p>
+      <p class="place_price"> <?=$place['place_price_per_day']?> € / day</p>
+      <p class=""> <?=$place['place_owner']?> </p>
+    <!-- </a> -->
+  </div>
+<?php }
+
+
 ?>
