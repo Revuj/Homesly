@@ -91,7 +91,6 @@ footer img {
 
 /* The Modal (background) */
 #signup, #login {
-    display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
@@ -101,9 +100,8 @@ footer img {
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    /* padding-top: 20%; */
     border: none;
-    border-radius: 0%;
+    border-radius: 0%;   
 }
 
 .login_content > span {
@@ -114,7 +112,7 @@ footer img {
 /* Modal Content/Box */
 .login_content  {
     background-color: #fefefe;
-    margin: auto auto auto auto; /* 5% from the top, 15% from the bottom and centered */
+    margin: 10% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
     width: 400px;
 }
