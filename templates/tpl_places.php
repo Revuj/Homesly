@@ -4,7 +4,7 @@
  */
 function listPlaces($places) { ?>
   <section class="form-2">
-      <form method="post" action="../actions/action_search.php">
+      <form method="get" action="../pages/placeslist.php">
           <label><input type="text" value="" name="location" placeholder="Where" ></label>
           <label><input type="date" value="" name="checkin" placeholder="mm/dd/yyyy" ></label>
           <label><input type="date" value="" name="checkout" placeholder="mm/dd/yyyy" ></label>

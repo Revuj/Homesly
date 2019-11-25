@@ -72,7 +72,7 @@ function draw_search_bar() { ?>
 function draw_input_place() { ?>
     <section class="form-3">
         <h2>Host your Place!</h2>
-        <form method="post" action="../actions/action_host_place.php">
+        <form method="get" action="../actions/action_host_place.php">
         <label>Title<input type="text" name="title" placeholder="title" required></label>
         <label>Description<input type="text" name="description" placeholder="about" required></label>
         <label>Location<input type="text" name="location" placeholder="where" required></label>

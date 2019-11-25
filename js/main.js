@@ -48,18 +48,4 @@ catch (e) {
   //user is logged in
 }
 
-let searchBar = document.getElementById('inpt_search');
-let searchBarLabel = document.getElementsByClassName('search')[0];
-
-
-searchBar.addEventListener('focus', function () {
-  searchBar.placeholder = "Location..."
-  searchBarLabel.classList.add('active')
-});
-
-searchBar.addEventListener('blur', function () {
-  searchBar.placeholder = ""
-  if (searchBar.value.length == 0)
-    searchBarLabel.classList.remove('active')
-});
 
