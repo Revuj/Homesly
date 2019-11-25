@@ -20,9 +20,11 @@ function listItem($place) { ?>
   <article class="place_overview">
     <a href="../pages/item.php?id=<?=$place['place_id']?>">
       <img src="../images/test.jpg" />
-      <p> <?=$place['place_price_per_day']?> </p>
-      <p> <?=$place['place_title']?> </p>
-      <p> <?=$place['place_location']?> </p>
+      <i class="far fa-heart"></i>
+      <i class="fas fa-heart"></i>
+      <p class="place_location"> <?=$place['place_location']?> </p>
+      <p class="place_title"> <?=$place['place_title']?> </p>
+      <p class="place_price"> <?=$place['place_price_per_day']?> € / day</p>
     </a>
   </article>
 <?php }

@@ -1,14 +1,35 @@
+:root {
+    --orange: #ff6624;
+}
+
 article.place_overview {
-    margin: 2.5% 2.5% 2.5% 2.5%; 
-    width: 20%;
+    margin: 1.25% 1.25% 1.25% 1.25%; 
+    width: 22.5%;
+    position: relative;
+}
+
+.far.fa-heart {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: larger;
+}
+
+.far.fa-heart:hover {
+    color: var(--orange);
+}
+
+.fas.fa-heart {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: larger;
+    display: none;
 }
 
 .place_overview img {
-    width: 85%;
-}
-
-.place_overview p {
-    padding-left: 1em;
+    width: 100%;
+    border-radius: 5px;
 }
 
 .places_list {
@@ -20,8 +41,29 @@ article.place_overview {
 .place_overview a {
     text-decoration: none;
     color: black;
+    padding: 0;
 }
 
+.place_overview a:hover {
+    opacity: 0.5;
+}
+
+.place_overview p {
+    margin: 0.3em;
+}
+
+.place_location {
+    font-weight: bolder;
+    color: var(--orange);
+}
+
+.place_title {
+    font-weight: bolder;
+}
+
+.place_price {
+    font-style: italic;
+}
 @media (max-width:60em) {
     article.place_overview {
         margin: 1.66% 1.66% 1.66% 1.66%; 
