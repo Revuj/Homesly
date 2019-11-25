@@ -10,6 +10,8 @@ body {
     font-family: 'Josefin Sans', sans-serif;
     width: 100%;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .navbar {
@@ -53,6 +55,8 @@ body {
 footer {
     background: var(--orange);
     height: 7.5em;
+    width: 100%;
+    margin-top: auto;
 }
 
 footer ul {

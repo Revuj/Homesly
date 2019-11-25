@@ -3,7 +3,7 @@
  * Draws a list of places that receives as an arguement
  */
 function listPlaces($places) { ?>
-  <article class="places">
+  <article class="places_list">
       <?php
         foreach($places as $place) { 
             listItem($place);
@@ -17,9 +17,11 @@ function listPlaces($places) { ?>
  * Draws the information of a place (a alterar)
  */
 function listItem($place) { ?>
-    <p> <?=$place['place_title']?> </p>
-    <p> <?=$place['place_description']?> </p>
-    <p> <?=$place['place_location']?> </p>
+  <article class="place_overview">
+    <img src="../images/test.jpg" />
     <p> <?=$place['place_price_per_day']?> </p>
+    <p> <?=$place['place_title']?> </p>
+    <p> <?=$place['place_location']?> </p>
+  </article>
 <?php }
 ?>
