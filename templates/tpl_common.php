@@ -36,9 +36,8 @@ function draw_header() { ?>
                 <?php }
                 ?>
 
-                <a class="icon">
-                    <i class="fa fa-bars"></i>
-                </a>
+                <a class="searchMenu"><i class="fas fa-search-location"></i></a>
+                <a class="hamburguerMenu"><i class="fa fa-bars"></i></a>
             </ul>
         </nav>
     </header>

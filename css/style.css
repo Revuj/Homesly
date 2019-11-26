@@ -17,6 +17,7 @@ body {
 .navbar {
     background-color: var(--orange);
     margin-top: 0px;
+    overflow: hidden;
 }
 
 /**
@@ -48,7 +49,7 @@ a {
     width: 6rem;
 }
 
-.navbar a.icon {
+.navbar > ul a.hamburguerMenu {
     display: none;
 }
 
@@ -178,12 +179,21 @@ input[type=number] {
         padding: 15px 0;
     }
 
-    .navbar > ul a.icon {
+    .navbar > ul a.hamburguerMenu {
         color: white;
         display: block;
         position: absolute;
         top: 0px;
         right: 0px;
         height: 0.8em;
+    }
+
+    .navbar a:first-child {
+        display: inline-block;
+
+    }
+    
+    img#logo {
+        display: inline;
     }
 }

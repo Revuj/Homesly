@@ -1,6 +1,6 @@
 'use strict'
 
-let navbarToggle = document.getElementsByClassName('icon')[0];
+let navbarToggle = document.getElementsByClassName('hamburguerMenu')[0];
 
 navbarToggle.addEventListener('click', function () {
   let navbar = document.getElementById("navbar");
@@ -8,6 +8,18 @@ navbarToggle.addEventListener('click', function () {
     navbar.className += " responsive";
   } else {
     navbar.className = "navbar";
+  }
+})
+
+let searchbarToggle = document.getElementsByClassName('searchMenu')[0];
+console.log(searchbarToggle)
+searchbarToggle.addEventListener('click', function () {
+  console.log('oi')
+  let searchForm = document.querySelector('.form-2');
+  if (searchForm.className === "form-2") {
+    searchForm.className += " responsive";
+  } else {
+    searchForm.className = "form-2";
   }
 })
 
