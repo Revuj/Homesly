@@ -59,3 +59,7 @@
 #user_details li {
     margin-bottom: 0.5em;
 }
+
+#user_places, #user_reviews {
+    display: none;
+}

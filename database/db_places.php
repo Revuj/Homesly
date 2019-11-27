@@ -16,7 +16,17 @@ function getPlaceWithId($id) {
     $stmt = $db->prepare("SELECT * FROM place WHERE place_id = $id");
     $stmt->execute();
     return $stmt->fetch();
-}   
+}
+
+/**
+ * Returns the places belonging to a certain user.
+ */
+function getUserPlaces($username) {
+$db = Database::instance()->db();
+$stmt = $db->prepare('SELECT * FROM place WHERE place_owner = ?');
+$stmt->execute(array($username));
+return $stmt->fetchAll(); 
+}
 
 /**
 * Returns the list with all places available that respect the filters

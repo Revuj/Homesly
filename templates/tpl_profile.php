@@ -1,4 +1,5 @@
 <?php
+    include_once("../database/db_places.php");
     function draw_profile($username) { ?>
     <section id="profile">
         <div id="profile_sidebar">
@@ -14,15 +15,45 @@
         <div id="user_info">
             <nav class="navbar">
                 <ul>
-                    <li>Reservations</li>
+                    <li class="active">Reservations</li>
                     <li>Your Places</li>
                     <li>Reviews</li>
                 </ul>
             </nav>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat totam aperiam unde sequi? Tempore facere totam non vitae, alias vero. Veniam repellendus omnis nam similique quisquam necessitatibus consectetur inventore id.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat totam aperiam unde sequi? Tempore facere totam non vitae, alias vero. Veniam repellendus omnis nam similique quisquam necessitatibus consectetur inventore id.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat totam aperiam unde sequi? Tempore facere totam non vitae, alias vero. Veniam repellendus omnis nam similique quisquam necessitatibus consectetur inventore id.</p>
+            <?php 
+                draw_user_reservations($username);
+                draw_user_places($username);
+                draw_user_reviews($username);
+            ?>
         </div>
+    </section>
+    <?php }
+?>
+
+<?php
+    function draw_user_reservations($username) { ?>
+    <section id="user_reservations">
+        <h1>Reservations</h1>
+    </section>
+    <?php }
+?>
+
+<?php
+    include_once("tpl_places.php"); // a alterar
+    function draw_user_places($username) { ?>
+    <section id="user_places"> <?php
+        $user_places = getUserPlaces($username);
+        foreach($user_places as $place) {
+            listItem($place);
+        } ?>
+    </section>
+    <?php }
+?>
+
+<?php
+    function draw_user_reviews($username) { ?>
+    <section id="user_reviews">
+        <h1>Reviews</h1>
     </section>
     <?php }
 ?>

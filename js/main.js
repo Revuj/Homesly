@@ -61,11 +61,34 @@ catch (e) {
 }
 
 let profileNavItems = document.querySelectorAll('#user_info ul li');
+let profileContent = document.querySelectorAll('#user_info section');
+profileContent[0].style.display="block" //reservations start visible
 
 profileNavItems.forEach(item => item.addEventListener('click', (event) => {
-  Array.prototype.map.call(profileNavItems, function(e) {
+  Array.prototype.map.call(profileNavItems, function (e) {
     if (e.className == 'active')
-        e.className = "";
+      e.className = "";
   })
-  event.target.classList.add('active');
+  event.target.classList.add('active');  
+
+  Array.prototype.map.call(profileContent, function (e) {
+    console.log(e)
+    console.log(e.style.display)
+    if (e.style.display == "block")
+      e.style.display = "none";
+  })
+
+  let contentID;
+  switch (event.target.innerHTML) {
+    case 'Reservations':
+      contentID = 'user_reservations'
+      break;
+    case 'Your Places':
+      contentID = 'user_places'
+      break;
+    case 'Reviews':
+      contentID = 'user_reviews'
+      break;
+  }
+  document.getElementById(contentID).style.display = "block"
 }))
