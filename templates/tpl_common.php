@@ -13,6 +13,7 @@ function draw_header() { ?>
         <link rel="stylesheet" type="text/css" href="../css/mainpagestyle.css">
         <link rel="stylesheet" type="text/css" href="../css/placesliststyle.css">
         <link rel="stylesheet" type="text/css" href="../css/detailviewstyle.css">
+        <link rel="stylesheet" type="text/css" href="../css/profilestyle.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
         integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <script src="../js/main.js" defer></script>
@@ -28,7 +29,7 @@ function draw_header() { ?>
                 <li><a href=../pages/hostplace.php>Host</a></li>
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) { ?>
                     <li><a id="logout_button" href="../actions/action_logout.php">Logout</a></li>
-                    <li><a id="username_button" href="#"><?=$_SESSION['username']?></a></li>
+                    <li><a id="username_button" href="../pages/profile.php"><i class="far fa-user-circle"></i></a></li>
                 <?php }
                 else { ?>
                     <li><a id="signup_button" href="#">Signup</a></li>

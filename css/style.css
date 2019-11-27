@@ -133,6 +133,20 @@ input[type=number] {
     -moz-appearance:textfield; /* Firefox */
 }
 
+#username_button {
+    font-size: 1.5em;
+    padding-top: 12px;
+    padding-bottom: 0;
+}
+
+em {
+    font-style: italic;
+}
+
+bold {
+    font-weight: bold;
+}
+
 @media screen and (min-width: 40em) {
     .navbar {
         display: flex;

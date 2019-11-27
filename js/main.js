@@ -60,4 +60,12 @@ catch (e) {
   //user is logged in
 }
 
+let profileNavItems = document.querySelectorAll('#user_info ul li');
 
+profileNavItems.forEach(item => item.addEventListener('click', (event) => {
+  Array.prototype.map.call(profileNavItems, function(e) {
+    if (e.className == 'active')
+        e.className = "";
+  })
+  event.target.classList.add('active');
+}))
