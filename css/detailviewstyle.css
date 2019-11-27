@@ -3,6 +3,22 @@
     height: auto;
 }
 
+.left_arrow_image {
+    width: 5%;
+    height: auto;
+    position: absolute;
+    top: 550px;
+    left: 70px;
+}
+
+.right_arrow_image {
+    width: 5%;
+    height: auto;
+    position: absolute;
+    top: 550px;
+    right: 70px;
+}
+
 .container_detail_content {
     margin: 16px 50px 16px 50px;
 }

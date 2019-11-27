@@ -41,10 +41,15 @@ function listItem($place) { ?>
 /**
  * Draws the detailed information of a place 
  */
-function pageDetailItem($place) { ?>
-  <div>
-
-      <img class="full_width_image"  src="../images/test.jpg"/>
+function pageDetailItem($place, $images) { ?>
+  <div class="container_detail">
+      <script type='text/javascript'>
+      <?php echo 'let imgs = '.json_encode($images).';'; ?>
+      </script>
+      <script src="../js/pageDetail.js" defer></script>
+      <img class="full_width_image"  src="<?=$images[0]?>"/>
+      <img class="left_arrow_image"  src="../images/left_arrow.png"/>
+      <img class="right_arrow_image"  src="../images/right_arrow.png"/>
 
       <div class="container_detail_content">
 
