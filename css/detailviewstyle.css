@@ -1,22 +1,44 @@
-.full_width_image {
-    width: 100%;
-    height: auto;
+:root {
+    --orange: #ff6624;
+}
+
+.container_detail {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.full_width_image  {
+    margin-top: 1rem;
+    border-radius: 10px;
+    min-width: 1280px;
+    height: 600px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.images_container {
+    position: relative;
+    font-size: 300%;
+    color: black;
 }
 
 .left_arrow_image {
-    width: 5%;
-    height: auto;
+    opacity: 0.55;
     position: absolute;
-    top: 550px;
-    left: 70px;
+    top: 275px;
+    left: 16px;
 }
 
 .right_arrow_image {
-    width: 5%;
-    height: auto;
+    opacity: 0.55;
     position: absolute;
-    top: 550px;
-    right: 70px;
+    top: 275px;
+    right: 16px;
+}
+
+.left_arrow_image:hover , .right_arrow_image:hover {
+    color: white;
+    opacity: 0.5;
 }
 
 .container_detail_content {
@@ -24,7 +46,19 @@
 }
 
 .detail_location {
+    font-weight: lighter;
+    font-style: italic;
     color: gray;
+    margin-top: 0;
+}
+
+.detail_description {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.detail_title {
+    margin-bottom: 0;
 }
 
 
@@ -40,14 +74,60 @@
     width: 50%;
     float: left;
     height: 100%;
-    text-align: center;
+}
+
+#place_host {
+    width: 100px;
+    display: inline-block;
+    vertical-align: middle; 
+    margin-left: 8em;
+}
+
+.user_detail_content h5 {
+    font-style: italic;
+    font-size: 100%;
+    color: var(--orange);
+    opacity: 0.8;
+    margin-top: 0;
+}
+
+.user_detail_content h4 {
+    margin-bottom: 0.5em;
 }
 
 .user_detail_content {
     display: inline-block;
     vertical-align: middle;
+    margin-left: 3em;
+    text-align: center;
 }
 
 img.user_detail_content {
-    margin: 0px 32px;
+    margin: 2em 32px;
+}
+
+.place_price {
+    text-align: left;
+    margin-left: 1em;
+    margin-bottom: 0;
+    opacity: 0.6;
+}
+
+#col-2 .book-form {
+    position: static;
+    margin: 2em auto;
+}
+
+#col-2 .book-form label {
+    text-align: left;
+}
+
+#col-2 .book-form input {
+    border: 2px solid var(--orange);
+    border-radius: 5px;
+    margin-top: 0.5em;
+}
+
+#calculated_price {
+    text-align: left;
 }

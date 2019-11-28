@@ -42,40 +42,47 @@ function listItem($place) { ?>
  * Draws the detailed information of a place 
  */
 function pageDetailItem($place, $images) { ?>
-  <div class="container_detail">
+  <section class="container_detail">
       <script type='text/javascript'>
       <?php echo 'let imgs = '.json_encode($images).';'; ?>
       </script>
-      <script src="../js/pageDetail.js" defer></script>
-      <img class="full_width_image"  src="<?=$images[0]?>"/>
-      <img class="left_arrow_image"  src="../images/left_arrow.png"/>
-      <img class="right_arrow_image"  src="../images/right_arrow.png"/>
+      <div class="images_container">
+        <div class="full_width_image"
+          style="background-image: url(<?=$images[0]?>);">
+        </div>
+        <i class="fas fa-chevron-left left_arrow_image"></i>
+        <i class="fas fa-chevron-right right_arrow_image"></i>
+      </div>
 
       <div class="container_detail_content">
-
         <div id="col-1">
-          <h1> <?=$place['place_title']?> </h2>
+          <h1 class="detail_title"> <?=$place['place_title']?> </h2>
           <h3 class="detail_location"> <?=$place['place_location']?> </h3>
-          <p class=""> <?=$place['place_description']?> </p>
+          <p class="detail_description"> <?=$place['place_description']?> </p>
         </div>
         <div id="col-2">
           <div>
-            <img class="user_detail_content" src="../images/profile_icon.png" width="75" height="75"/>
+            <img id="place_host" src="../images/profile_icon.png"/>
             <div class="user_detail_content">
-              <h3>Owner</h3>
-              <h3> <?=$place['place_owner']?> </h3>
+              <h4>Owner</h4>
+              <h5> <?=$place['place_owner']?> </h5>
             </div>
             
           </div>
-          <h2 class="place_price"> <?=$place['place_price_per_day']?> € / day</h2>
-          
-          
-          
+
+          <div class="form-1 book-form">
+          <h3 class="place_price"> <?=$place['place_price_per_day']?> € per night</h2>
+            <form method="get" action="#">
+                <label>Checkin<input type="date" value="" name="checkin" placeholder="mm/dd/yyyy" ></label>
+                <label>Checkout<input type="date" value="" name="checkout" placeholder="mm/dd/yyyy" ></label>
+                <label>Guests<input type="number" value="1" min="1" name="guests" placeholder="Guests" ></label>
+                <p id="calculated_price">Total: <?=$place['place_price_per_day']?> €</p>
+                <button type="submit">Book</button>
+            </form>
+          </div>
         </div>
-
       </div>
-
-  </div>
+  </section>
 <?php }
 
 

@@ -15,7 +15,7 @@ leftImageScroll.addEventListener('click', function () {
     rightImageScroll.style.display = "block";
   }
   let imageDisplayed = document.getElementsByClassName('full_width_image')[0];
-  imageDisplayed.outerHTML = "<img class=\"full_width_image\" src=\"" + imgs[imgIndex] + "\">";
+  imageDisplayed.outerHTML = "<div class='full_width_image' style='background-image: url(" + imgs[imgIndex] + ");'></div>";
 })
 
 rightImageScroll.addEventListener('click', function () {
@@ -29,6 +29,6 @@ rightImageScroll.addEventListener('click', function () {
     leftImageScroll.style.display = "block";
   }
   let imageDisplayed = document.getElementsByClassName('full_width_image')[0];
-  imageDisplayed.outerHTML = "<img class=\"full_width_image\" src=\"" + imgs[imgIndex] + "\">";
+  imageDisplayed.outerHTML = "<div class='full_width_image' style='background-image: url(" + imgs[imgIndex] + ");'></div>";
 })
 
