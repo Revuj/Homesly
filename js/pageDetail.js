@@ -32,3 +32,5 @@ rightImageScroll.addEventListener('click', function () {
   imageDisplayed.outerHTML = "<div class='full_width_image' style='background-image: url(" + imgs[imgIndex] + ");'></div>";
 })
 
+leftImageScroll.click();
+

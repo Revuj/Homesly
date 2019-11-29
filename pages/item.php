@@ -12,7 +12,18 @@
     die("The place you where looking for is unnavailable!");
 
   draw_header();
-  $images = ["../images/test.jpg", "../images/test2.jpg", "../images/test3.jpg"];
+  $images = [];
+  $fileString = $place['place_files'];
+  $counter = 0;
+  while (true) {
+    $pos = strpos($fileString, ';', $startIndex);
+    if ($pos === false)
+      break;
+    $fileName = substr($fileString, $startIndex, $pos);
+    $fileString = substr($fileString, strlen($fileName) + 1);
+    $images[$counter] = $fileName;
+    $counter++;
+  }
   pageDetailItem($place, $images);
   draw_footer();
 ?>
