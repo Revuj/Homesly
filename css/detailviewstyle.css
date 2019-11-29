@@ -23,25 +23,22 @@
 }
 
 .left_arrow_image {
-    opacity: 0.6;
+    opacity: 0.55;
     position: absolute;
-    background-color: white;
     top: 275px;
     left: 16px;
 }
 
 .right_arrow_image {
-    opacity: 0.6;
+    opacity: 0.55;
     position: absolute;
-    background-color: white;
     top: 275px;
     right: 16px;
 }
 
 .left_arrow_image:hover , .right_arrow_image:hover {
     color: white;
-    background-color:black;
-    opacity: 0.6;
+    opacity: 0.5;
 }
 
 .container_detail_content {

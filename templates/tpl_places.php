@@ -28,7 +28,7 @@ function listPlaces($places) { ?>
 function listItem($place) { ?>
   <article class="place_overview">
     <a href="../pages/item.php?id=<?=$place['place_id']?>">
-      <img src="<?=substr($place['place_files'], 0, strpos($place['place_files'], ';', 0))?>" />
+      <img src="../images/test.jpg" />
       <i class="far fa-heart"></i>
       <i class="fas fa-heart"></i>
       <p class="place_location"> <?=$place['place_location']?> </p>
