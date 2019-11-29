@@ -87,6 +87,10 @@ form > button:hover {
         border-radius: 0;
     }
 
+    form > button {
+        height: 4rem;
+    }
+
     form > input:last-child {
         float: none;
         width: 100%;

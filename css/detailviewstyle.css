@@ -5,6 +5,7 @@
 .container_detail {
     max-width: 1280px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .full_width_image  {
@@ -42,7 +43,7 @@
 }
 
 .container_detail_content {
-    margin: 16px 50px 16px 50px;
+    margin: 16px 0;
 }
 
 .detail_location {
@@ -50,21 +51,24 @@
     font-style: italic;
     color: gray;
     margin-top: 0;
+    margin: 0 2rem;
+    margin-bottom: 1rem;
 }
 
 .detail_description {
     text-align: justify;
     text-justify: inter-word;
+    margin: 0 2rem;
 }
 
 .detail_title {
-    margin-bottom: 0;
+    margin: 0 2rem;
 }
 
 
 #col-1 {
     position: relative;
-    width: 50%;
+    width: 45%;
     float: left;
     height: 100%;
 }
@@ -80,7 +84,6 @@
     width: 100px;
     display: inline-block;
     vertical-align: middle; 
-    margin-left: 8em;
 }
 
 .user_detail_content h5 {
@@ -103,7 +106,7 @@
 }
 
 img.user_detail_content {
-    margin: 2em 32px;
+    margin: 0 32px;
 }
 
 .place_price {
@@ -113,9 +116,13 @@ img.user_detail_content {
     opacity: 0.6;
 }
 
-#col-2 .book-form {
+#col-2 .book-form, .host_info  {
     position: static;
     margin: 2em auto;
+}
+
+.host_info {
+    text-align: center;
 }
 
 #col-2 .book-form label {
@@ -130,4 +137,31 @@ img.user_detail_content {
 
 #calculated_price {
     text-align: left;
+}
+
+@media screen and (max-width: 1280px) {
+    .full_width_image {
+        min-width: 100%;
+        border-radius: 0;
+        margin-top: 0;
+    }
+
+    .detail_description {
+        margin-right: 2rem;
+    }
+}
+
+@media screen and (max-width: 50em) {
+    #col-1 {
+        display: block;
+        width: 100%;
+    }
+
+    #col-2 {
+        display: block;
+        width: 100%;
+    }
+
+    .detail_description {
+    }
 }

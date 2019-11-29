@@ -61,13 +61,12 @@ function pageDetailItem($place, $images) { ?>
           <p class="detail_description"> <?=$place['place_description']?> </p>
         </div>
         <div id="col-2">
-          <div>
+          <div class="host_info">
             <img id="place_host" src="../images/profile_icon.png"/>
             <div class="user_detail_content">
               <h4>Owner</h4>
               <h5> <?=$place['place_owner']?> </h5>
-            </div>
-            
+            </div>           
           </div>
 
           <div class="form-1 book-form">
