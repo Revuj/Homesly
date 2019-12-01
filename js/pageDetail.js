@@ -32,3 +32,13 @@ rightImageScroll.addEventListener('click', function () {
   imageDisplayed.outerHTML = "<div class='full_width_image' style='background-image: url(" + imgs[imgIndex] + ");'></div>";
 })
 
+let guestsNumber = document.querySelector('input[name="guests"]');
+let placePrice = Number(document.getElementsByClassName('place_price')[0].innerHTML);
+let calculatedPrice = document.getElementById('calculated_price');
+
+guestsNumber.addEventListener('change', (event) => {
+  calculatedPrice.innerHTML = 'Total: ' + placePrice * Number(guestsNumber.value) + '€';
+})
+
+
+

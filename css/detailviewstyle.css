@@ -139,6 +139,10 @@ img.user_detail_content {
     text-align: left;
 }
 
+.place_price::after {
+    content: "€ / night";
+}
+
 @media screen and (max-width: 1280px) {
     .full_width_image {
         min-width: 100%;
@@ -160,8 +164,5 @@ img.user_detail_content {
     #col-2 {
         display: block;
         width: 100%;
-    }
-
-    .detail_description {
     }
 }
