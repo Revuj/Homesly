@@ -13,13 +13,15 @@
             </ul>
         </div>
         <div id="user_info">
-            <nav class="navbar">
-                <ul>
-                    <li class="active">Reservations</li>
-                    <li>Your Places</li>
-                    <li>Reviews</li>
-                </ul>
-            </nav>
+            <div id="nav_container">
+                <nav class="navbar">
+                    <ul>
+                        <li class="active">Reservations</li>
+                        <li>Your Places</li>
+                        <li>Reviews</li>
+                    </ul>
+                </nav>
+            </div>
             <?php 
                 draw_user_reservations($username);
                 draw_user_places($username);

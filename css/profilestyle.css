@@ -20,6 +20,7 @@
 #user_info {
     padding-left: 1em;
     margin-left: 1em;
+    margin-right: 1em;
     grid-column: 2;
     grid-row: 1;
 }
@@ -63,3 +64,96 @@
 #user_places, #user_reviews {
     display: none;
 }
+
+#user_places .place_location {
+    font-weight: bolder;
+    color: yellowgreen;
+}
+
+#user_places .place_title {
+    font-weight: bolder;
+}
+
+#user_places .place_price {
+    font-style: italic; 
+}
+
+#user_places .place_overview {
+    width: 100%;
+}
+
+#user_places .place_overview a {
+    display: flex;
+}
+
+#user_places .place_img {
+    width: 25%;
+    flex-shrink: 0;
+}
+
+
+#user_places .place_img img {
+    flex-shrink: 0;
+}
+
+#user_places .place_description {
+    display: block;
+    text-align: justify;
+    flex-shrink: 1;
+}
+
+#user_places .place_details {
+    margin-left: 1em;
+}
+
+#user_places .fa-heart {
+    display: none;
+}
+
+@media (max-width:1280px) {
+    #user_places .place_description {
+        display: none;
+    }
+}
+
+@media (max-width:40em) {
+    #profile {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #user_details {
+        text-align: justify;
+        margin-right: 1rem;
+    }
+
+    #profile_image {
+        width: 40%;
+        border-radius: 50%;
+        border: 3px solid black;
+        display: block;
+        margin: 0 auto;
+    }
+
+    #user_info {
+        padding-left: 0;
+    }
+
+    #nav_container {
+        height: 53px;
+        position: relative;
+        overflow-x: auto;
+        overflow-y: none;
+    }
+
+    #user_info .navbar {
+        min-width: 375px;
+        width: 100%;
+        position: absolute;
+    }
+
+    #user_info ul li {
+        display: inline-block;
+    }
+}
+

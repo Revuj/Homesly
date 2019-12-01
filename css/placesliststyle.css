@@ -102,6 +102,10 @@ article.place_overview {
     font-style: italic;
 }
 
+.place_description {
+    display: none;
+}
+
 .navbar > ul a.searchMenu {
     display: none;
 }
