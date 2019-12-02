@@ -102,6 +102,7 @@ profileNavItems.forEach(item => item.addEventListener('click', (event) => {
 
 
 function updateDescription() {
+  console.log(this.responseText)
   let response = JSON.parse(this.responseText);
   let username = response[0];
   let bio = response[1];
@@ -112,21 +113,14 @@ function updateDescription() {
 let userBio = document.getElementById('user_bio');
 console.log(userBio);
 console.log('gande cena')
-userBio.addEventListener('change', (event) => {
-  console.log('oioio');
-  let request = new XMLHttpRequest()
-  request.onload = updateDescription;
-  request.open("post", "api_update_description.php", true);
-  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  request.send(encodeForAjax({username: username, bio: bio}));
-})
+
 
 let editProfileButton = document.getElementById('edit_profile');
 let saveProfileButton = document.getElementById('save_profile');
-console.log("oioio");
+
+let editableItems = document.querySelectorAll('#user_details li + li');
 
 editProfileButton.addEventListener('click', (event) => {
-  console.log("oioio");
   if (userBio.contentEditable == "false") {
     userBio.contentEditable = "true";
     userBio.focus = "true";
@@ -135,5 +129,28 @@ editProfileButton.addEventListener('click', (event) => {
     userBio.style.borderRadius = "5px";
     userBio.parentElement.style.opacity = "1";
     saveProfileButton.style.display = "block";
+
+    [...editableItems].forEach(elem => elem.contentEditable = "true");
   }
+})
+
+saveProfileButton.addEventListener('click', (event) => {
+  let bio = document.getElementById('user_bio').innerHTML;
+  let username = document.getElementById('profile_image').alt;
+  let request = new XMLHttpRequest()
+  request.onload = updateDescription;
+  request.open("post", "../api/api_update_description.php", true);
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  request.send(encodeForAjax({username: username, bio: bio}));
+
+
+  saveProfileButton.style.display = "none";
+  userBio.contentEditable = "false";
+  userBio.focus = "false";
+  userBio.style.padding = "0";
+  userBio.style.border = "0";
+  userBio.style.borderRadius = "0";
+  userBio.parentElement.style.opacity = "0.5";
+  [...editableItems].forEach(elem => elem.contentEditable = "false");
+
 })

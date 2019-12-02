@@ -50,13 +50,7 @@ function listItem($place) { ?>
 function pageDetailItem($place, $images) { ?>
   <section class="container_detail">
       <script type='text/javascript'>
-        <?php 
-          $images2 = getAllImagesFromPlace($place['place_id']);
-          foreach($images2 as $image) {
-              array_push($images, "../images/uploads/" . $image['image_id'] . ".png");
-          }
-          echo 'let imgs = '.json_encode($images).';'; 
-          ?>
+      <?php echo 'let imgs = '.json_encode($images).';'; ?>
       </script>
       <div class="images_container">
         <div class="full_width_image"
@@ -95,3 +89,6 @@ function pageDetailItem($place, $images) { ?>
       </div>
   </section>
 <?php }
+
+
+?>

@@ -38,6 +38,7 @@
   function updateUserBio($username, $bio) {
     $db = Database::instance()->db();
     $stmt = $db->prepare('UPDATE user SET bio = ? WHERE username = ?');
-    $stmt->execute(array($bio, $username));    
+    $stmt->execute(array($bio, $username));
+    return array($username, $bio);    
   }
 ?>

@@ -5,7 +5,7 @@
     function draw_profile($username) { ?>
     <section id="profile">
         <div id="profile_sidebar">
-            <img id="profile_image" src="https://avatars0.githubusercontent.com/u/41621540?s=400&v=4" alt=<?=$username?>/>
+            <img id="profile_image" src="https://avatars0.githubusercontent.com/u/41621540?s=400&v=4" alt=<?=$username?> value=<?=$username?> />
             <ul id="user_details">
                 <li><h4> Hi, I'm <?=$username?>!</h4></li>
                 <button id="edit_profile"><i class="far fa-edit"></i> Edit Profile</button>
