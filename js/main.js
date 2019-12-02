@@ -1,6 +1,5 @@
 'use strict'
 
-<<<<<<< HEAD
 function encodeForAjax(data) {
   return Object.keys(data).map(function(k){
     return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
@@ -8,8 +7,6 @@ function encodeForAjax(data) {
 }
 
 
-=======
->>>>>>> 23e8a054f39622a4f1701ee79d51bfcdec659f9f
 let navbarToggle = document.getElementsByClassName('hamburguerMenu')[0];
 
 navbarToggle.addEventListener('click', function () {
@@ -126,8 +123,10 @@ userBio.addEventListener('change', (event) => {
 
 let editProfileButton = document.getElementById('edit_profile');
 let saveProfileButton = document.getElementById('save_profile');
+console.log("oioio");
 
 editProfileButton.addEventListener('click', (event) => {
+  console.log("oioio");
   if (userBio.contentEditable == "false") {
     userBio.contentEditable = "true";
     userBio.focus = "true";

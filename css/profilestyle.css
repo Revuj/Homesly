@@ -110,7 +110,6 @@
     display: none;
 }
 
-<<<<<<< HEAD
 
 #save_profile {
     float: right;
@@ -118,8 +117,6 @@
     display: none;
 }
 
-=======
->>>>>>> 23e8a054f39622a4f1701ee79d51bfcdec659f9f
 @media (max-width:1280px) {
     #user_places .place_description {
         display: none;
