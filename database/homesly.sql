@@ -1,6 +1,7 @@
 CREATE TABLE user (
   username VARCHAR PRIMARY KEY,
-  password VARCHAR NOT NULL
+  password VARCHAR NOT NULL,
+  bio VARCHAR(140) NOT NULL
 );
 
 CREATE TABLE place (
@@ -20,7 +21,7 @@ CREATE TABLE image (
 
 BEGIN TRANSACTION;
 
-INSERT INTO user VALUES('john', '$2y$12$cH5Hmh/4JgKSEM4ZCih1jOOSItL2WW.XZruOxkG0udohjH5xMu6FG');
+INSERT INTO user VALUES('john', '$2y$12$cH5Hmh/4JgKSEM4ZCih1jOOSItL2WW.XZruOxkG0udohjH5xMu6FG', '');
 
 INSERT INTO place VALUES(NULL, 'Glamp under the northern lights', 
 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at ante pharetra, malesuada odio et, volutpat risus. Quisque magna quam, faucibus et nibh ac, rhoncus luctus nunc. Sed in augue lobortis, faucibus mauris rutrum, condimentum lorem. Donec eget sem id dolor lacinia lobortis id pharetra dolor. Donec mattis ipsum et rutrum mollis. Etiam scelerisque elementum ipsum. Nam semper risus eu eros aliquam, in sodales elit vehicula. Vestibulum suscipit, elit finibus placerat pretium, elit magna tempus lectus, vel volutpat sapien libero vel mauris. Curabitur posuere urna erat, sed feugiat ante condimentum sit amet. Nulla vitae libero at nisl rhoncus pharetra. Donec et volutpat metus. Sed vulputate lacus elit, sed consectetur felis vulputate ut. Fusce vel enim nec dui vestibulum accumsan. Vivamus porttitor augue nisi, in finibus augue tempus sed. Etiam diam lorem, accumsan pulvinar cursus eu, cursus eget eros. Donec semper dolor eu enim tempus volutpat. ',

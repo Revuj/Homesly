@@ -110,6 +110,13 @@
     display: none;
 }
 
+
+#save_profile {
+    float: right;
+    width: 7em;
+    display: none;
+}
+
 @media (max-width:1280px) {
     #user_places .place_description {
         display: none;

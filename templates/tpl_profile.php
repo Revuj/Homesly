@@ -1,15 +1,19 @@
 <?php
     include_once("../database/db_places.php");
+    include_once("../database/db_users.php");
+
     function draw_profile($username) { ?>
     <section id="profile">
         <div id="profile_sidebar">
             <img id="profile_image" src="https://avatars0.githubusercontent.com/u/41621540?s=400&v=4" alt=<?=$username?>/>
             <ul id="user_details">
                 <li><h4> Hi, I'm <?=$username?>!</h4></li>
-                <li><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur nisi numquam in nemo distinctio doloremque tenetur tempora fugiat vel excepturi, fugit praesentium magnam at et id adipisci quas nobis error!                </p></li>
+                <button id="edit_profile"><i class="far fa-edit"></i> Edit Profile</button>
+                <li><p contentEditable=false id="user_bio"><?php getUserBio($username)?></p></li>
                 <li>teste111@gmail.com</li>
                 <li><em><strong>936 382 932</strong></em></li>
                 <li>Porto</li>
+                <button id="save_profile"><i class="far fa-save"></i> Save</button>
             </ul>
         </div>
         <div id="user_info">
