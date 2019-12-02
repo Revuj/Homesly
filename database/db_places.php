@@ -55,4 +55,32 @@ function insertPlace($place_title, $place_description, $place_location, $place_p
     $stmt = $db->prepare("INSERT INTO place VALUES(?, ?, ?, ?, ?, ?)");
     $stmt->execute(array(NULL, $place_title, $place_description, $place_location, $place_price, $place_owner));   
 }
+
+/**
+ * Inserts image of place on databse
+ */
+function insertImageOfPlace($place_id, $image_id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare("INSERT INTO image VALUES(?, ?)");
+    $stmt->execute(array($image_id, $place_id));
+}
+
+/**
+* Returns the list with all images from place available in the database
+*/
+function getAllImagesFromPlace($place_id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare("SELECT * FROM image WHERE place_of_image = ?");
+    $stmt->execute(array($place_id));
+    return $stmt->fetchAll();
+}  
+
+function getBiggestIdOfImages() {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare("SELECT * FROM image ORDER BY image_id DESC LIMIT 1");
+    $stmt->execute();
+    $image = $stmt->fetch();
+    return $image['image_id'];
+}
+
 ?>

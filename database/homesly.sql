@@ -12,6 +12,11 @@ CREATE TABLE place (
   place_owner VARCHAR NOT NULL REFERENCES user
 );
 
+CREATE TABLE image (
+  image_id INTEGER PRIMARY KEY,
+  place_of_image INTEGER NOT NULL REFERENCES place
+);
+
 
 BEGIN TRANSACTION;
 
@@ -29,5 +34,7 @@ INSERT INTO place VALUES(NULL, 'Get amazed by the wonderful landscapes',
 INSERT INTO place VALUES(NULL, 'Forgotten Greece', 
 'Pellentesque vitae nisi tempus mauris blandit ullamcorper. Quisque magna leo, blandit vitae efficitur at, scelerisque sed lectus. Duis sit amet nisi lectus. Praesent volutpat aliquet mi in viverra. Nullam ultrices justo sit amet pharetra varius. Phasellus nisi orci, eleifend in ornare rutrum, finibus sed ligula. Morbi facilisis venenatis ipsum sed lacinia. Integer sit amet nisi enim. Nam laoreet non dui vel maximus. Duis vitae viverra arcu. Vivamus fringilla laoreet metus sit amet mattis. Proin eget ex non turpis consequat fringilla. Nam commodo eros mi, sit amet luctus velit imperdiet eu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum varius fringilla neque, at efficitur erat rutrum sed. ',
 'Greece', 300, 'john');
+
+INSERT INTO image VALUES(1, 1);
 
 COMMIT;
