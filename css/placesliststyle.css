@@ -101,10 +101,20 @@ article.place_overview {
 .place_price {
     font-style: italic;
 }
+
+.place_description {
+    display: none;
+}
+
+.navbar > ul a.searchMenu {
+    display: none;
+}
+
 @media (max-width:60em) {
 
     .form-2 {
         margin-left: 1.66%;
+        width: 96.68%;
     }
 
     article.place_overview {
@@ -117,6 +127,7 @@ article.place_overview {
 
     .form-2 {
         margin-left: 2.5%;
+        width: 95%;
     }
 
     article.place_overview {
@@ -127,7 +138,20 @@ article.place_overview {
 
 @media (max-width:40em) { 
 
+    .navbar > ul a.searchMenu {
+        color: white;
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 2em;
+        height: 0.8em;
+    }
+
     .form-2 form {
+        display: none;
+    }
+
+    .form-2.responsive form {
         display: block;
     }
 
@@ -136,8 +160,13 @@ article.place_overview {
         margin-right: 2.5%;
     }
 
+    .form-2 button {
+        width: 100%;
+    }
+
     .form-2 form label {
         margin-bottom: 2em;
+        margin-right: 1em;
     }
 
     article.place_overview {

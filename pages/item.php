@@ -12,6 +12,7 @@
     die("The place you where looking for is unnavailable!");
 
   draw_header();
-  pageDetailItem($place);
+  $images = ["../images/test.jpg", "../images/test2.jpg", "../images/test3.jpg"];
+  pageDetailItem($place, $images);
   draw_footer();
 ?>

@@ -1,20 +1,74 @@
-.full_width_image {
+:root {
+    --orange: #ff6624;
+}
+
+.container_detail {
+    max-width: 1280px;
+    margin: 0 auto;
     width: 100%;
-    height: auto;
+}
+
+.full_width_image  {
+    margin-top: 1rem;
+    border-radius: 10px;
+    min-width: 1280px;
+    height: 600px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.images_container {
+    position: relative;
+    font-size: 300%;
+    color: black;
+}
+
+.left_arrow_image {
+    opacity: 0.55;
+    position: absolute;
+    top: 275px;
+    left: 16px;
+}
+
+.right_arrow_image {
+    opacity: 0.55;
+    position: absolute;
+    top: 275px;
+    right: 16px;
+}
+
+.left_arrow_image:hover , .right_arrow_image:hover {
+    color: white;
+    opacity: 0.5;
 }
 
 .container_detail_content {
-    margin: 16px 50px 16px 50px;
+    margin: 16px 0;
 }
 
 .detail_location {
+    font-weight: lighter;
+    font-style: italic;
     color: gray;
+    margin-top: 0;
+    margin: 0 2rem;
+    margin-bottom: 1rem;
+}
+
+.detail_description {
+    text-align: justify;
+    text-justify: inter-word;
+    margin: 0 2rem;
+}
+
+.detail_title {
+    margin: 0 2rem;
 }
 
 
 #col-1 {
     position: relative;
-    width: 50%;
+    width: 45%;
     float: left;
     height: 100%;
 }
@@ -24,14 +78,91 @@
     width: 50%;
     float: left;
     height: 100%;
-    text-align: center;
+}
+
+#place_host {
+    width: 100px;
+    display: inline-block;
+    vertical-align: middle; 
+}
+
+.user_detail_content h5 {
+    font-style: italic;
+    font-size: 100%;
+    color: var(--orange);
+    opacity: 0.8;
+    margin-top: 0;
+}
+
+.user_detail_content h4 {
+    margin-bottom: 0.5em;
 }
 
 .user_detail_content {
     display: inline-block;
     vertical-align: middle;
+    margin-left: 3em;
+    text-align: center;
 }
 
 img.user_detail_content {
-    margin: 0px 32px;
+    margin: 0 32px;
+}
+
+.place_price {
+    text-align: left;
+    margin-left: 1em;
+    margin-bottom: 0;
+    opacity: 0.6;
+}
+
+#col-2 .book-form, .host_info  {
+    position: static;
+    margin: 2em auto;
+}
+
+.host_info {
+    text-align: center;
+}
+
+#col-2 .book-form label {
+    text-align: left;
+}
+
+#col-2 .book-form input {
+    border: 2px solid var(--orange);
+    border-radius: 5px;
+    margin-top: 0.5em;
+}
+
+#calculated_price {
+    text-align: left;
+}
+
+.place_price::after {
+    content: "€ / night";
+}
+
+@media screen and (max-width: 1280px) {
+    .full_width_image {
+        min-width: 100%;
+        border-radius: 0;
+        margin-top: 0;
+    }
+
+    .detail_description {
+        margin-right: 2rem;
+    }
+}
+
+@media screen and (max-width: 50em) {
+    #col-1 {
+        display: block;
+        width: 100%;
+    }
+
+    #col-2 {
+        display: block;
+        width: 100%;
+    }
 }

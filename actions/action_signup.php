@@ -12,7 +12,7 @@
   }
 
   try {
-    insertUser($username, $password);
+    insertUser($username, $password, '');
     $_SESSION['username'] = $username;
     $_SESSION['messages'][] = array('type' => 'success', 'content' => 'Signed up and logged in!');
     header('Location: ../pages/homepage.php');

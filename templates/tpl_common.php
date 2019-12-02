@@ -13,9 +13,12 @@ function draw_header() { ?>
         <link rel="stylesheet" type="text/css" href="../css/mainpagestyle.css">
         <link rel="stylesheet" type="text/css" href="../css/placesliststyle.css">
         <link rel="stylesheet" type="text/css" href="../css/detailviewstyle.css">
+        <link rel="stylesheet" type="text/css" href="../css/profilestyle.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
         integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <script src="../js/main.js" defer></script>
+        <script src="../js/pageDetail.js" defer></script>
+
     </head>
 
     <body>
@@ -28,7 +31,7 @@ function draw_header() { ?>
                 <li><a href=../pages/hostplace.php>Host</a></li>
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) { ?>
                     <li><a id="logout_button" href="../actions/action_logout.php">Logout</a></li>
-                    <li><a id="username_button" href="#"><?=$_SESSION['username']?></a></li>
+                    <li><a id="username_button" href="../pages/profile.php"><i class="far fa-user-circle"></i></a></li>
                 <?php }
                 else { ?>
                     <li><a id="signup_button" href="#">Signup</a></li>
@@ -36,9 +39,8 @@ function draw_header() { ?>
                 <?php }
                 ?>
 
-                <a class="icon">
-                    <i class="fa fa-bars"></i>
-                </a>
+                <a class="searchMenu"><i class="fas fa-search-location"></i></a>
+                <a class="hamburguerMenu"><i class="fa fa-bars"></i></a>
             </ul>
         </nav>
     </header>
@@ -73,7 +75,7 @@ function draw_search_bar() { ?>
 function draw_input_place() { ?>
     <section class="form-3">
         <h2>Host your Place!</h2>
-        <form method="get" action="../actions/action_host_place.php">
+        <form method="post" action="../actions/action_host_place.php">
         <label>Title<input type="text" name="title" placeholder="title" required></label>
         <label>Description<input type="text" name="description" placeholder="about" required></label>
         <label>Location<input type="text" name="location" placeholder="where" required></label>
