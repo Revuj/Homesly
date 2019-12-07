@@ -11,6 +11,9 @@ function getAllPlaces() {
     return $stmt->fetchAll();
 }   
 
+/**
+ * Gets place whose ID equals $id
+ */
 function getPlaceWithId($id) {
     $db = Database::instance()->db();
     $stmt = $db->prepare("SELECT * FROM place WHERE place_id = $id");
@@ -62,6 +65,7 @@ function insertImageOfPlace($place_id, $image_id) {
     $stmt = $db->prepare("INSERT INTO image VALUES(?, ?)");
     $stmt->execute(array($image_id, $place_id));
 }
+
 /**
 * Returns the list with all images from place available in the database
 */
@@ -70,7 +74,11 @@ function getAllImagesFromPlace($place_id) {
     $stmt = $db->prepare("SELECT * FROM image WHERE place_of_image = ?");
     $stmt->execute(array($place_id));
     return $stmt->fetchAll();
-}  
+} 
+
+/**
+ * Gets latest image ID
+ */
 function getBiggestIdOfImages() {
     $db = Database::instance()->db();
     $stmt = $db->prepare("SELECT * FROM image ORDER BY image_id DESC LIMIT 1");
@@ -78,4 +86,14 @@ function getBiggestIdOfImages() {
     $image = $stmt->fetch();
     return $image['image_id'];
 }
+
+/**
+ * Inserts new reservation on database
+ */
+function insertReservation($place_checkin, $place_checkout, $place_guest, $place_id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare("INSERT INTO reservation VALUES(?, ?, ?, ?, ?)");
+    $stmt->execute(array(NULL, $place_checkin, $place_checkout, $place_guest, $place_id));
+}
+
 ?>

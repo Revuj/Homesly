@@ -13,6 +13,14 @@ CREATE TABLE place (
   place_owner VARCHAR NOT NULL REFERENCES user
 );
 
+CREATE TABLE reservation (
+  reservation_id INTEGER PRIMARY KEY,
+  firt_night DATE NOT NULL, 
+  last_night DATE NOT NULL,
+  guest VARCHAR NOT NULL REFERENCES user,
+  place INTEGER NOT NULL REFERENCES place
+);
+
 CREATE TABLE image (
   image_id INTEGER PRIMARY KEY,
   place_of_image INTEGER NOT NULL REFERENCES place
