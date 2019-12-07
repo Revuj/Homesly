@@ -36,7 +36,7 @@ function listItem($place) { ?>
       <div class="place_details">
         <p class="place_location"> <?=$place['place_location']?> </p>
         <p class="place_title"> <?=$place['place_title']?> </p>
-        <p class="place_price"> <?=$place['place_price_per_day']?> € / day</p>
+        <p class="place_price"> <?=$place['place_price_per_day']?> </p>
         <p class="place_description"> <?=$place['place_description']?> </p>
       </div>
     </a>
@@ -50,7 +50,13 @@ function listItem($place) { ?>
 function pageDetailItem($place, $images) { ?>
   <section class="container_detail">
       <script type='text/javascript'>
-      <?php echo 'let imgs = '.json_encode($images).';'; ?>
+      <?php 
+        $images2 = getAllImagesFromPlace($place['place_id']);
+        foreach($images2 as $image) {
+            array_push($images, "../images/uploads/" . $image['image_id'] . ".png");
+        }
+        echo 'let imgs = '.json_encode($images).';'; 
+      ?>
       </script>
       <div class="images_container">
         <div class="full_width_image"

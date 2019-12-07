@@ -14,6 +14,7 @@ function draw_header() { ?>
         <link rel="stylesheet" type="text/css" href="../css/placesliststyle.css">
         <link rel="stylesheet" type="text/css" href="../css/detailviewstyle.css">
         <link rel="stylesheet" type="text/css" href="../css/profilestyle.css">
+        <link rel="stylesheet" type="text/css" href="../css/hostplacestyle.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
         integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <script src="../js/main.js" defer></script>
@@ -73,15 +74,20 @@ function draw_search_bar() { ?>
 
 // draws a form that allows an user to add a new place if logged in
 function draw_input_place() { ?>
-    <section class="form-3">
-        <h2>Host your Place!</h2>
-        <form method="post" action="../actions/action_host_place.php">
-        <label>Title<input type="text" name="title" placeholder="title" required></label>
-        <label>Description<input type="text" name="description" placeholder="about" required></label>
-        <label>Location<input type="text" name="location" placeholder="where" required></label>
-        <label>Price/Day<input type="number" name="price_per_day" placeholder="price/day" min="1" required></label>
-        <button type="submit">Host Place</button>
-        </form>
+    <section id="host_place">
+        <div class="form-3">
+            <h2>Host your Place!</h2>
+            <form method="post" action="../actions/action_host_place.php" enctype="multipart/form-data">
+            <label>Title<input type="text" name="title" placeholder="title" required></label>
+            <label>Description<input type="text" name="description" placeholder="about" required></label>
+            <label>Location<input type="text" name="location" placeholder="where" required></label>
+            <label>Price/Day<input type="number" name="price_per_day" placeholder="price/day" min="1" required></label>
+            <label> Select image to upload:
+            <input type="file" name="fileToUpload" id="fileToUpload"> </label>
+            <button type="submit">Host Place</button>
+            </form>
+        </div>
+        <img src="../images/host_place.png"/>
     </section>
 <?php }
 
