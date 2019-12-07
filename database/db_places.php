@@ -32,6 +32,19 @@ return $stmt->fetchAll();
 }
 
 /**
+ * Returns the places belonging to a certain user.
+ */
+function getUserReservations($username) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('SELECT * 
+                        FROM place, reservation 
+                        WHERE reservation.place = place.place_id
+                        AND reservation.guest = ?');
+    $stmt->execute(array($username));
+    return $stmt->fetchAll(); 
+}
+
+/**
 * Returns the list with all places available that respect the filters
 */
 function getPlacesFiltered($location, $checkin, $checkout, $guests) {

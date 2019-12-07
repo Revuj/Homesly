@@ -43,6 +43,27 @@ function listItem($place) { ?>
   </article>
 <?php }
 
+/**
+ * Draws the information of a reservation 
+ */
+function listReservation($place) { ?>
+  <article class="place_overview">
+    <a href="../pages/item.php?id=<?=$place['place_id']?>">
+      <div class="place_img">
+        <img src="../images/test.jpg" />
+        <i class="far fa-heart"></i>
+        <i class="fas fa-heart"></i>
+      </div>
+      <div class="place_details">
+        <p class="place_location"> <?=$place['place_location']?> </p>
+        <p class="place_title"> <?=$place['place_title']?> </p>
+        <p class="place_price"> <?=$place['place_price_per_day']?> </p>
+        <p class="place_description"> <?=$place['place_description']?> </p>
+      </div>
+    </a>
+  </article>
+<?php }
+
 
 /**
  * Draws the detailed information of a place 

@@ -38,8 +38,11 @@
 
 <?php
     function draw_user_reservations($username) { ?>
-    <section id="user_reservations">
-        <h1>Reservations</h1>
+    <section id="user_reservations" class="profile_places"> <?php
+        $user_places = getUserReservations($username);
+        foreach($user_places as $place) {
+            listReservation($place);
+        } ?>
     </section>
     <?php }
 ?>
@@ -47,7 +50,7 @@
 <?php
     include_once("tpl_places.php"); // a alterar
     function draw_user_places($username) { ?>
-    <section id="user_places"> <?php
+    <section id="user_places" class="profile_places"> <?php
         $user_places = getUserPlaces($username);
         foreach($user_places as $place) {
             listItem($place);
