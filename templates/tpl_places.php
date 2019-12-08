@@ -46,19 +46,26 @@ function listItem($place) { ?>
 /**
  * Draws the information of a reservation 
  */
-function listReservation($place) { ?>
+function listReservation($reservation) { ?>
   <article class="place_overview">
-    <a href="../pages/item.php?id=<?=$place['place_id']?>">
+    <a href="../pages/item.php?id=<?=$reservation['place_id']?>">
       <div class="place_img">
         <img src="../images/test.jpg" />
-        <i class="far fa-heart"></i>
-        <i class="fas fa-heart"></i>
+        <time class="icon checkin" datetime= <?=$reservation['first_night']?> >
+          <em>Sat</em>
+          <strong>Sep</strong>
+          <span>20</span>
+        </time>
+        <time class="icon checkout" datetime= <?=$reservation['last_night']?> >
+          <em>Sun</em>
+          <strong>Sep</strong>
+          <span>28</span>
+        </time>  
       </div>
       <div class="place_details">
-        <p class="place_location"> <?=$place['place_location']?> </p>
-        <p class="place_title"> <?=$place['place_title']?> </p>
-        <p class="place_price"> <?=$place['place_price_per_day']?> </p>
-        <p class="place_description"> <?=$place['place_description']?> </p>
+        <p class="place_location"> <?=$reservation['place_location']?> </p>
+        <p class="place_title"> <?=$reservation['place_title']?> </p>
+        <p class="reservation_price"> <?=$reservation['place_price_per_day']?> €</p>
       </div>
     </a>
   </article>

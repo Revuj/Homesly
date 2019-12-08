@@ -39,9 +39,9 @@
 <?php
     function draw_user_reservations($username) { ?>
     <section id="user_reservations" class="profile_places"> <?php
-        $user_places = getUserReservations($username);
-        foreach($user_places as $place) {
-            listReservation($place);
+        $user_reservations = getUserReservations($username);
+        foreach($user_reservations as $reservation) {
+            listReservation($reservation);
         } ?>
     </section>
     <?php }

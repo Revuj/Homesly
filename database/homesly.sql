@@ -15,7 +15,7 @@ CREATE TABLE place (
 
 CREATE TABLE reservation (
   reservation_id INTEGER PRIMARY KEY,
-  firt_night DATE NOT NULL, 
+  first_night DATE NOT NULL, 
   last_night DATE NOT NULL,
   guest VARCHAR NOT NULL REFERENCES user,
   place INTEGER NOT NULL REFERENCES place

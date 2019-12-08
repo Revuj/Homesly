@@ -154,3 +154,25 @@ saveProfileButton.addEventListener('click', (event) => {
   [...editableItems].forEach(elem => elem.contentEditable = "false");
 
 })
+
+
+let checkinDates = document.querySelectorAll('time.checkin');
+
+[...checkinDates].forEach(elem => elem.addEventListener('click', (event) => {
+  event.stopPropagation();
+  event.preventDefault();
+  elem.style.display = "none";
+  let checkout = elem.nextElementSibling;
+  checkout.style.display = "block";
+}))
+
+let checkoutDates = document.querySelectorAll('time.checkout');
+
+[...checkoutDates].forEach(elem => elem.addEventListener('click', (event) => {
+  event.stopPropagation();
+  event.preventDefault();
+  elem.style.display = "none";
+  let checkin = elem.previousElementSibling;
+  checkin.style.display = "block";
+}))
+
