@@ -2,15 +2,13 @@
 /**
  * Draws the login section.
  */ ?>
-  <section class="form-1" id="login">
+  <section class="form-1 modal" id="login">
     
-    <section class="login_content">
+    <section class="modal_content">
 
-      <span onclick="document.getElementById('login').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <span onclick="document.getElementById('login').style.display='none'" class="close" title="Close Modal"><i class="fas fa-times"></i></span>
 
       <h2>Welcome Back</h2>
-
-      
 
       <form method="post" action="../actions/action_login.php">
         <input type="text" name="username" placeholder="username" required>
@@ -31,11 +29,11 @@
 /**
  * Draws the signup section.
  */ ?>
-  <section class="form-1" id="signup">
+  <section class="form-1 modal" id="signup">
 
-    <section class="login_content">
+    <section class="modal_content">
 
-      <span onclick="document.getElementById('signup').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <span onclick="document.getElementById('signup').style.display='none'" class="close" title="Close Modal"><i class="fas fa-times"></i></span>
 
       <h2>New Account</h2>
 

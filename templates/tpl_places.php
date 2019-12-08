@@ -22,11 +22,14 @@ function listPlaces($places) { ?>
 <?php
 }
 
+
+
 /**
  * Draws the information of a place 
  */
 function listItem($place) { ?>
   <article class="place_overview">
+    <i class="fas fa-trash"></i>
     <a href="../pages/item.php?id=<?=$place['place_id']?>">
       <div class="place_img">
         <img src="../images/test.jpg" />
@@ -48,6 +51,7 @@ function listItem($place) { ?>
  */
 function listReservation($reservation) { ?>
   <article class="place_overview">
+    <i class="fas fa-trash"></i>
     <a href="../pages/item.php?id=<?=$reservation['place_id']?>">
       <div class="place_img">
         <img src="../images/test.jpg" />

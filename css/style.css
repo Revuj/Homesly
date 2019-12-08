@@ -91,7 +91,7 @@ footer img {
 }
 
 /* The Modal (background) */
-#signup, #login {
+#signup, section.modal {
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
@@ -105,13 +105,13 @@ footer img {
     border-radius: 0%;   
 }
 
-.login_content > span {
+.modal_content > span {
     float: right;
     padding: 8px 16px 8px 16px;
 }
   
 /* Modal Content/Box */
-.login_content  {
+.modal_content  {
     background-color: #fefefe;
     margin: 10% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
@@ -183,7 +183,7 @@ bold {
         padding: 15px 0;
     }
 
-    .login_content {
+    .modal_content {
         width: 100%;
     }
 

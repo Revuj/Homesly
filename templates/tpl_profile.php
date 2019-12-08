@@ -4,6 +4,7 @@
 
     function draw_profile($username) { ?>
     <section id="profile">
+        <?php drawRemoveModal() ?>
         <div id="profile_sidebar">
             <img id="profile_image" src="https://avatars0.githubusercontent.com/u/41621540?s=400&v=4" alt=<?=$username?> value=<?=$username?> />
             <ul id="user_details">
@@ -34,6 +35,27 @@
         </div>
     </section>
     <?php }
+?>
+
+<?php
+/**
+ * Draws a remove item modal
+ */
+function drawRemoveModal() { ?>
+  <section class="form-1 modal remove_modal" id="remove_modal">
+    <section class="modal_content">
+
+      <span onclick="document.getElementById('remove_modal').style.display='none'" class="close" title="Close Modal"><i class="fas fa-times"></i></span>
+
+      <h2>Are you sure you want to remove this item?</h2>
+
+        <button type="submit">Remove</button>
+        <button type="submit">Cancel</button>
+
+    </section>
+  </section>
+
+<?php }
 ?>
 
 <?php

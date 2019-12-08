@@ -81,7 +81,7 @@ article.place_overview {
     padding: 0;
 }
 
-.place_overview a:hover {
+.place_overview img:hover {
     opacity: 0.5;
 }
 
