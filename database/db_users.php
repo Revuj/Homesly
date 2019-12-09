@@ -41,4 +41,19 @@
     $stmt->execute(array($bio, $username));
     return array($username, $bio);    
   }
+
+  function removeUserReservation($reservation_id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('DELETE FROM reservation WHERE reservation_id = ?');
+    $stmt->execute(array($reservation_id));
+    return array($reservation_id);   
+  }
+
+  function removePlace($place_id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('DELETE FROM place WHERE place_id = ?');
+    $stmt->execute(array($place_id));
+    return array($place_id);   
+  }
+
 ?>

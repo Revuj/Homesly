@@ -43,6 +43,14 @@ function updateDescription() {
   userBio.innerHTML = bio;
 }
 
+function removeReservation() {
+  console.log(this.responseText);
+}
+
+function removePlace(){
+  console.log(this.responseText);
+}
+
 let userBio = document.getElementById('user_bio');
 let editProfileButton = document.getElementById('edit_profile');
 let saveProfileButton = document.getElementById('save_profile');
@@ -116,8 +124,17 @@ let reservationsDeleteButtons = document.querySelectorAll('#user_reservations .f
     removeModal.style.display = "block";
     console.log(removeModal.style);
     buttons[0].addEventListener('click', (event) => {
-        //remove item with ajax
-        removeModal.style.display = "none";
+
+      let reservation_id = elem.getAttribute('value');
+      let request = new XMLHttpRequest()
+      request.onload = removeReservation;
+      request.open("post", "../api/api_remove_reservation.php", true);
+      request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      request.send(encodeForAjax({reservation_id: reservation_id}));
+
+      elem.parentElement.style.display = "none";
+      removeModal.style.display = "none";
+
     })
     
     buttons[1].addEventListener('click', (event) => {
@@ -131,8 +148,17 @@ let placesDeleteButtons = document.querySelectorAll('#user_places .fa-trash');
 [...placesDeleteButtons].forEach(elem => elem.addEventListener('click', (event) => {
     removeModal.style.display = "block";
     buttons[0].addEventListener('click', (event) => {
-        //remove item with ajax
-        removeModal.style.display = "none";
+
+      let place_id = elem.getAttribute('value');
+      let request = new XMLHttpRequest()
+      request.onload = removePlace;
+      request.open("post", "../api/api_remove_place.php", true);
+      request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      request.send(encodeForAjax({place_id: place_id}));
+
+      elem.parentElement.style.display = "none";
+      removeModal.style.display = "none";
+      
     })
     
     buttons[1].addEventListener('click', (event) => {
