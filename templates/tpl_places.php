@@ -126,24 +126,28 @@ function pageDetailItem($place, $images) { ?>
           </div>
         </div>
       </div>
-
-      <?=drawPlaceReviews($place);?>
+      <section class="place_reviews">
+      <?php drawPlaceReviews($place);
+      if (isset($_SESSION['username'])) {
+        drawInputReview($place['place_id']);
+      }
+      ?>
+    </section>  
   </section>
 <?php }
 
 function drawPlaceReviews($place) { ?>
-  <section class="place_reviews">
     <?php
       $reviews = getPlaceReviews($place['place_id']);
-      foreach($reviews as $review) {
+      foreach(array_reverse($reviews) as $review) {
         drawReview($review);
       }
     ?>
-  </section>
 <?php }
 
 function drawReview($review) { ?>
   <div class="place_review">
+      <span class="id"><?=$review['id']?></span>
       <h3><?=$review['username']?> </h3>
       <img src="../images/profile_icon.png" />
       <h4><?=$review['published']?> </h4>
@@ -160,6 +164,26 @@ function drawReview($review) { ?>
         <p>20</p>
         <i class="fas fa-chevron-down"></i>
       </div>
+  </div>
+<?php }
+
+function drawInputReview($place_id) { ?>
+  <div class="place_review">
+      <h3><?=$_SESSION['username']?> </h3>
+      <img src="../images/profile_icon.png" />
+      <div class="rating">
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+      </div>
+      <form class="input_review">
+        <textarea placeholder="What do you think of this place?" name="text"></textarea>
+        <input type="hidden" name="place_id" value="<?=$place_id?>">
+        <input type="hidden" name="username" value="<?=$_SESSION['username']?>">
+        <button>Add Review</button>
+      </form>
   </div>
 <?php }
 

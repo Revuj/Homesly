@@ -157,6 +157,28 @@ img.user_detail_content {
     position: relative;
 }
 
+.place_review form {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.place_review textarea {
+    width: 100%;
+}
+
+.place_review form button {
+    width: 10rem;
+    margin-top: 1rem;
+}
+
+.place_review .id {
+    display: none;
+}
+
+textarea {
+    resize: none;
+}
+
 .place_review h3 {
     position: absolute;
     margin: 0 auto;
@@ -231,6 +253,10 @@ img.user_detail_content {
 
     #col-2 {
         display: block;
+        width: 100%;
+    }
+
+    .place_review form button {
         width: 100%;
     }
 }

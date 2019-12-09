@@ -31,7 +31,7 @@ function draw_header() { ?>
             <ul>
                 <li><a href="../pages/placeslist.php">Book</a></li>
                 <li><a href=../pages/hostplace.php>Host</a></li>
-                <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) { ?>
+                <?php if (isset($_SESSION['loggedin'])) { ?>
                     <li><a id="logout_button" href="../actions/action_logout.php">Logout</a></li>
                     <li><a id="username_button" href="../pages/profile.php"><i class="far fa-user-circle"></i></a></li>
                 <?php }
