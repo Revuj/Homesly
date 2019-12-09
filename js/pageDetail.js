@@ -79,20 +79,24 @@ let moreReviewsButton = document.querySelector('.more_reviews');
 let reviews = document.getElementsByClassName('place_review');
 
 function showLessReviews() {
+  console.log('fewasfewa')
   for(let i = 5; i < reviews.length - 1; i++)
     reviews[i].style.display = "none";
+  moreReviewsButton.removeEventListener('click', showLessReviews);
   moreReviewsButton.addEventListener('click', showMoreReviews);
   moreReviewsButton.innerHTML = "Show More...";
   
 }
 
 function showMoreReviews() {
+  console.log('popop')
   let invisibleReviews = [...reviews].filter(r => r.offsetParent === null);
   for(let i = 0; i < 5 && i < invisibleReviews.length - 1; i++)
     invisibleReviews[i].style.display = "block";
   
   if (invisibleReviews.length <= 4) {
     moreReviewsButton.innerHTML = "Show Less...";
+    moreReviewsButton.removeEventListener('click', showMoreReviews);
     moreReviewsButton.addEventListener('click', showLessReviews);
   }
   
