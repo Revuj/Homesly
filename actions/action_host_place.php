@@ -16,6 +16,8 @@
         $place_description = $_POST['description'];
         $place_location = $_POST['location'];
         $place_price = $_POST['price_per_day'];
+
+        insertPlace($place_title, $place_description, $place_location, $place_price, $_SESSION['username']);  
     
         $db = Database::instance()->db();
         $place_id = $db->lastInsertId();
@@ -64,9 +66,7 @@
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
-        }
-
-        insertPlace($place_title, $place_description, $place_location, $place_price, $_SESSION['username']);   
+        } 
     }
     header('Location: ../pages/homepage.php');
 ?>
