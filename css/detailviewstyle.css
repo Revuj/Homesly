@@ -145,12 +145,11 @@ img.user_detail_content {
 
 .place_reviews {
     clear: both;
-    width: 100%;
-
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 .place_review {
-    width: 100%;
     padding: 0.1rem 1rem;
     background-color: rgba(177, 177, 177, 0.1);
     margin: 2em 0;
