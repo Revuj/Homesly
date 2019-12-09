@@ -40,6 +40,10 @@ guestsNumber.addEventListener('change', (event) => {
   calculatedPrice.innerHTML = 'Total: ' + placePrice * Number(guestsNumber.value) + '€';
 })
 
+
+let reviewForm = document.getElementsByClassName('input_review')[0];
+reviewForm.addEventListener('submit', submitReview);
+
 function receiveReviews() {
   let response = JSON.parse(this.responseText);
   let place_id = response[0];
@@ -53,10 +57,9 @@ function receiveReviews() {
   let latestReview = document.getElementsByClassName('place_review')[0];
   let reviews = document.querySelector('.place_reviews');
   reviews.insertBefore(review, latestReview);
-  // comment.innerHTML =       
-  // '<span class="id">' + id + '</span><span class="user">' + name + '</span><span class="date">' + Date(date) + '</span><p>' + text + '</p>'
-  // let latestComment = document.querySelector('#comments article:first-of-type');
-  // comments.insertBefore(comment, latestComment);
+  let textarea = document.querySelector('.input_review > textarea');
+  textarea.value = "";
+  review.scrollIntoView();
 }
 
 function submitReview(event) {
@@ -72,9 +75,31 @@ function submitReview(event) {
   request.send(encodeForAjax({place_id: place_id, username: username, text: text}));
 }
 
-let reviewForm = document.getElementsByClassName('input_review')[0];
+let moreReviewsButton = document.querySelector('.more_reviews');
+let reviews = document.getElementsByClassName('place_review');
 
-reviewForm.addEventListener('submit', submitReview);
+function showLessReviews() {
+  for(let i = 5; i < reviews.length - 1; i++)
+    reviews[i].style.display = "none";
+  moreReviewsButton.addEventListener('click', showMoreReviews);
+  moreReviewsButton.innerHTML = "Show More...";
+  
+}
+
+function showMoreReviews() {
+  let invisibleReviews = [...reviews].filter(r => r.offsetParent === null);
+  for(let i = 0; i < 5 && i < invisibleReviews.length - 1; i++)
+    invisibleReviews[i].style.display = "block";
+  
+  if (invisibleReviews.length <= 4) {
+    moreReviewsButton.innerHTML = "Show Less...";
+    moreReviewsButton.addEventListener('click', showLessReviews);
+  }
+  
+}
+
+moreReviewsButton.addEventListener('click', showMoreReviews);
+
 
 
 

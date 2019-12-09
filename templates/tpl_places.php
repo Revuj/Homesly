@@ -143,6 +143,7 @@ function drawPlaceReviews($place) { ?>
         drawReview($review);
       }
     ?>
+    <h3 class="more_reviews">Show More...</h3>
 <?php }
 
 function drawReview($review) { ?>

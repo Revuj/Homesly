@@ -202,9 +202,30 @@ textarea {
     text-align: justify;
 }
 
+.place_review {
+    display: none;
+}
+
+.place_review:nth-child(-n+5), .place_review:last-of-type{
+    display:block;
+}
+
 .place_review img {
     width: 3.5rem;
     margin-top: 0.2rem;
+}
+
+.place_reviews h3 {
+    margin-left: 1em;
+    margin-top: 0;
+    font-weight: bold;
+    font-size: 100%;
+    color: var(--orange);
+    display: inline-block;
+}
+
+.place_reviews h3:hover {
+    border-bottom: 2px solid var(--orange);
 }
 
 .rating {
