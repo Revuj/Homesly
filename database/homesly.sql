@@ -21,10 +21,36 @@ CREATE TABLE reservation (
   place INTEGER NOT NULL REFERENCES place
 );
 
+CREATE TABLE comment (
+  id INTEGER PRIMARY KEY,
+  place_id INTEGER REFERENCES place,
+  username VARCHAR REFERENCES user,
+  published DATE NOT NULL, 
+  content VARCHAR
+);
+
 CREATE TABLE image (
   image_id INTEGER PRIMARY KEY,
   place_of_image INTEGER NOT NULL REFERENCES place
 );
+
+
+--trigger to delete comments after a place is deleted
+CREATE TRIGGER Delete_place
+AFTER DELETE ON place
+FOR EACH ROW
+BEGIN
+  DELETE FROM comment WHERE place_id = OLD.place_id;
+END;
+
+--trigger to delete reservations after a place is deleted
+CREATE TRIGGER Delete_reservation
+AFTER DELETE ON place
+FOR EACH ROW
+BEGIN
+  DELETE FROM reservation WHERE place = OLD.place_id;
+END;
+
 
 
 BEGIN TRANSACTION;
@@ -43,6 +69,8 @@ INSERT INTO place VALUES(NULL, 'Get amazed by the wonderful landscapes',
 INSERT INTO place VALUES(NULL, 'Forgotten Greece', 
 'Pellentesque vitae nisi tempus mauris blandit ullamcorper. Quisque magna leo, blandit vitae efficitur at, scelerisque sed lectus. Duis sit amet nisi lectus. Praesent volutpat aliquet mi in viverra. Nullam ultrices justo sit amet pharetra varius. Phasellus nisi orci, eleifend in ornare rutrum, finibus sed ligula. Morbi facilisis venenatis ipsum sed lacinia. Integer sit amet nisi enim. Nam laoreet non dui vel maximus. Duis vitae viverra arcu. Vivamus fringilla laoreet metus sit amet mattis. Proin eget ex non turpis consequat fringilla. Nam commodo eros mi, sit amet luctus velit imperdiet eu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum varius fringilla neque, at efficitur erat rutrum sed. ',
 'Greece', 300, 'john');
+
+INSERT INTO comment VALUES(NULL, 1, 'john', 2019-12-09, 'Very nice place, really liked it!!!');
 
 INSERT INTO image VALUES(1, 1);
 

@@ -43,9 +43,9 @@
 
 
 #profile_image {
-    max-width:100%;
-    max-height:100%;
+    width:100%;
     border-radius: 5px;
+    margin-left: 1rem;
 }
 
 #user_details {
@@ -122,6 +122,11 @@
 
 .place_overview {
     position: relative;
+}
+
+
+.places_list .fa-trash {
+    display: none;
 }
 
 .place_overview .fa-times, .place_overview .fa-trash {
