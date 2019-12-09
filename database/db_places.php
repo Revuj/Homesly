@@ -109,4 +109,13 @@ function insertReservation($place_checkin, $place_checkout, $place_guest, $place
     $stmt->execute(array(NULL, $place_checkin, $place_checkout, $place_guest, $place_id));
 }
 
+/**
+ * Gets reviews for a specific place
+ */
+function getPlaceReviews($place_id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare("SELECT * FROM review WHERE place_id = ?");
+    $stmt->execute(array($place_id));
+    return $stmt->fetchAll();
+}
 ?>

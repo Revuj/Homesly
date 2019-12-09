@@ -143,6 +143,75 @@ img.user_detail_content {
     content: "€ / night";
 }
 
+.place_reviews {
+    clear: both;
+    width: 100%;
+
+}
+
+.place_review {
+    width: 100%;
+    padding: 0.1rem 1rem;
+    background-color: rgba(177, 177, 177, 0.1);
+    margin: 2em 0;
+    box-shadow: 4px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.place_review h3 {
+    position: absolute;
+    margin: 0 auto;
+    top: 10px;
+    left: 90px;
+}
+
+.place_review h4 {
+    position: absolute;
+    top: 35px;
+    left: 90px;
+    margin-top: 0;
+    font-weight: lighter;
+    font-size: 90%;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+.place_review p {
+    margin-right: 2em;
+    text-align: justify;
+}
+
+.place_review img {
+    width: 3.5rem;
+    margin-top: 0.2rem;
+}
+
+.rating {
+    color: var(--orange);
+    margin-top: 1rem;
+}
+
+.votes {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    text-align: center;
+}
+
+.votes i {
+    font-size: larger;
+    display: block;
+    margin: 0 auto;
+}
+
+.votes i:hover {
+    color: var(--orange);
+}
+
+.votes p {
+    margin: 0;
+}
+
 @media screen and (max-width: 1280px) {
     .full_width_image {
         min-width: 100%;

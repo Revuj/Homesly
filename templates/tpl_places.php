@@ -126,8 +126,41 @@ function pageDetailItem($place, $images) { ?>
           </div>
         </div>
       </div>
+
+      <?=drawPlaceReviews($place);?>
   </section>
 <?php }
 
+function drawPlaceReviews($place) { ?>
+  <section class="place_reviews">
+    <?php
+      $reviews = getPlaceReviews($place['place_id']);
+      foreach($reviews as $review) {
+        drawReview($review);
+      }
+    ?>
+  </section>
+<?php }
+
+function drawReview($review) { ?>
+  <div class="place_review">
+      <h3><?=$review['username']?> </h3>
+      <img src="../images/profile_icon.png" />
+      <h4><?=$review['published']?> </h4>
+      <div class="rating">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star-half-alt"></i>
+      </div>
+      <p><?=$review['content']?> </p>
+      <div class="votes">
+        <i class="fas fa-chevron-up"></i>
+        <p>20</p>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+  </div>
+<?php }
 
 ?>
