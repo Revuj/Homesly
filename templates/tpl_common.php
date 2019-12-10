@@ -85,7 +85,8 @@ function draw_input_place() { ?>
             <label>Location<input type="text" name="location" placeholder="where" required></label>
             <label>Price/Day<input type="number" name="price_per_day" placeholder="price/day" min="1" required></label>
             <label> Select image to upload:
-            <input type="file" name="fileToUpload" id="fileToUpload"> </label>
+            <input type="file" name="files[]" multiple >
+            </label>
             <button type="submit">Host Place</button>
             </form>
         </div>
