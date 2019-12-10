@@ -85,6 +85,7 @@ function listReservation($reservation) { ?>
  */
 function pageDetailItem($place, $images) { ?>
   <section class="container_detail">
+      <i value=<?=$place['place_id']?> id="value_detail_place"></i>
       <script type='text/javascript'>
       <?php 
         $images2 = getAllImagesFromPlace($place['place_id']);
@@ -104,11 +105,12 @@ function pageDetailItem($place, $images) { ?>
 
       <div class="container_detail_content">
         <div id="col-1">
-          <h1 class="detail_title"> <?=$place['place_title']?> </h2>
-          <h3 class="detail_location"> <?=$place['place_location']?> </h3>
-          <p class="detail_description"> <?=$place['place_description']?> </p>
+          <h1 id="title_detail_place" class="detail_title" contentEditable=false> <?=$place['place_title']?> </h2>
+          <h3 id="location_detail_place" class="detail_location"> <?=$place['place_location']?> </h3>
+          <p id="description_detail_place" class="detail_description"> <?=$place['place_description']?> </p>
         </div>
         <div id="col-2">
+          <button id="edit_place"><i class="far fa-edit"></i> Edit Place</button>
           <div class="host_info">
             <img id="place_host" src="../images/profile_icon.png"/>
             <div class="user_detail_content">
