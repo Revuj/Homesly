@@ -45,6 +45,16 @@ function getUserReservations($username) {
 }
 
 /**
+ * Returns the reviews done by a certain user.
+ */
+function getUserReviews($username) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('SELECT * FROM review WHERE username = ?');
+    $stmt->execute(array($username));
+    return $stmt->fetchAll(); 
+}
+
+/**
 * Returns the list with all places available that respect the filters
 */
 function getPlacesFiltered($location, $checkin, $checkout, $guests) {
@@ -122,7 +132,7 @@ function getPlaceReviews($place_id) {
 /**
 * Adds a review to a certain place
 */
-function addReview($place_id, $username, $text, $date) {
+function addReview($place_id, $username, $text, $date, $rating) {
     $db = Database::instance()->db();
     $stmt = $db->prepare("INSERT INTO review VALUES(?, ?, ?, ?, ?)");
     $stmt->execute(array(NULL, $place_id, $username, $date, $text));

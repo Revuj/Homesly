@@ -171,6 +171,10 @@ img.user_detail_content {
     margin-top: 1rem;
 }
 
+.place_review a {
+    display: none;
+}
+
 .place_review .id {
     display: none;
 }
@@ -253,6 +257,42 @@ textarea {
 .votes p {
     margin: 0;
 }
+
+.input_review .rating {
+    float: left;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.rating > input { display: none; } 
+.rating > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
 
 @media screen and (max-width: 1280px) {
     .full_width_image {

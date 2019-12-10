@@ -53,7 +53,7 @@ function receiveReviews() {
   let review = document.createElement('div');
   review.className = 'place_review';
   review.innerHTML = 
-  '<h3>' + username + '</h3>' + '<img src="../images/profile_icon.png" />' + '<h4>' + date + '</h4>' + '<div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><p>' + text + '</p>      <div class="votes"><i class="fas fa-chevron-up"></i><p>20</p><i class="fas fa-chevron-down"></i></div>'
+  '<h3>' + username + '</h3>' + '<img src="../images/profile_icon.png" />' + '<h4>' + date + '</h4>' + '<div class="rating"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i></div><p>' + text + '</p>      <div class="votes"><i class="fas fa-chevron-up"></i><p>20</p><i class="fas fa-chevron-down"></i></div>'
   let latestReview = document.getElementsByClassName('place_review')[0];
   let reviews = document.querySelector('.place_reviews');
   reviews.insertBefore(review, latestReview);
@@ -67,19 +67,19 @@ function submitReview(event) {
   let place_id = document.querySelector('.input_review > input[name=place_id]').value;
   let username = document.querySelector('.input_review > input[name=username]').value;
   let text = document.querySelector('.input_review > textarea').value;
-
+  let rating = document.querySelector('.rating input:checked').value;
+  console.log(rating);
   let request = new XMLHttpRequest()
   request.onload = receiveReviews;
   request.open("post", "../api/api_add_review.php", true);
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  request.send(encodeForAjax({place_id: place_id, username: username, text: text}));
+  request.send(encodeForAjax({place_id: place_id, username: username, text: text, rating: rating}));
 }
 
 let moreReviewsButton = document.querySelector('.more_reviews');
 let reviews = document.getElementsByClassName('place_review');
 
 function showLessReviews() {
-  console.log('fewasfewa')
   for(let i = 5; i < reviews.length - 1; i++)
     reviews[i].style.display = "none";
   moreReviewsButton.removeEventListener('click', showLessReviews);
@@ -89,7 +89,6 @@ function showLessReviews() {
 }
 
 function showMoreReviews() {
-  console.log('popop')
   let invisibleReviews = [...reviews].filter(r => r.offsetParent === null);
   for(let i = 0; i < 5 && i < invisibleReviews.length - 1; i++)
     invisibleReviews[i].style.display = "block";
