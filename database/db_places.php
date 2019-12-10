@@ -132,7 +132,7 @@ function getPlaceReviews($place_id) {
 /**
 * Adds a review to a certain place
 */
-function addReview($place_id, $username, $text, $date) {
+function addReview($place_id, $username, $text, $date, $rating) {
     $db = Database::instance()->db();
     $stmt = $db->prepare("INSERT INTO review VALUES(?, ?, ?, ?, ?)");
     $stmt->execute(array(NULL, $place_id, $username, $date, $text));
