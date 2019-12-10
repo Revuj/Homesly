@@ -7,6 +7,7 @@
     margin-top: 1em;
     padding-left: 0;
     width: 80%;
+    display: flex;
 }
 
 .form-2 form {
@@ -43,6 +44,25 @@ article.place_overview {
     margin: 1.25% 1.25% 1.25% 1.25%; 
     width: 22.5%;
     position: relative;
+}
+
+.display_buttons {
+    display: flex;
+    height: 48px;
+}
+
+.display_buttons > img {
+    width: 32px;
+    margin-top: 1em;
+}
+
+.grid {
+    background-color:var(--orange);
+    margin-left: 1em;
+}
+
+.list {
+    margin-left: 4px;
 }
 
 .far.fa-heart {
@@ -115,6 +135,19 @@ article.place_overview {
     .form-2 {
         margin-left: 1.66%;
         width: 96.68%;
+        display: block;
+    }
+
+    .display_buttons {
+        display: block;
+    }
+
+    .grid {
+        margin-left: 0em;
+    }
+
+    .list {
+        margin-left: 0em;
     }
 
     article.place_overview {
@@ -131,7 +164,7 @@ article.place_overview {
     }
 
     article.place_overview {
-        margin: 2.5% auto; 
+        margin: 2.5% 2.5% 2.5% 2.5%; 
         width: 45%;
     }
 }
@@ -167,6 +200,10 @@ article.place_overview {
     .form-2 form label {
         margin-bottom: 2em;
         margin-right: 1em;
+    }
+
+    .display_buttons > img {
+        display: none;
     }
 
     article.place_overview {

@@ -19,6 +19,7 @@ function draw_header() { ?>
         integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <script src="../js/main.js" defer></script>
         <script src="../js/pageDetail.js" defer></script>
+        <script src="../js/booking.js" defer></script>
         <script src="../js/profile.js" defer></script>
 
     </head>

@@ -11,6 +11,10 @@ function listPlaces($places) { ?>
           <label><input type="number" value="" min="0" name="guests" placeholder="Guests" ></label>
           <button type="submit"><i class="fas fa-search"></i></button>
       </form>
+      <div class="display_buttons">
+        <img class="grid" src="../images/grid_icon.png" />
+        <img class="list" src="../images/list_icon.png" />
+      </div>
   </section>
   <article class="places_list">
       <?php
