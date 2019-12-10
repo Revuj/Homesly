@@ -110,7 +110,11 @@ function pageDetailItem($place, $images) { ?>
           <p id="description_detail_place" class="detail_description"> <?=$place['place_description']?> </p>
         </div>
         <div id="col-2">
-          <button id="edit_place"><i class="far fa-edit"></i> Edit Place</button>
+          <?php 
+          if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['username'] == $place['place_owner']){
+            echo '<button id="edit_place"><i class="far fa-edit"></i> Edit Place</button>';
+          }
+          ?>
           <div class="host_info">
             <img id="place_host" src="../images/profile_icon.png"/>
             <div class="user_detail_content">
