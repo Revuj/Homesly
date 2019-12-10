@@ -306,5 +306,9 @@ time.checkout {
     #user_info ul li {
         display: inline-block;
     }
+
+    .place_review a span {
+        display: none;
+    }
 }
 

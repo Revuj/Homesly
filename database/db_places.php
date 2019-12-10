@@ -136,6 +136,9 @@ function addReview($place_id, $username, $text, $date, $rating) {
     $db = Database::instance()->db();
     $stmt = $db->prepare("INSERT INTO review VALUES(?, ?, ?, ?, ?, ?)");
     $stmt->execute(array(NULL, $place_id, $username, $date, $text, $rating));
-    return array($place_id, $username, $date, $text, $rating);
+    $stmt = $db->prepare("SELECT * FROM review ORDER BY id DESC LIMIT 1");
+    $stmt->execute();
+    $review_id = $stmt->fetchAll()[0]['id'];
+    return array($review_id, $username, $date, $text, $rating);
 }
 ?>

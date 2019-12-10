@@ -12,8 +12,6 @@ profileNavItems.forEach(item => item.addEventListener('click', (event) => {
   event.target.classList.add('active');  
 
   Array.prototype.map.call(profileContent, function (e) {
-    console.log(e)
-    console.log(e.style.display)
     if (e.style.display == "block")
       e.style.display = "none";
   })
@@ -122,7 +120,6 @@ let reservationsDeleteButtons = document.querySelectorAll('#user_reservations .f
 
 [...reservationsDeleteButtons].forEach(elem => elem.addEventListener('click', (event) => {
     removeModal.style.display = "block";
-    console.log(removeModal.style);
     buttons[0].addEventListener('click', (event) => {
 
       let reservation_id = elem.getAttribute('value');

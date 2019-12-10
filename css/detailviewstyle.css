@@ -256,6 +256,7 @@ textarea {
 
 .votes p {
     margin: 0;
+    display: block;
 }
 
 .input_review .rating {
@@ -293,6 +294,31 @@ textarea {
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+
+
+.edit_rating {
+    display: none;
+    margin: 0;
+    float: left;
+    clear: both;
+    font-weight: bolder;
+}
+
+.edit_review {
+    position: absolute;
+    bottom: 6px;
+    right: 12px;
+    width: 2rem;
+    background: none;
+}
+
+.save_review {
+    position: absolute;
+    bottom: 6px;
+    right: 12px;
+    width: 2rem;
+    display: none;
+}
 
 @media screen and (max-width: 1280px) {
     .full_width_image {

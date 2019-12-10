@@ -155,8 +155,28 @@ function drawReview($review) { ?>
       <span class="id"><?=$review['id']?></span>
       <h3><?=$review['username']?> </h3>
       <img src="../images/profile_icon.png" />
-      <h4><?=$review['published']?> </h4>
-      <div class="rating">
+      <h4><?=$review['published']?> </h4> <?php
+      if (isset($_SESSION['username']) && $_SESSION['username'] == $review['username']) {
+        echo '<button class="edit_review"><i class="fas fa-edit"></i></button>';
+        echo '<button class="save_review"><i class="far fa-save"></i></button>';
+        ?>
+        <div>
+        <div class="rating edit_rating">
+          <input type="radio" id="5" name="rating" value="5" /><label class = "full" for="5" title="Awesome - 5 stars"></label>
+          <input type="radio" id="45" name="rating" value="4.5" /><label class="half" for="45" title="Pretty good - 4.5 stars"></label>
+          <input type="radio" id="4" name="rating" value="4" /><label class = "full" for="4" title="Pretty good - 4 stars"></label>
+          <input type="radio" id="35" name="rating" value="3.5" /><label class="half" for="35" title="Meh - 3.5 stars"></label>
+          <input type="radio" id="3" name="rating" value="3" /><label class = "full" for="3" title="Meh - 3 stars"></label>
+          <input type="radio" id="25" name="rating" value="2.5" /><label class="half" for="25" title="Kinda bad - 2.5 stars"></label>
+          <input type="radio" id="2" name="rating" value="2" /><label class = "full" for="2" title="Kinda bad - 2 stars"></label>
+          <input type="radio" id="15" name="rating" value="1.5" /><label class="half" for="15" title="Meh - 1.5 stars"></label>
+          <input type="radio" id="1" name="rating" value="1" /><label class = "full" for="1" title="Sucks big time - 1 star"></label>
+          <input type="radio" id="05" name="rating" value="0.5" /><label class="half" for="05" title="Sucks big time - 0.5 stars"></label>
+        </div>
+      </div>
+        <?php
+      } ?>
+      <div class="rating review_rating">
         <?php
           $whole_stars = floor($review['rating']);
           $half_stars = $review['rating'] - $whole_stars;
@@ -175,13 +195,13 @@ function drawReview($review) { ?>
           }
         ?>
       </div>
-      <p><?=$review['content']?> </p>
+      <p class="review_content" contentEditable=false><?=$review['content']?> </p>
       <div class="votes">
         <i class="fas fa-chevron-up"></i>
         <p>20</p>
         <i class="fas fa-chevron-down"></i>
       </div>
-      <a href="../pages/item.php?id=<?=$review['place_id']?>"><i class="fas fa-link"></i> Go To Place</a>
+      <a href="../pages/item.php?id=<?=$review['place_id']?>"><i class="fas fa-link"></i> <span>Go To Place</span></a>
   </div>
 <?php }
 
