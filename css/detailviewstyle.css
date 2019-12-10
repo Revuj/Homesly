@@ -268,7 +268,7 @@ textarea {
 .rating > label:before { 
   margin: 5px;
   font-size: 1.25em;
-  font-family: FontAwesome;
+  font-family: 'Font Awesome\ 5 Free';
   display: inline-block;
   content: "\f005";
 }

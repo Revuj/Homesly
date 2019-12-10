@@ -157,11 +157,23 @@ function drawReview($review) { ?>
       <img src="../images/profile_icon.png" />
       <h4><?=$review['published']?> </h4>
       <div class="rating">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star-half-alt"></i>
+        <?php
+          $whole_stars = floor($review['rating']);
+          $half_stars = $review['rating'] - $whole_stars;
+          $counter = 0;
+          while($counter < $whole_stars) {
+            echo '<i class="fas fa-star"></i> ';
+            $counter++;
+          }
+          if ($half_stars != 0) {
+            echo '<i class="fas fa-star-half-alt"></i> ';
+            $counter++;
+          }
+          while($counter < 5) {
+            echo '<i class="far fa-star"></i> ';
+            $counter++;
+          }
+        ?>
       </div>
       <p><?=$review['content']?> </p>
       <div class="votes">
