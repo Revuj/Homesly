@@ -83,8 +83,11 @@ function drawRemoveModal() { ?>
 
 <?php
     function draw_user_reviews($username) { ?>
-    <section id="user_reviews">
-        <h1>Reviews</h1>
+    <section id="user_reviews" class="profile_places"> <?php
+        $user_reviews = getUserReviews($username);
+        foreach($user_reviews as $review) {
+            drawReview($review);
+        } ?>
     </section>
     <?php }
 ?>

@@ -45,6 +45,16 @@ function getUserReservations($username) {
 }
 
 /**
+ * Returns the reviews done by a certain user.
+ */
+function getUserReviews($username) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('SELECT * FROM review WHERE username = ?');
+    $stmt->execute(array($username));
+    return $stmt->fetchAll(); 
+}
+
+/**
 * Returns the list with all places available that respect the filters
 */
 function getPlacesFiltered($location, $checkin, $checkout, $guests) {

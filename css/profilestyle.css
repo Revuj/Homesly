@@ -245,6 +245,22 @@ time.checkout {
     margin-left: 0.75em;
 }
 
+#user_reviews .place_review {
+    display: block;
+}
+
+#user_reviews a {
+    display: block;
+    color: black;
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+}
+
+#user_reviews a:hover {
+    color: rgb(27, 45, 209);
+}
+
 @media (max-width:1280px) {
     #user_places .place_description {
         display: none;

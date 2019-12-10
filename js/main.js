@@ -95,8 +95,6 @@ function resizeTextArea (text) {
   observe(text, 'drop',    delayedResize);
   observe(text, 'keydown', delayedResize);
 
-  text.focus();
-  text.select();
   resize();
 }
 

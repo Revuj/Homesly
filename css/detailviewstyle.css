@@ -171,6 +171,10 @@ img.user_detail_content {
     margin-top: 1rem;
 }
 
+.place_review a {
+    display: none;
+}
+
 .place_review .id {
     display: none;
 }

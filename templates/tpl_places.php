@@ -165,6 +165,7 @@ function drawReview($review) { ?>
         <p>20</p>
         <i class="fas fa-chevron-down"></i>
       </div>
+      <a href="../pages/item.php?id=<?=$review['place_id']?>"><i class="fas fa-link"></i> Go To Place</a>
   </div>
 <?php }
 
