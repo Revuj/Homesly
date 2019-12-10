@@ -141,4 +141,12 @@ function addReview($place_id, $username, $text, $date, $rating) {
     $review_id = $stmt->fetchAll()[0]['id'];
     return array($review_id, $username, $date, $text, $rating);
 }
+
+function updatePlace($place_id, $title, $location, $description) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('UPDATE place SET place_title = ?, place_location = ?, place_description = ? WHERE place_id = ?');
+    $stmt->execute(array($title, $location, $description, $place_id));
+    return array($place_id, $title, $location, $description);   
+  }
+
 ?>

@@ -229,5 +229,88 @@ if (saveReviewButton != null)
   saveReviewButton.addEventListener('click', saveReview)
 
 
+let editPlaceButton = document.getElementById('edit_place');
+let detailTitlePlace = document.getElementById('title_detail_place');
+let detailLocationPlace = document.getElementById('location_detail_place');
+let detailDescriptionPlace = document.getElementById('description_detail_place');
+let detailValuePlace = document.getElementById('value_detail_place');
+
+editPlaceButton.addEventListener('click', (event) => {
+  if (detailTitlePlace.contentEditable == "false") {
+
+    editPlaceButton.innerHTML = ' <i class="far fa-edit"></i> Save Changes';
+
+    detailTitlePlace.contentEditable = "true";
+    detailLocationPlace.contentEditable = "true";
+    detailDescriptionPlace.contentEditable = "true";
+
+    // userBio.focus = "true";
+    detailTitlePlace.style.padding = "0.5em";
+    detailTitlePlace.style.border = "2px solid gray";
+    detailTitlePlace.style.borderRadius = "5px";
+    detailTitlePlace.style.display = "block";
+    // userBio.parentElement.style.opacity = "1";
+    detailLocationPlace.style.padding = "0.5em";
+    detailLocationPlace.style.border = "2px solid gray";
+    detailLocationPlace.style.borderRadius = "5px";
+    detailLocationPlace.style.display = "block";
+
+    detailDescriptionPlace.style.padding = "0.5em";
+    detailDescriptionPlace.style.border = "2px solid gray";
+    detailDescriptionPlace.style.borderRadius = "5px";
+    detailDescriptionPlace.style.display = "block";
+
+  } else {
+
+    editPlaceButton.innerHTML = '<i class="far fa-edit"></i> Edit Place';
+
+    let place_id = detailValuePlace.getAttribute('value');
+
+    let request = new XMLHttpRequest()
+    request.onload = updatePlace;
+    request.open("post", "../api/api_update_place.php", true);
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    console.log("place: " + place_id);
+
+    request.send(encodeForAjax({place_id: place_id, 
+      title: detailTitlePlace.innerHTML , 
+      location: detailLocationPlace.innerHTML, 
+      description: detailDescriptionPlace.innerHTML}));
+
+
+    detailTitlePlace.contentEditable = "false";
+
+    detailLocationPlace.contentEditable = "false";
+    detailDescriptionPlace.contentEditable = "false";
+
+    detailTitlePlace.style.padding = "0em";
+    detailTitlePlace.style.border = "0px solid gray";
+    detailTitlePlace.style.borderRadius = "0px";
+
+    detailLocationPlace.style.padding = "0em";
+    detailLocationPlace.style.border = "0px solid gray";
+    detailLocationPlace.style.borderRadius = "0px";
+
+    detailDescriptionPlace.style.padding = "0em";
+    detailDescriptionPlace.style.border = "0px solid gray";
+    detailDescriptionPlace.style.borderRadius = "0px";
+  }
+})
+
+function updatePlace() {
+  console.log(this.responseText)
+  let response = JSON.parse(this.responseText);
+  let place_id = response[0];
+  let title = response[1];
+  let location = response[2];
+  let description = response[3];
+
+  detailTitlePlace.innerHTML = title;
+  detailLocationPlace.innerHTML = location;
+  detailDescriptionPlace.innerHTML = description;
+}
+
+
 
 
