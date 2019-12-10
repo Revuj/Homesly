@@ -26,7 +26,8 @@ CREATE TABLE review (
   place_id INTEGER REFERENCES place,
   username VARCHAR REFERENCES user,
   published DATE NOT NULL, 
-  content VARCHAR
+  content VARCHAR,
+  rating INTEGER
 );
 
 CREATE TABLE image (
@@ -70,10 +71,10 @@ INSERT INTO place VALUES(NULL, 'Forgotten Greece',
 'Pellentesque vitae nisi tempus mauris blandit ullamcorper. Quisque magna leo, blandit vitae efficitur at, scelerisque sed lectus. Duis sit amet nisi lectus. Praesent volutpat aliquet mi in viverra. Nullam ultrices justo sit amet pharetra varius. Phasellus nisi orci, eleifend in ornare rutrum, finibus sed ligula. Morbi facilisis venenatis ipsum sed lacinia. Integer sit amet nisi enim. Nam laoreet non dui vel maximus. Duis vitae viverra arcu. Vivamus fringilla laoreet metus sit amet mattis. Proin eget ex non turpis consequat fringilla. Nam commodo eros mi, sit amet luctus velit imperdiet eu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum varius fringilla neque, at efficitur erat rutrum sed. ',
 'Greece', 300, 'john');
 
-INSERT INTO review VALUES(NULL, 1, 'john', 2019-12-09, 'Very nice place, really liked it!!!');
-INSERT INTO review VALUES(NULL, 1, 'john', 2019-12-09, 'Nevermind, I actualy found a dead rat on the bathroom :( awful place');
-INSERT INTO review VALUES(NULL, 1, 'john', 2019-12-09, 'Sorry it was my litle brother who wrote that');
-INSERT INTO review VALUES(NULL, 1, 'john', 2019-12-09, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Why do we use it?t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).');
+INSERT INTO review VALUES(NULL, 1, 'john', 2019-12-09, 'Very nice place, really liked it!!!', 4.5);
+INSERT INTO review VALUES(NULL, 1, 'john', 2019-12-09, 'Nevermind, I actualy found a dead rat on the bathroom :( awful place', 1);
+INSERT INTO review VALUES(NULL, 1, 'john', 2019-12-09, 'Sorry it was my litle brother who wrote that', 4);
+INSERT INTO review VALUES(NULL, 1, 'john', 2019-12-09, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Why do we use it?t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', 5);
 
 INSERT INTO image VALUES(1, 1);
 

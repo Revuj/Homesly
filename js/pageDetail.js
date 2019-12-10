@@ -68,7 +68,6 @@ function submitReview(event) {
   let username = document.querySelector('.input_review > input[name=username]').value;
   let text = document.querySelector('.input_review > textarea').value;
   let rating = document.querySelector('.rating input:checked').value;
-  console.log(rating);
   let request = new XMLHttpRequest()
   request.onload = receiveReviews;
   request.open("post", "../api/api_add_review.php", true);

@@ -134,9 +134,9 @@ function getPlaceReviews($place_id) {
 */
 function addReview($place_id, $username, $text, $date, $rating) {
     $db = Database::instance()->db();
-    $stmt = $db->prepare("INSERT INTO review VALUES(?, ?, ?, ?, ?)");
-    $stmt->execute(array(NULL, $place_id, $username, $date, $text));
-    return array($place_id, $username, $date, $text);
+    $stmt = $db->prepare("INSERT INTO review VALUES(?, ?, ?, ?, ?, ?)");
+    $stmt->execute(array(NULL, $place_id, $username, $date, $text, $rating));
+    return array($place_id, $username, $date, $text, $rating);
 }
 
 function updatePlace($place_id, $title, $location, $description) {
