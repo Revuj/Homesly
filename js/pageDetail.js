@@ -75,7 +75,7 @@ function receiveReviews() {
     ratingHTML = ratingHTML.concat('<i class="far fa-star"></i> ')
     counter++;
   }
-  ratingHTML = ratingHTML.concat('</div> <p class="review_content" contentEditable=false>' + text + '</p>      <div class="votes"><i class="fas fa-chevron-up"></i><p>20</p><i class="fas fa-chevron-down"></i></div>')
+  ratingHTML = ratingHTML.concat('</div> <p class="review_content" contentEditable=false>' + text + '</p>      <div class="votes"><i class="fas fa-chevron-up upvote" style="color:#ff6624;"></i><div>1</div><i class="fas fa-chevron-down downvote"></i></div>')
 
   review.innerHTML = review.innerHTML.concat(ratingHTML);
 
@@ -93,6 +93,12 @@ function receiveReviews() {
 
   editReviewButton.addEventListener('click', editReview)
   saveReviewButton.addEventListener('click', saveReview)
+
+  let upvote = document.querySelector('.upvote');
+  let downvote = document.querySelector('.downvote');
+
+  upvote.addEventListener('click', event => {upvote(upvote)})
+  downvote.addEventListener('click', event => {downvote(downvote)})
 
 }
 
@@ -235,68 +241,71 @@ let detailLocationPlace = document.getElementById('location_detail_place');
 let detailDescriptionPlace = document.getElementById('description_detail_place');
 let detailValuePlace = document.getElementById('value_detail_place');
 
-editPlaceButton.addEventListener('click', (event) => {
-  if (detailTitlePlace.contentEditable == "false") {
+if (editPlaceButton != null) {
+  editPlaceButton.addEventListener('click', (event) => {
+    if (detailTitlePlace.contentEditable == "false") {
+  
+      editPlaceButton.innerHTML = ' <i class="far fa-edit"></i> Save Changes';
+  
+      detailTitlePlace.contentEditable = "true";
+      detailLocationPlace.contentEditable = "true";
+      detailDescriptionPlace.contentEditable = "true";
+  
+      // userBio.focus = "true";
+      detailTitlePlace.style.padding = "0.5em";
+      detailTitlePlace.style.border = "2px solid gray";
+      detailTitlePlace.style.borderRadius = "5px";
+      detailTitlePlace.style.display = "block";
+      // userBio.parentElement.style.opacity = "1";
+      detailLocationPlace.style.padding = "0.5em";
+      detailLocationPlace.style.border = "2px solid gray";
+      detailLocationPlace.style.borderRadius = "5px";
+      detailLocationPlace.style.display = "block";
+  
+      detailDescriptionPlace.style.padding = "0.5em";
+      detailDescriptionPlace.style.border = "2px solid gray";
+      detailDescriptionPlace.style.borderRadius = "5px";
+      detailDescriptionPlace.style.display = "block";
+  
+    } else {
+  
+      editPlaceButton.innerHTML = '<i class="far fa-edit"></i> Edit Place';
+  
+      let place_id = detailValuePlace.getAttribute('value');
+  
+      let request = new XMLHttpRequest()
+      request.onload = updatePlace;
+      request.open("post", "../api/api_update_place.php", true);
+      request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  
+      console.log("place: " + place_id);
+  
+      request.send(encodeForAjax({place_id: place_id, 
+        title: detailTitlePlace.innerHTML , 
+        location: detailLocationPlace.innerHTML, 
+        description: detailDescriptionPlace.innerHTML}));
+  
+  
+      detailTitlePlace.contentEditable = "false";
+  
+      detailLocationPlace.contentEditable = "false";
+      detailDescriptionPlace.contentEditable = "false";
+  
+      detailTitlePlace.style.padding = "0em";
+      detailTitlePlace.style.border = "0px solid gray";
+      detailTitlePlace.style.borderRadius = "0px";
+  
+      detailLocationPlace.style.padding = "0em";
+      detailLocationPlace.style.border = "0px solid gray";
+      detailLocationPlace.style.borderRadius = "0px";
+  
+      detailDescriptionPlace.style.padding = "0em";
+      detailDescriptionPlace.style.border = "0px solid gray";
+      detailDescriptionPlace.style.borderRadius = "0px";
+    }
+  })
+}
 
-    editPlaceButton.innerHTML = ' <i class="far fa-edit"></i> Save Changes';
-
-    detailTitlePlace.contentEditable = "true";
-    detailLocationPlace.contentEditable = "true";
-    detailDescriptionPlace.contentEditable = "true";
-
-    // userBio.focus = "true";
-    detailTitlePlace.style.padding = "0.5em";
-    detailTitlePlace.style.border = "2px solid gray";
-    detailTitlePlace.style.borderRadius = "5px";
-    detailTitlePlace.style.display = "block";
-    // userBio.parentElement.style.opacity = "1";
-    detailLocationPlace.style.padding = "0.5em";
-    detailLocationPlace.style.border = "2px solid gray";
-    detailLocationPlace.style.borderRadius = "5px";
-    detailLocationPlace.style.display = "block";
-
-    detailDescriptionPlace.style.padding = "0.5em";
-    detailDescriptionPlace.style.border = "2px solid gray";
-    detailDescriptionPlace.style.borderRadius = "5px";
-    detailDescriptionPlace.style.display = "block";
-
-  } else {
-
-    editPlaceButton.innerHTML = '<i class="far fa-edit"></i> Edit Place';
-
-    let place_id = detailValuePlace.getAttribute('value');
-
-    let request = new XMLHttpRequest()
-    request.onload = updatePlace;
-    request.open("post", "../api/api_update_place.php", true);
-    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-    console.log("place: " + place_id);
-
-    request.send(encodeForAjax({place_id: place_id, 
-      title: detailTitlePlace.innerHTML , 
-      location: detailLocationPlace.innerHTML, 
-      description: detailDescriptionPlace.innerHTML}));
-
-
-    detailTitlePlace.contentEditable = "false";
-
-    detailLocationPlace.contentEditable = "false";
-    detailDescriptionPlace.contentEditable = "false";
-
-    detailTitlePlace.style.padding = "0em";
-    detailTitlePlace.style.border = "0px solid gray";
-    detailTitlePlace.style.borderRadius = "0px";
-
-    detailLocationPlace.style.padding = "0em";
-    detailLocationPlace.style.border = "0px solid gray";
-    detailLocationPlace.style.borderRadius = "0px";
-
-    detailDescriptionPlace.style.padding = "0em";
-    detailDescriptionPlace.style.border = "0px solid gray";
-    detailDescriptionPlace.style.borderRadius = "0px";
-  }
-})
 
 function updatePlace() {
   console.log(this.responseText)
@@ -310,6 +319,58 @@ function updatePlace() {
   detailLocationPlace.innerHTML = location;
   detailDescriptionPlace.innerHTML = description;
 }
+
+
+function teste() {
+  console.log(this.responseText)
+}
+
+let upvoteButtons = document.getElementsByClassName('upvote');
+let downvoteButtons = document.getElementsByClassName('downvote');
+
+function upvote(elem) {
+  if (elem.style.color == "rgb(255, 102, 36)") 
+    return;
+  elem.style.color = "#ff6624";
+  let karma = elem.nextElementSibling;
+  karma.innerHTML = parseInt(karma.innerHTML) + 1;
+  let downvote = karma.nextElementSibling
+  downvote.style.color = "black";
+
+  let username = elem.previousElementSibling.value
+  let review_id = elem.getAttribute("value")
+  let request = new XMLHttpRequest()
+  request.onload = teste;
+  request.open("post", "../api/api_upvote_review.php", true);
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  request.send(encodeForAjax({username: username, review_id: review_id}));
+}
+
+function downvote(elem) {
+  if (elem.style.color == "rgb(255, 102, 36)")
+    return;
+  elem.style.color = "#ff6624";
+  let karma = elem.previousElementSibling;
+  let upvote = karma.previousElementSibling;
+  karma.innerHTML = parseInt(karma.innerHTML) - 1;
+  upvote.style.color = "black";
+
+  let username = elem.previousElementSibling.previousElementSibling.previousElementSibling.value;
+  let review_id = elem.getAttribute("value")
+  let request = new XMLHttpRequest()
+  request.onload = teste;
+  request.open("post", "../api/api_downvote_review.php", true);
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  request.send(encodeForAjax({username: username, review_id: review_id}));
+}
+
+[...upvoteButtons].forEach(elem => elem.addEventListener('click', (event) => {
+  upvote(elem);
+}));
+
+[...downvoteButtons].forEach(elem => elem.addEventListener('click', (event) => {
+  downvote(elem);
+}));
 
 
 

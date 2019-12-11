@@ -30,6 +30,18 @@ CREATE TABLE review (
   rating INTEGER
 );
 
+CREATE TABLE upvote (
+  user VARCHAR NOT NULL REFERENCES user,
+  review INTEGER REFERENCES review,
+  PRIMARY KEY (user, review)
+);
+
+CREATE TABLE downvote (
+  user VARCHAR NOT NULL REFERENCES user,
+  review INTEGER REFERENCES review,
+  PRIMARY KEY (user, review)
+);
+
 CREATE TABLE image (
   image_id INTEGER PRIMARY KEY,
   place_of_image INTEGER NOT NULL REFERENCES place

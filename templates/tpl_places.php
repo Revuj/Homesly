@@ -203,9 +203,12 @@ function drawReview($review) { ?>
       </div>
       <p class="review_content" contentEditable=false><?=$review['content']?> </p>
       <div class="votes">
-        <i class="fas fa-chevron-up"></i>
-        <p>20</p>
-        <i class="fas fa-chevron-down"></i>
+        <?php if (isset($_SESSION['username'])) {
+          echo '<input type="hidden" value=' .  $_SESSION['username'] . ' />';
+        } ?>
+        <i class="fas fa-chevron-up upvote" value=<?=$review['id']?>></i>
+        <div><?=getReviewKarma($review['id'])?></div>
+        <i class="fas fa-chevron-down downvote" value=<?=$review['id']?>></i>
       </div>
       <a href="../pages/item.php?id=<?=$review['place_id']?>"><i class="fas fa-link"></i> <span>Go To Place</span></a>
   </div>

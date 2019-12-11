@@ -139,7 +139,37 @@ function addReview($place_id, $username, $text, $date, $rating) {
     $stmt = $db->prepare("SELECT * FROM review ORDER BY id DESC LIMIT 1");
     $stmt->execute();
     $review_id = $stmt->fetchAll()[0]['id'];
+    $stmt = $db->prepare("INSERT INTO upvote VALUES(?, ?)");
+    $stmt->execute(array($username, $review_id));
     return array($review_id, $username, $date, $text, $rating);
+}
+
+function getReviewKarma($review_id) {
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare("SELECT * FROM upvote WHERE review = ?");
+    $stmt->execute(array($review_id));
+    $upvotes = count($stmt->fetchAll());
+
+    $stmt = $db->prepare("SELECT * FROM downvote WHERE review = ?");
+    $stmt->execute(array($review_id));
+    $downvotes = count($stmt->fetchAll());
+
+    return $upvotes - $downvotes;
+}
+
+function upvoteReview($username, $review_id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare("INSERT INTO upvote VALUES(?, ?)");
+    $stmt->execute(array($username, $review_id));
+    return array($username, $review_id);
+}
+
+function downvoteReview($username, $review_id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare("INSERT INTO downvote VALUES(?, ?)");
+    $stmt->execute(array($username, $review_id));
+    return array($username, $review_id);
 }
 
 function updatePlace($place_id, $title, $location, $description) {
