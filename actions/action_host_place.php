@@ -65,8 +65,14 @@
             $place_description = $_POST['description'];
             $place_location = $_POST['location'];
             $place_price = $_POST['price_per_day'];
+            $place_showers = 2;
+            $place_bedrooms = 3;
+            $place_heating = 1;
+            $place_view = 1;
+            $place_wifi = 1;
+            $place_parking = 1;
 
-            insertPlace($place_title, $place_description, $place_location, $place_price, $_SESSION['username']);  
+            insertPlace($place_title, $place_description, $place_location, $place_price, $_SESSION['username'], $place_showers, $place_bedrooms, $place_heating, $place_view, $place_wifi, $place_parking);  
         
             $db = Database::instance()->db();
             $place_id = $db->lastInsertId();
