@@ -4,32 +4,63 @@ let leftImageScroll = document.getElementsByClassName('left_arrow_image')[0];
 let rightImageScroll = document.getElementsByClassName('right_arrow_image')[0];
 let imgIndex = 0;
 
+function incrementImageIndex(index, length) {
+  let newIndex;
+
+  if (index > 0) {
+    newIndex = index - 1
+  }
+  else if (imgIndex == 0) {
+    newIndex = length - 1;
+  }
+
+  return newIndex;
+}
+
+function decrementImageIndex(index, length) {
+  let newIndex;
+
+  if (index < (length - 1)) {
+    newIndex = index + 1;
+  }
+  if (index == (length - 1)) {
+    newIndex = 0;
+  }
+
+  return newIndex;
+}
+
 leftImageScroll.addEventListener('click', function () {
-  if (imgIndex > 0) {
-    imgIndex--;
-  }
-  if (imgIndex == 0) {
-    leftImageScroll.style.display = "none";
-  }
-  if (imgIndex < (imgs.length - 1)) {
-    rightImageScroll.style.display = "block";
-  }
+  imgIndex = incrementImageIndex(imgIndex, imgs.length)
+
   let imageDisplayed = document.getElementsByClassName('full_width_image')[0];
   imageDisplayed.outerHTML = "<div class='full_width_image' style='background-image: url(" + imgs[imgIndex] + ");'></div>";
+
+  let upSideImage = document.getElementsByClassName('side_image')[0];
+  let downSideImage = document.getElementsByClassName('side_image')[1];
+
+  let upSideImageIndex = incrementImageIndex(imgIndex, imgs.length);
+  let downSideImageIndex = incrementImageIndex(upSideImageIndex, imgs.length);
+
+  upSideImage.setAttribute("src", imgs[upSideImageIndex])
+  downSideImage.setAttribute("src", imgs[downSideImageIndex])
+
 })
 
 rightImageScroll.addEventListener('click', function () {
-  if (imgIndex < (imgs.length - 1)) {
-    imgIndex++;
-  }
-  if (imgIndex == (imgs.length - 1)) {
-    rightImageScroll.style.display = "none";
-  }
-  if (imgIndex > 0) {
-    leftImageScroll.style.display = "block";
-  }
+  imgIndex = decrementImageIndex(imgIndex, imgs.length)
+
   let imageDisplayed = document.getElementsByClassName('full_width_image')[0];
   imageDisplayed.outerHTML = "<div class='full_width_image' style='background-image: url(" + imgs[imgIndex] + ");'></div>";
+
+  let upSideImage = document.getElementsByClassName('side_image')[0];
+  let downSideImage = document.getElementsByClassName('side_image')[1];
+
+  let upSideImageIndex = decrementImageIndex(imgIndex, imgs.length);
+  let downSideImageIndex = decrementImageIndex(upSideImageIndex, imgs.length);
+
+  upSideImage.setAttribute("src", imgs[upSideImageIndex])
+  downSideImage.setAttribute("src", imgs[downSideImageIndex])
 })
 
 let guestsNumber = document.querySelector('input[name="guests"]');

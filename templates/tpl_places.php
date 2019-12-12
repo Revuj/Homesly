@@ -100,6 +100,10 @@ function pageDetailItem($place, $images) { ?>
         <div class="full_width_image"
           style="background-image: url(<?=$images[0]?>);">
         </div>
+        <div id="side_images">
+          <img class="side_image" src=<?=$images[1]?> />
+          <img class="side_image" src=<?=$images[2]?> />
+        </div>
         <i class="fas fa-chevron-left left_arrow_image"></i>
         <i class="fas fa-chevron-right right_arrow_image"></i>
       </div>

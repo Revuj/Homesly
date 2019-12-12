@@ -9,18 +9,36 @@
 }
 
 .full_width_image  {
+    margin-right: 5px;
     margin-top: 1rem;
-    border-radius: 10px;
-    min-width: 1280px;
+    min-width: 800px;
     height: 600px;
     background-position: center center;
     background-repeat: no-repeat;
+    display: inline-block;
+}
+
+#side_images {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.side_image {
+    max-width: 480px;
+    height: 297.5px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: inline-block;
+    margin-bottom: 5px;
 }
 
 .images_container {
     position: relative;
     font-size: 300%;
     color: black;
+    display: flex;
+    align-items: flex-start;
 }
 
 .left_arrow_image {
@@ -34,7 +52,7 @@
     opacity: 0.55;
     position: absolute;
     top: 275px;
-    right: 16px;
+    right: 500px;
 }
 
 .left_arrow_image:hover , .right_arrow_image:hover {
