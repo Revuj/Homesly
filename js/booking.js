@@ -1,7 +1,7 @@
 'use strict'
 
-let listButton = document.getElementsByClassName('list')[0];
-let gridButton = document.getElementsByClassName('grid')[0];
+let listButton = document.getElementsByClassName('fas fa-list')[0];
+let gridButton = document.getElementsByClassName('fas fa-th')[0];
 let placesList = document.getElementsByClassName('places_list')[0];
 
 listButton.addEventListener('click', function () {

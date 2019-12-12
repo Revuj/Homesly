@@ -13,8 +13,8 @@ function listPlaces($places) { ?>
           <button type="submit"><i class="fas fa-search"></i></button>
       </form>
       <div class="display_buttons">
-        <img class="grid" src="../images/grid_icon.png" />
-        <img class="list" src="../images/list_icon.png" />
+        <i class="fas fa-th"></i>
+        <i class="fas fa-list"></i>
       </div>
   </section>
   <article class="places_list">
