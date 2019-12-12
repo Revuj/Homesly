@@ -261,9 +261,90 @@ time.checkout {
     color: rgb(27, 45, 209);
 }
 
+#profile .upvote, #profile .downvote, #profile .edit_review {
+    display: none;
+}
+
+.container_detail .fa-thumbs-up {
+    display: block;
+}
+
+.first_reservation {
+    width: 100%;
+    min-height: 7em;
+    background-color: rgba(223, 223, 223, 0.5);
+    margin-top: 1rem;
+    border-radius: 5px;
+    text-align: center;
+    overflow: hidden;
+    max-height: 20em;
+    position: relative;
+    font-family: 'Dosis', sans-serif;
+
+}
+
+
+.first_reservation a:hover {
+    color: var(--orange);
+}
+
+.first_reservation h3 {
+    color: white;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    font-weight: normal;
+    font-size: 200%;
+    width: 100%;
+}
+
+.first_reservation i {
+    font-size: 250%;
+    margin-bottom: 1em;
+}
+
+.first_reservation i:hover {
+    animation: swing 0.6s ease-out;
+}
+
+.first_place a img {
+    margin-top:-467px;
+}
+
+.first_reservation img {
+    width: 100%;
+    float: left;
+    margin-top:-370px;
+    -webkit-transition: margin 1s;
+    -moz-transition: margin 1s;
+    transition: margin 1s;
+}
+
+.first_reservation img:hover {
+    margin-top:0px;
+    -webkit-transition: margin 1s;
+    -moz-transition: margin 1s;
+    transition: margin 1s;
+}
+
 @media (max-width:1280px) {
     #user_places .place_description {
         display: none;
+    }
+
+    .first_reservation {
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .first_place a img {
+        margin-top:-35%;
+    }
+    
+    .first_reservation img {
+        margin-top:-29%;
     }
 }
 

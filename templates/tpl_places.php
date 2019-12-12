@@ -222,7 +222,7 @@ function drawReview($review) { ?>
           echo '<i class="fas fa-chevron-up upvote" value=' . $review['id'] . ' ></i>';
         }
         ?>
-        <div><?=getReviewKarma($review['id'])?></div>
+        <div><i class="far fa-thumbs-up"> <?=getReviewKarma($review['id'])?> </i></div>
         <?php if (isset($_SESSION['username'])) {
           if (userDownvoted($_SESSION['username'], $review['id'])) {
             echo '<i style="color:#ff6624" class="fas fa-chevron-down downvote" value=' . $review['id'] . ' ></i>';

@@ -50,6 +50,10 @@ function removePlace(){
 }
 
 let userBio = document.getElementById('user_bio');
+let userEmail = document.getElementById('email');
+let userPhone = document.getElementById('phone');
+let userLocation = document.getElementById('location');
+
 let editProfileButton = document.getElementById('edit_profile');
 let saveProfileButton = document.getElementById('save_profile');
 
@@ -66,6 +70,11 @@ editProfileButton.addEventListener('click', (event) => {
     saveProfileButton.style.display = "block";
 
     [...editableItems].forEach(elem => elem.contentEditable = "true");
+
+    userEmail.style.borderBottom = "2px solid gray";
+    userPhone.style.borderBottom = "2px solid gray";
+    userLocation.style.borderBottom = "2px solid gray";
+
   }
 })
 
