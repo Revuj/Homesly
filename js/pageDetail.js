@@ -75,7 +75,7 @@ function receiveReviews() {
     ratingHTML = ratingHTML.concat('<i class="far fa-star"></i> ')
     counter++;
   }
-  ratingHTML = ratingHTML.concat('</div> <p class="review_content" contentEditable=false>' + text + '</p>      <div class="votes"><i class="fas fa-chevron-up upvote" style="color:#ff6624;"></i><div>1</div><i class="fas fa-chevron-down downvote"></i></div>')
+  ratingHTML = ratingHTML.concat('</div> <p class="review_content" contentEditable=false>' + text + '</p>      <div class="votes"> </p>  <input type="hidden" value=' + username + ' /> <i class="fas fa-chevron-up upvote" value=' + review_id + ' style="color:#ff6624;"></i><div>1</div><i value=' + review_id + ' class="fas fa-chevron-down downvote"></i></div>')
 
   review.innerHTML = review.innerHTML.concat(ratingHTML);
 
@@ -94,11 +94,11 @@ function receiveReviews() {
   editReviewButton.addEventListener('click', editReview)
   saveReviewButton.addEventListener('click', saveReview)
 
-  let upvote = document.querySelector('.upvote');
-  let downvote = document.querySelector('.downvote');
+  let upvoteArrow = document.querySelector('.upvote');
+  let downvoteArrow = document.querySelector('.downvote');
 
-  upvote.addEventListener('click', event => {upvote(upvote)})
-  downvote.addEventListener('click', event => {downvote(downvote)})
+  upvoteArrow.addEventListener('click', event => {upvote(upvoteArrow)})
+  downvoteArrow.addEventListener('click', event => {downvote(downvoteArrow)})
 
 }
 
@@ -329,17 +329,37 @@ let upvoteButtons = document.getElementsByClassName('upvote');
 let downvoteButtons = document.getElementsByClassName('downvote');
 
 function upvote(elem) {
-  if (elem.style.color == "rgb(255, 102, 36)") 
+  if (elem.style.color == "rgb(255, 102, 36)") {
+    let username = elem.previousElementSibling.value;
+    let review_id = elem.getAttribute("value")
+    let request = new XMLHttpRequest()
+
+    let karma = elem.nextElementSibling;
+    karma.innerHTML = parseInt(karma.innerHTML) - 1;
+
+    request.onload = teste;
+    request.open("post", "../api/api_remove_upvote.php", true);
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    request.send(encodeForAjax({username: username, review_id: review_id}));
+    elem.style.color = "black"
+    
     return;
+  }
   elem.style.color = "#ff6624";
   let karma = elem.nextElementSibling;
-  karma.innerHTML = parseInt(karma.innerHTML) + 1;
   let downvote = karma.nextElementSibling
+  if (downvote.style.color == "rgb(255, 102, 36)")
+    karma.innerHTML = parseInt(karma.innerHTML) + 2;
+  else
+    karma.innerHTML = parseInt(karma.innerHTML) + 1;
+
   downvote.style.color = "black";
 
   let username = elem.previousElementSibling.value
   let review_id = elem.getAttribute("value")
   let request = new XMLHttpRequest()
+  console.log(username)
+  console.log(review_id)
   request.onload = teste;
   request.open("post", "../api/api_upvote_review.php", true);
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -347,12 +367,30 @@ function upvote(elem) {
 }
 
 function downvote(elem) {
-  if (elem.style.color == "rgb(255, 102, 36)")
+  if (elem.style.color == "rgb(255, 102, 36)") {
+    let username = elem.previousElementSibling.previousElementSibling.previousElementSibling.value;
+    let review_id = elem.getAttribute("value")
+    let request = new XMLHttpRequest()
+
+    let karma = elem.previousElementSibling;
+    karma.innerHTML = parseInt(karma.innerHTML) + 1;
+
+    request.onload = teste;
+    request.open("post", "../api/api_remove_downvote.php", true);
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    request.send(encodeForAjax({username: username, review_id: review_id}));
+    elem.style.color = "black"
+
     return;
+  }
   elem.style.color = "#ff6624";
   let karma = elem.previousElementSibling;
   let upvote = karma.previousElementSibling;
-  karma.innerHTML = parseInt(karma.innerHTML) - 1;
+  if (upvote.style.color == "rgb(255, 102, 36)")
+    karma.innerHTML = parseInt(karma.innerHTML) - 2;
+  else
+    karma.innerHTML = parseInt(karma.innerHTML) - 1;
+
   upvote.style.color = "black";
 
   let username = elem.previousElementSibling.previousElementSibling.previousElementSibling.value;

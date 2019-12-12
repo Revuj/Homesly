@@ -1,4 +1,5 @@
 <?php
+include_once('../database/db_users.php');
 /**
  * Draws a list of places that receives as an arguement
  */
@@ -206,9 +207,29 @@ function drawReview($review) { ?>
         <?php if (isset($_SESSION['username'])) {
           echo '<input type="hidden" value=' .  $_SESSION['username'] . ' />';
         } ?>
-        <i class="fas fa-chevron-up upvote" value=<?=$review['id']?>></i>
+        <?php if (isset($_SESSION['username'])) {
+          if (userUpvoted($_SESSION['username'], $review['id'])) {
+            echo '<i style="color:#ff6624" class="fas fa-chevron-up upvote" value=' . $review['id'] . ' ></i>';
+          }
+          else {
+            echo '<i class="fas fa-chevron-up upvote" value=' . $review['id'] . ' ></i>';
+          }
+        } else {
+          echo '<i class="fas fa-chevron-up upvote" value=' . $review['id'] . ' ></i>';
+        }
+        ?>
         <div><?=getReviewKarma($review['id'])?></div>
-        <i class="fas fa-chevron-down downvote" value=<?=$review['id']?>></i>
+        <?php if (isset($_SESSION['username'])) {
+          if (userDownvoted($_SESSION['username'], $review['id'])) {
+            echo '<i style="color:#ff6624" class="fas fa-chevron-down downvote" value=' . $review['id'] . ' ></i>';
+          }
+          else {
+            echo '<i class="fas fa-chevron-down downvote" value=' . $review['id'] . ' ></i>';
+          }
+        } else {
+          echo '<i class="fas fa-chevron-down downvote" value=' . $review['id'] . ' ></i>';
+        }
+        ?>
       </div>
       <a href="../pages/item.php?id=<?=$review['place_id']?>"><i class="fas fa-link"></i> <span>Go To Place</span></a>
   </div>

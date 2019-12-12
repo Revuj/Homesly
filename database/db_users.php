@@ -63,4 +63,18 @@
     return array($review_id, $review_content, $rating);   
   }
 
+  function userUpvoted($username, $review_id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('SELECT * FROM upvote WHERE user = ? AND review = ?');
+    $stmt->execute(array($username, $review_id));
+    return count($stmt->fetchAll());
+  }
+
+  function userDownvoted($username, $review_id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('SELECT * FROM downvote WHERE user = ? AND review = ?');
+    $stmt->execute(array($username, $review_id));
+    return count($stmt->fetchAll());
+  }
+
 ?>

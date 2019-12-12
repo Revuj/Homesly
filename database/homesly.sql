@@ -64,6 +64,24 @@ BEGIN
   DELETE FROM reservation WHERE place = OLD.place_id;
 END;
 
+--trigger to delete downvote after the same review is upvoted
+CREATE TRIGGER Delete_downvote
+AFTER INSERT ON upvote
+FOR EACH ROW
+WHEN EXISTS (SELECT * FROM downvote WHERE user = New.user AND review = New.review)
+BEGIN
+  DELETE FROM downvote WHERE user = New.user AND review = New.review;
+END;
+
+--trigger to delete upvote after the same review is downvote
+CREATE TRIGGER Delete_upvote
+AFTER INSERT ON downvote
+FOR EACH ROW
+WHEN EXISTS (SELECT * FROM upvote WHERE user = New.user AND review = New.review)
+BEGIN
+  DELETE FROM upvote WHERE user = New.user AND review = New.review;
+END;
+
 
 
 BEGIN TRANSACTION;

@@ -165,11 +165,25 @@ function upvoteReview($username, $review_id) {
     return array($username, $review_id);
 }
 
+function removeUpvote($username, $review_id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('DELETE FROM upvote WHERE user = ? AND review = ?');
+    $stmt->execute(array($username, $review_id));
+    return array($username, $review_id); 
+}
+
 function downvoteReview($username, $review_id) {
     $db = Database::instance()->db();
     $stmt = $db->prepare("INSERT INTO downvote VALUES(?, ?)");
     $stmt->execute(array($username, $review_id));
     return array($username, $review_id);
+}
+
+function removeDownvote($username, $review_id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('DELETE FROM downvote WHERE user = ? AND review = ?');
+    $stmt->execute(array($username, $review_id));
+    return array($username, $review_id); 
 }
 
 function updatePlace($place_id, $title, $location, $description) {
