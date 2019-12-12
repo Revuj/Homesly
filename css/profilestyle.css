@@ -265,8 +265,8 @@ time.checkout {
     display: none;
 }
 
-.container_detail .fa-thumbs-up {
-    display: block;
+#user_reviews .fa-thumbs-up, #user_reviews .fa-thumbs-down {
+    display: inline-block;
 }
 
 .first_reservation {

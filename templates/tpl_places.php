@@ -222,7 +222,15 @@ function drawReview($review) { ?>
           echo '<i class="fas fa-chevron-up upvote" value=' . $review['id'] . ' ></i>';
         }
         ?>
-        <div><i class="far fa-thumbs-up"> <?=getReviewKarma($review['id'])?> </i></div>
+        <?php
+          $karma = getReviewKarma($review['id']);
+          if ($karma > 0) {
+            echo '<div><i class="far fa-thumbs-up"></i> ' . $karma . '</div>';
+          }
+          else {
+            echo '<div><i class="far fa-thumbs-down"></i> ' . $karma . '</div>';
+          }
+        ?>
         <?php if (isset($_SESSION['username'])) {
           if (userDownvoted($_SESSION['username'], $review['id'])) {
             echo '<i style="color:#ff6624" class="fas fa-chevron-down downvote" value=' . $review['id'] . ' ></i>';

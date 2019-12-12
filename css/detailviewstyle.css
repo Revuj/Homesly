@@ -338,6 +338,10 @@ textarea {
     display: none;
 }
 
+.place_reviews i.fa-thumbs-up, .place_reviews i.fa-thumbs-down {
+    display: none;
+}
+
 @media screen and (max-width: 1280px) {
     .full_width_image {
         min-width: 100%;
