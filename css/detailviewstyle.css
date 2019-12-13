@@ -83,6 +83,9 @@
     margin: 0 2rem;
 }
 
+.extras, .showers, .bedrooms, .heating, .view, .wifi, .parking {
+    margin-left: 2rem;
+}
 
 #col-1 {
     position: relative;
@@ -96,6 +99,10 @@
     width: 50%;
     float: left;
     height: 100%;
+}
+
+.fas.fa-shower, .fas.fa-bed, .fas.fa-thermometer-full, .fas.fa-binoculars, .fas.fa-wifi, .fas.fa-parking {
+    font-size: 32px;
 }
 
 #place_host {

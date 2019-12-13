@@ -113,6 +113,15 @@ function pageDetailItem($place, $images) { ?>
           <h1 id="title_detail_place" class="detail_title" contentEditable=false> <?=$place['place_title']?> </h2>
           <h3 id="location_detail_place" class="detail_location"> <?=$place['place_location']?> </h3>
           <p id="description_detail_place" class="detail_description"> <?=$place['place_description']?> </p>
+          <h4 id="place_extras" class="extras">Included benefits:</h4>
+          <p id="place_showers" class="showers"> <i class="fas fa-shower"></i> <?=$place['place_showers']?>
+          <?php if ($place['place_showers'] == 1) echo 'Shower'; else echo 'Showers'?> </p>
+          <p id="place_bedrooms" class="bedrooms"> <i class="fas fa-bed"></i> <?=$place['place_bedrooms']?>
+          <?php if ($place['place_bedrooms'] == 1) echo 'Bedroom'; else echo 'Bedrooms'?> </p> </p>
+          <p id="place_heating" class="heating"> <?php if ($place['place_heating']) echo '<i class="fas fa-thermometer-full"></i> Heating'?> </p>
+          <p id="place_view" class="view"> <?php if ($place['place_view']) echo '<i class="fas fa-binoculars"></i> Good view'?> </p>
+          <p id="place_wifi" class="wifi"> <?php if ($place['place_wifi']) echo '<i class="fas fa-wifi"></i> Wifi'?> </p>
+          <p id="place_parking" class="parking"> <?php if ($place['place_parking']) echo '<i class="fas fa-parking"></i> Free parking'?> </p>
         </div>
         <div id="col-2">
           <?php 
