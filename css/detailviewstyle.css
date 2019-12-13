@@ -316,15 +316,14 @@ textarea {
  float: right; 
 }
 
-/***** CSS Magic to Highlight Stars on Hover *****/
 
-.rating > input:checked ~ label, /* show gold star when clicked */
-.rating:not(:checked) > label:hover, /* hover current star */
-.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+.rating > input:checked ~ label, 
+.rating:not(:checked) > label:hover, 
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } 
 
-.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked + label:hover,
 .rating > input:checked ~ label:hover,
-.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > label:hover ~ input:checked ~ label, 
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
 
 
@@ -356,6 +355,26 @@ textarea {
     display: none;
 }
 
+.place_benefits {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.place_benefits p {
+    flex: 0 25%;
+}
+
+.place_rating {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+#map {
+    max-width: 1248px;
+    margin-left: 1rem;
+}
+
 @media screen and (max-width: 1280px) {
     .full_width_image {
         min-width: 100%;
@@ -381,5 +400,9 @@ textarea {
 
     .place_review form button {
         width: 100%;
+    }
+
+    .place_benefits p {
+        flex: 0 90%;
     }
 }

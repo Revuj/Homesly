@@ -130,6 +130,16 @@ function getPlaceReviews($place_id) {
 }
 
 /**
+ * Gets place's average rating
+ */
+ function getPlaceRating($place_id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare("SELECT avg(rating) FROM review WHERE place_id = ?");
+    $stmt->execute(array($place_id));
+    return $stmt->fetchAll()[0]['avg(rating)'];
+ }
+
+/**
 * Adds a review to a certain place
 */
 function addReview($place_id, $username, $text, $date, $rating) {
