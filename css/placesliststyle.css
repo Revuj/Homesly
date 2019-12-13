@@ -48,20 +48,20 @@ article.place_overview {
 
 .display_buttons {
     display: flex;
-    height: 48px;
 }
 
-.display_buttons > img {
-    width: 32px;
-    margin-top: 1em;
+.display_buttons > i {
+    height: 32px;
+    font-size: 32px;
+    margin-top: 16px;    
 }
 
-.grid {
+.fas.fa-th {
     background-color:var(--orange);
-    margin-left: 1em;
+    margin-left: 16px;
 }
 
-.list {
+.fas.fa-list {
     margin-left: 4px;
 }
 
@@ -142,11 +142,11 @@ article.place_overview {
         display: block;
     }
 
-    .grid {
+    .fas.fa-th {
         margin-left: 0em;
     }
 
-    .list {
+    .fas.fa-list {
         margin-left: 0em;
     }
 
@@ -202,7 +202,7 @@ article.place_overview {
         margin-right: 1em;
     }
 
-    .display_buttons > img {
+    .display_buttons > i {
         display: none;
     }
 

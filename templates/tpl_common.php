@@ -17,6 +17,7 @@ function draw_header() { ?>
         <link rel="stylesheet" type="text/css" href="../css/hostplacestyle.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
         integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
         <script src="../js/main.js" defer></script>
         <script src="../js/pageDetail.js" defer></script>
         <script src="../js/booking.js" defer></script>
@@ -84,6 +85,20 @@ function draw_input_place() { ?>
             <label>Description<input type="text" name="description" placeholder="about" required></label>
             <label>Location<input id="address" type="text" name="location" placeholder="where" onfocusout="codeAddress()" required></label>
             <label>Price/Day<input type="number" name="price_per_day" placeholder="price/day" min="1" required></label>
+            <label>Showers<input type="number" name="showers" placeholder="how many" min="1" required></label>
+            <label>Bedrooms<input type="number" name="bedrooms" placeholder="how many" min="1" required></label>
+            <b>Heating:</b>
+            <input type="radio" name="heating" value="1"> Yes<br>
+            <input type="radio" name="heating" value="0" checked> No<br>
+            <b>Good View:</b>
+            <input type="radio" name="view" value="1"> Yes<br>
+            <input type="radio" name="view" value="0" checked> No<br>
+            <b>Wifi:</b>
+            <input type="radio" name="wifi" value="1"> Yes<br>
+            <input type="radio" name="wifi" value="0" checked> No<br>
+            <b>Free Parking:</b>
+            <input type="radio" name="parking" value="1"> Yes<br>
+            <input type="radio" name="parking" value="0" checked> No<br>
             <label> Select image to upload:
             <h6>At least 3 images with minimum dimensions of 1500x1000 and maximum size of 10MB</h6>
             <input type="file" name="files[]" multiple >

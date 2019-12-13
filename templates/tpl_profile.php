@@ -11,9 +11,9 @@
                 <li><h4> Hi, I'm <?=$username?>!</h4></li>
                 <button id="edit_profile"><i class="far fa-edit"></i> Edit Profile</button>
                 <li><p contentEditable=false id="user_bio"><?php getUserBio($username)?></p></li>
-                <li>teste111@gmail.com</li>
-                <li><em><strong>936 382 932</strong></em></li>
-                <li>Porto</li>
+                <li><i class="far fa-envelope"></i> <span id="email">teste111@gmail.com</span></li>
+                <li><i class="fas fa-phone"></i> <span id="phone"><em><strong>936 382 932</strong></em></span></li>
+                <li><i class="fas fa-search-location"></i> <span id="location">Porto</span></li>
                 <button id="save_profile"><i class="far fa-save"></i> Save</button>
             </ul>
         </div>
@@ -62,6 +62,12 @@ function drawRemoveModal() { ?>
     function draw_user_reservations($username) { ?>
     <section id="user_reservations" class="profile_places"> <?php
         $user_reservations = getUserReservations($username);
+        if (count($user_reservations) == 0) { ?>
+        <div class="first_reservation">   
+            <a class="add_reservation" href="../pages/placeslist.php"> <img src="../images/first_reservation.png"/> </a>
+            <h3>Get Ready For a New Adventure!</h3>
+        </div>
+        <?php }
         foreach($user_reservations as $reservation) {
             listReservation($reservation);
         } ?>
@@ -74,6 +80,12 @@ function drawRemoveModal() { ?>
     function draw_user_places($username) { ?>
     <section id="user_places" class="profile_places"> <?php
         $user_places = getUserPlaces($username);
+        if (count($user_places) == 0) { ?>
+            <div class="first_reservation first_place">
+                <a class="add_reservation" href="../pages/hostplace.php"> <img src="../images/first_place.png"/> </a>
+                <h3>Host Your Place!</h3>
+            </div>
+        <?php }
         foreach($user_places as $place) {
             listItem($place);
         } ?>

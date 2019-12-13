@@ -1,4 +1,5 @@
 <?php
+include_once('../database/db_users.php');
 /**
  * Draws a list of places that receives as an arguement
  */
@@ -12,8 +13,8 @@ function listPlaces($places) { ?>
           <button type="submit"><i class="fas fa-search"></i></button>
       </form>
       <div class="display_buttons">
-        <img class="grid" src="../images/grid_icon.png" />
-        <img class="list" src="../images/list_icon.png" />
+        <i class="fas fa-th"></i>
+        <i class="fas fa-list"></i>
       </div>
   </section>
   <article class="places_list">
@@ -99,6 +100,10 @@ function pageDetailItem($place, $images) { ?>
         <div class="full_width_image"
           style="background-image: url(<?=$images[0]?>);">
         </div>
+        <div id="side_images">
+          <img class="side_image" src=<?=$images[1]?> />
+          <img class="side_image" src=<?=$images[2]?> />
+        </div>
         <i class="fas fa-chevron-left left_arrow_image"></i>
         <i class="fas fa-chevron-right right_arrow_image"></i>
       </div>
@@ -108,6 +113,15 @@ function pageDetailItem($place, $images) { ?>
           <h1 id="title_detail_place" class="detail_title" contentEditable=false> <?=$place['place_title']?> </h2>
           <h3 id="location_detail_place" class="detail_location"> <?=$place['place_location']?> </h3>
           <p id="description_detail_place" class="detail_description"> <?=$place['place_description']?> </p>
+          <h4 id="place_extras" class="extras">Included benefits:</h4>
+          <p id="place_showers" class="showers"> <i class="fas fa-shower"></i> <?=$place['place_showers']?>
+          <?php if ($place['place_showers'] == 1) echo 'Shower'; else echo 'Showers'?> </p>
+          <p id="place_bedrooms" class="bedrooms"> <i class="fas fa-bed"></i> <?=$place['place_bedrooms']?>
+          <?php if ($place['place_bedrooms'] == 1) echo 'Bedroom'; else echo 'Bedrooms'?> </p> </p>
+          <p id="place_heating" class="heating"> <?php if ($place['place_heating']) echo '<i class="fas fa-thermometer-full"></i> Heating'?> </p>
+          <p id="place_view" class="view"> <?php if ($place['place_view']) echo '<i class="fas fa-binoculars"></i> Good view'?> </p>
+          <p id="place_wifi" class="wifi"> <?php if ($place['place_wifi']) echo '<i class="fas fa-wifi"></i> Wifi'?> </p>
+          <p id="place_parking" class="parking"> <?php if ($place['place_parking']) echo '<i class="fas fa-parking"></i> Free parking'?> </p>
         </div>
         <div id="col-2">
           <?php 
@@ -167,8 +181,28 @@ function drawReview($review) { ?>
       <span class="id"><?=$review['id']?></span>
       <h3><?=$review['username']?> </h3>
       <img src="../images/profile_icon.png" />
-      <h4><?=$review['published']?> </h4>
-      <div class="rating">
+      <h4><?=$review['published']?> </h4> <?php
+      if (isset($_SESSION['username']) && $_SESSION['username'] == $review['username']) {
+        echo '<button class="edit_review"><i class="fas fa-edit"></i></button>';
+        echo '<button class="save_review"><i class="far fa-save"></i></button>';
+        ?>
+        <div>
+        <div class="rating edit_rating">
+          <input type="radio" id="5" name="rating" value="5" /><label class = "full" for="5" title="Awesome - 5 stars"></label>
+          <input type="radio" id="45" name="rating" value="4.5" /><label class="half" for="45" title="Pretty good - 4.5 stars"></label>
+          <input type="radio" id="4" name="rating" value="4" /><label class = "full" for="4" title="Pretty good - 4 stars"></label>
+          <input type="radio" id="35" name="rating" value="3.5" /><label class="half" for="35" title="Meh - 3.5 stars"></label>
+          <input type="radio" id="3" name="rating" value="3" /><label class = "full" for="3" title="Meh - 3 stars"></label>
+          <input type="radio" id="25" name="rating" value="2.5" /><label class="half" for="25" title="Kinda bad - 2.5 stars"></label>
+          <input type="radio" id="2" name="rating" value="2" /><label class = "full" for="2" title="Kinda bad - 2 stars"></label>
+          <input type="radio" id="15" name="rating" value="1.5" /><label class="half" for="15" title="Meh - 1.5 stars"></label>
+          <input type="radio" id="1" name="rating" value="1" /><label class = "full" for="1" title="Sucks big time - 1 star"></label>
+          <input type="radio" id="05" name="rating" value="0.5" /><label class="half" for="05" title="Sucks big time - 0.5 stars"></label>
+        </div>
+      </div>
+        <?php
+      } ?>
+      <div class="rating review_rating">
         <?php
           $whole_stars = floor($review['rating']);
           $half_stars = $review['rating'] - $whole_stars;
@@ -187,13 +221,44 @@ function drawReview($review) { ?>
           }
         ?>
       </div>
-      <p><?=$review['content']?> </p>
+      <p class="review_content" contentEditable=false><?=$review['content']?> </p>
       <div class="votes">
-        <i class="fas fa-chevron-up"></i>
-        <p>20</p>
-        <i class="fas fa-chevron-down"></i>
+        <?php if (isset($_SESSION['username'])) {
+          echo '<input type="hidden" value=' .  $_SESSION['username'] . ' />';
+        } ?>
+        <?php if (isset($_SESSION['username'])) {
+          if (userUpvoted($_SESSION['username'], $review['id'])) {
+            echo '<i style="color:#ff6624" class="fas fa-chevron-up upvote" value=' . $review['id'] . ' ></i>';
+          }
+          else {
+            echo '<i class="fas fa-chevron-up upvote" value=' . $review['id'] . ' ></i>';
+          }
+        } else {
+          echo '<i class="fas fa-chevron-up upvote" value=' . $review['id'] . ' ></i>';
+        }
+        ?>
+        <?php
+          $karma = getReviewKarma($review['id']);
+          if ($karma > 0) {
+            echo '<div><i class="far fa-thumbs-up"></i> ' . $karma . '</div>';
+          }
+          else {
+            echo '<div><i class="far fa-thumbs-down"></i> ' . $karma . '</div>';
+          }
+        ?>
+        <?php if (isset($_SESSION['username'])) {
+          if (userDownvoted($_SESSION['username'], $review['id'])) {
+            echo '<i style="color:#ff6624" class="fas fa-chevron-down downvote" value=' . $review['id'] . ' ></i>';
+          }
+          else {
+            echo '<i class="fas fa-chevron-down downvote" value=' . $review['id'] . ' ></i>';
+          }
+        } else {
+          echo '<i class="fas fa-chevron-down downvote" value=' . $review['id'] . ' ></i>';
+        }
+        ?>
       </div>
-      <a href="../pages/item.php?id=<?=$review['place_id']?>"><i class="fas fa-link"></i> Go To Place</a>
+      <a href="../pages/item.php?id=<?=$review['place_id']?>"><i class="fas fa-link"></i> <span>Go To Place</span></a>
   </div>
 <?php }
 

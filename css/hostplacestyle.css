@@ -9,6 +9,11 @@
     width: 20rem;
 }
 
+.form-3 input[type="radio"] {
+    width: 5rem;
+    margin-bottom: 0em;
+}
+
 .form-3 h2 {
     padding-left: 1rem;
 

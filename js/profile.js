@@ -12,8 +12,6 @@ profileNavItems.forEach(item => item.addEventListener('click', (event) => {
   event.target.classList.add('active');  
 
   Array.prototype.map.call(profileContent, function (e) {
-    console.log(e)
-    console.log(e.style.display)
     if (e.style.display == "block")
       e.style.display = "none";
   })
@@ -52,6 +50,10 @@ function removePlace(){
 }
 
 let userBio = document.getElementById('user_bio');
+let userEmail = document.getElementById('email');
+let userPhone = document.getElementById('phone');
+let userLocation = document.getElementById('location');
+
 let editProfileButton = document.getElementById('edit_profile');
 let saveProfileButton = document.getElementById('save_profile');
 
@@ -68,6 +70,11 @@ editProfileButton.addEventListener('click', (event) => {
     saveProfileButton.style.display = "block";
 
     [...editableItems].forEach(elem => elem.contentEditable = "true");
+
+    userEmail.style.borderBottom = "2px solid gray";
+    userPhone.style.borderBottom = "2px solid gray";
+    userLocation.style.borderBottom = "2px solid gray";
+
   }
 })
 
@@ -122,7 +129,6 @@ let reservationsDeleteButtons = document.querySelectorAll('#user_reservations .f
 
 [...reservationsDeleteButtons].forEach(elem => elem.addEventListener('click', (event) => {
     removeModal.style.display = "block";
-    console.log(removeModal.style);
     buttons[0].addEventListener('click', (event) => {
 
       let reservation_id = elem.getAttribute('value');

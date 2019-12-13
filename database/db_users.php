@@ -56,4 +56,25 @@
     return array($place_id);   
   }
 
+  function updateUserReview($review_id, $review_content, $rating) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('UPDATE review SET content = ?, rating = ? WHERE id = ?');
+    $stmt->execute(array($review_content, $rating, $review_id));
+    return array($review_id, $review_content, $rating);   
+  }
+
+  function userUpvoted($username, $review_id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('SELECT * FROM upvote WHERE user = ? AND review = ?');
+    $stmt->execute(array($username, $review_id));
+    return count($stmt->fetchAll());
+  }
+
+  function userDownvoted($username, $review_id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('SELECT * FROM downvote WHERE user = ? AND review = ?');
+    $stmt->execute(array($username, $review_id));
+    return count($stmt->fetchAll());
+  }
+
 ?>

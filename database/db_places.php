@@ -74,10 +74,10 @@ function getPlacesFiltered($location, $checkin, $checkout, $guests) {
 /**
  * Inserts place on databse
  */
-function insertPlace($place_title, $place_description, $place_location, $place_price, $place_owner) {
+function insertPlace($place_title, $place_description, $place_location, $place_price, $place_owner, $place_showers, $place_bedrooms, $place_heating, $place_view, $place_wifi, $place_parking) {
     $db = Database::instance()->db();
-    $stmt = $db->prepare("INSERT INTO place VALUES(?, ?, ?, ?, ?, ?)");
-    $stmt->execute(array(NULL, $place_title, $place_description, $place_location, $place_price, $place_owner));   
+    $stmt = $db->prepare("INSERT INTO place VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute(array(NULL, $place_title, $place_description, $place_location, $place_price, $place_owner, $place_showers, $place_bedrooms, $place_heating, $place_view, $place_wifi, $place_parking));   
 }
 
 /**
@@ -136,7 +136,54 @@ function addReview($place_id, $username, $text, $date, $rating) {
     $db = Database::instance()->db();
     $stmt = $db->prepare("INSERT INTO review VALUES(?, ?, ?, ?, ?, ?)");
     $stmt->execute(array(NULL, $place_id, $username, $date, $text, $rating));
-    return array($place_id, $username, $date, $text, $rating);
+    $stmt = $db->prepare("SELECT * FROM review ORDER BY id DESC LIMIT 1");
+    $stmt->execute();
+    $review_id = $stmt->fetchAll()[0]['id'];
+    $stmt = $db->prepare("INSERT INTO upvote VALUES(?, ?)");
+    $stmt->execute(array($username, $review_id));
+    return array($review_id, $username, $date, $text, $rating);
+}
+
+function getReviewKarma($review_id) {
+    $db = Database::instance()->db();
+
+    $stmt = $db->prepare("SELECT * FROM upvote WHERE review = ?");
+    $stmt->execute(array($review_id));
+    $upvotes = count($stmt->fetchAll());
+
+    $stmt = $db->prepare("SELECT * FROM downvote WHERE review = ?");
+    $stmt->execute(array($review_id));
+    $downvotes = count($stmt->fetchAll());
+
+    return $upvotes - $downvotes;
+}
+
+function upvoteReview($username, $review_id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare("INSERT INTO upvote VALUES(?, ?)");
+    $stmt->execute(array($username, $review_id));
+    return array($username, $review_id);
+}
+
+function removeUpvote($username, $review_id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('DELETE FROM upvote WHERE user = ? AND review = ?');
+    $stmt->execute(array($username, $review_id));
+    return array($username, $review_id); 
+}
+
+function downvoteReview($username, $review_id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare("INSERT INTO downvote VALUES(?, ?)");
+    $stmt->execute(array($username, $review_id));
+    return array($username, $review_id);
+}
+
+function removeDownvote($username, $review_id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('DELETE FROM downvote WHERE user = ? AND review = ?');
+    $stmt->execute(array($username, $review_id));
+    return array($username, $review_id); 
 }
 
 function updatePlace($place_id, $title, $location, $description) {
