@@ -63,6 +63,88 @@ rightImageScroll.addEventListener('click', function () {
   downSideImage.setAttribute("src", imgs[downSideImageIndex])
 })
 
+let oldestButton = document.getElementsByClassName('oldest_button')[0];
+let latestButton = document.getElementsByClassName('latest_button')[0];
+
+oldestButton.addEventListener('click', function () {
+  oldestButton.style.background = "#ff6624";
+  latestButton.style.background = "#ffffff";
+
+  let request = new XMLHttpRequest();
+
+  let detailValuePlace = document.getElementById('value_detail_place');
+  let place_id = detailValuePlace.getAttribute('value');
+
+  request.onload = order;
+  request.open("post", "../api/api_order_review_asc_date.php", true);
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  request.send(encodeForAjax({ place_id: place_id }));
+})
+
+latestButton.addEventListener('click', function () {
+  latestButton.style.background = "#ff6624";
+  oldestButton.style.background = "#ffffff";
+
+  let request = new XMLHttpRequest();
+
+  let detailValuePlace = document.getElementById('value_detail_place');
+  let place_id = detailValuePlace.getAttribute('value');
+
+  request.onload = order;
+  request.open("post", "../api/api_order_review_desc_date.php", true);
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  request.send(encodeForAjax({ place_id: place_id }));
+})
+
+function order() {
+  let response = JSON.parse(this.responseText);
+  let reviews = document.getElementsByClassName('place_reviews')[0];
+  if (response.length == 0 || response.length == 1)
+    return;
+  let str = reviews.innerHTML;
+  let strs = [];
+  let i = 0;
+  let startIndex;
+  let endIndex;
+  let tempstr;
+  while (true) {
+    startIndex = str.indexOf("<div class=\"place_review\">");
+    if (startIndex == -1)
+      break;
+    tempstr = str.substring(startIndex + 25);
+    endIndex = tempstr.indexOf("<div class=\"place_review\">");
+    if (endIndex == -1)
+      tempstr = str.substring(startIndex);
+    else
+      tempstr = str.substring(startIndex, startIndex + endIndex + 25);
+    str = str.substring(startIndex + endIndex + 25);
+    strs[i] = tempstr;
+    i++;
+    if (endIndex == -1)
+      break;
+  }
+  let orderedStrings = [];
+  let count = 0;
+  response.forEach(element => {
+    for (let j = 0; j < strs.length; j++) {
+      startIndex = strs[j].indexOf("\"id\">");
+      tempstr = strs[j].substring(startIndex);
+      endIndex = tempstr.indexOf("<");
+      tempstr = strs[j].substring(startIndex + 5, startIndex + endIndex);
+      if (tempstr == element.id) {
+        orderedStrings[count] = strs[j];
+        count++;
+        break;
+      }
+    }
+  });
+  let finalstr = orderedStrings[0];
+  for (let j = 1; j < orderedStrings.length; j++) {
+    finalstr = finalstr + orderedStrings[j];
+  }
+  reviews.innerHTML = finalstr;
+}
+
 let guestsNumber = document.querySelector('input[name="guests"]');
 let placePrice = Number(document.getElementsByClassName('place_price')[0].innerHTML);
 let calculatedPrice = document.getElementById('calculated_price');
@@ -87,22 +169,22 @@ function receiveReviews() {
   let newRating = response[4];
   let review = document.createElement('div');
   review.className = 'place_review';
-  review.innerHTML = 
-  '<span class="id">' + review_id + '</span> <h3>' + username + '</h3>' + '<img src="../images/profile_icon.png" />' + '<h4>' + date + '</h4>' + '<button class="edit_review"><i class="fas fa-edit"></i></button>' + '<button class="save_review"><i class="far fa-save"></i></button>' + '<div><div class="rating edit_rating"><input type="radio" id="5" name="rating" value="5" /><label class = "full" for="5" title="Awesome - 5 stars"></label><input type="radio" id="45" name="rating" value="4.5" /><label class="half" for="45" title="Pretty good - 4.5 stars"></label><input type="radio" id="4" name="rating" value="4" /><label class = "full" for="4" title="Pretty good - 4 stars"></label><input type="radio" id="35" name="rating" value="3.5" /><label class="half" for="35" title="Meh - 3.5 stars"></label><input type="radio" id="3" name="rating" value="3" /><label class = "full" for="3" title="Meh - 3 stars"></label><input type="radio" id="25" name="rating" value="2.5" /><label class="half" for="25" title="Kinda bad - 2.5 stars"></label><input type="radio" id="2" name="rating" value="2" /><label class = "full" for="2" title="Kinda bad - 2 stars"></label><input type="radio" id="15" name="rating" value="1.5" /><label class="half" for="15" title="Meh - 1.5 stars"></label><input type="radio" id="1" name="rating" value="1" /><label class = "full" for="1" title="Sucks big time - 1 star"></label><input type="radio" id="05" name="rating" value="0.5" /><label class="half" for="05" title="Sucks big time - 0.5 stars"></label></div></div>';
-  
+  review.innerHTML =
+    '<span class="id">' + review_id + '</span> <h3>' + username + '</h3>' + '<img src="../images/profile_icon.png" />' + '<h4>' + date + '</h4>' + '<button class="edit_review"><i class="fas fa-edit"></i></button>' + '<button class="save_review"><i class="far fa-save"></i></button>' + '<div><div class="rating edit_rating"><input type="radio" id="5" name="rating" value="5" /><label class = "full" for="5" title="Awesome - 5 stars"></label><input type="radio" id="45" name="rating" value="4.5" /><label class="half" for="45" title="Pretty good - 4.5 stars"></label><input type="radio" id="4" name="rating" value="4" /><label class = "full" for="4" title="Pretty good - 4 stars"></label><input type="radio" id="35" name="rating" value="3.5" /><label class="half" for="35" title="Meh - 3.5 stars"></label><input type="radio" id="3" name="rating" value="3" /><label class = "full" for="3" title="Meh - 3 stars"></label><input type="radio" id="25" name="rating" value="2.5" /><label class="half" for="25" title="Kinda bad - 2.5 stars"></label><input type="radio" id="2" name="rating" value="2" /><label class = "full" for="2" title="Kinda bad - 2 stars"></label><input type="radio" id="15" name="rating" value="1.5" /><label class="half" for="15" title="Meh - 1.5 stars"></label><input type="radio" id="1" name="rating" value="1" /><label class = "full" for="1" title="Sucks big time - 1 star"></label><input type="radio" id="05" name="rating" value="0.5" /><label class="half" for="05" title="Sucks big time - 0.5 stars"></label></div></div>';
+
   let wholeStars = Math.floor(newRating);
   let halfStars = newRating - wholeStars;
   let counter = 0;
   let ratingHTML = '<div class="rating review_rating">';
-  while(counter < wholeStars){
-    ratingHTML =  ratingHTML.concat('<i class="fas fa-star"></i> ')
+  while (counter < wholeStars) {
+    ratingHTML = ratingHTML.concat('<i class="fas fa-star"></i> ')
     counter++;
   }
   if (halfStars != 0) {
     ratingHTML = ratingHTML.concat('<i class="fas fa-star-half-alt"></i> ')
     counter++;
   }
-  while(counter < 5) {
+  while (counter < 5) {
     ratingHTML = ratingHTML.concat('<i class="far fa-star"></i> ')
     counter++;
   }
@@ -128,8 +210,8 @@ function receiveReviews() {
   let upvoteArrow = document.querySelector('.upvote');
   let downvoteArrow = document.querySelector('.downvote');
 
-  upvoteArrow.addEventListener('click', event => {upvote(upvoteArrow)})
-  downvoteArrow.addEventListener('click', event => {downvote(downvoteArrow)})
+  upvoteArrow.addEventListener('click', event => { upvote(upvoteArrow) })
+  downvoteArrow.addEventListener('click', event => { downvote(downvoteArrow) })
 
 }
 
@@ -143,32 +225,32 @@ function submitReview(event) {
   request.onload = receiveReviews;
   request.open("post", "../api/api_add_review.php", true);
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  request.send(encodeForAjax({place_id: place_id, username: username, text: text, rating: rating}));
+  request.send(encodeForAjax({ place_id: place_id, username: username, text: text, rating: rating }));
 }
 
 let moreReviewsButton = document.querySelector('.more_reviews');
 let reviews = document.getElementsByClassName('place_review');
 
 function showLessReviews() {
-  for(let i = 5; i < reviews.length - 1; i++)
+  for (let i = 5; i < reviews.length - 1; i++)
     reviews[i].style.display = "none";
   moreReviewsButton.removeEventListener('click', showLessReviews);
   moreReviewsButton.addEventListener('click', showMoreReviews);
   moreReviewsButton.innerHTML = "Show More...";
-  
+
 }
 
 function showMoreReviews() {
   let invisibleReviews = [...reviews].filter(r => r.offsetParent === null);
-  for(let i = 0; i < 5 && i < invisibleReviews.length - 1; i++)
+  for (let i = 0; i < 5 && i < invisibleReviews.length - 1; i++)
     invisibleReviews[i].style.display = "block";
-  
+
   if (invisibleReviews.length <= 4) {
     moreReviewsButton.innerHTML = "Show Less...";
     moreReviewsButton.removeEventListener('click', showMoreReviews);
     moreReviewsButton.addEventListener('click', showLessReviews);
   }
-  
+
 }
 
 moreReviewsButton.addEventListener('click', showMoreReviews);
@@ -191,15 +273,15 @@ function updateReview() {
   let halfStars = newRating - wholeStars;
   let counter = 0;
   let ratingHTML = "";
-  while(counter < wholeStars){
-    ratingHTML =  ratingHTML.concat('<i class="fas fa-star"></i> ')
+  while (counter < wholeStars) {
+    ratingHTML = ratingHTML.concat('<i class="fas fa-star"></i> ')
     counter++;
   }
   if (halfStars != 0) {
     ratingHTML = ratingHTML.concat('<i class="fas fa-star-half-alt"></i> ')
     counter++;
   }
-  while(counter < 5) {
+  while (counter < 5) {
     ratingHTML = ratingHTML.concat('<i class="far fa-star"></i> ')
     counter++;
   }
@@ -246,7 +328,7 @@ function saveReview() {
   request.onload = updateReview;
   request.open("post", "../api/api_update_review.php", true);
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  request.send(encodeForAjax({review_id: review_id, review_content: reviewContent, rating: rating}));
+  request.send(encodeForAjax({ review_id: review_id, review_content: reviewContent, rating: rating }));
 
   review.style.marginTop = "16px";
   saveReviewButton.style.display = "none";
@@ -275,13 +357,13 @@ let detailValuePlace = document.getElementById('value_detail_place');
 if (editPlaceButton != null) {
   editPlaceButton.addEventListener('click', (event) => {
     if (detailTitlePlace.contentEditable == "false") {
-  
+
       editPlaceButton.innerHTML = ' <i class="far fa-edit"></i> Save Changes';
-  
+
       detailTitlePlace.contentEditable = "true";
       detailLocationPlace.contentEditable = "true";
       detailDescriptionPlace.contentEditable = "true";
-  
+
       // userBio.focus = "true";
       detailTitlePlace.style.padding = "0.5em";
       detailTitlePlace.style.border = "2px solid gray";
@@ -292,44 +374,46 @@ if (editPlaceButton != null) {
       detailLocationPlace.style.border = "2px solid gray";
       detailLocationPlace.style.borderRadius = "5px";
       detailLocationPlace.style.display = "block";
-  
+
       detailDescriptionPlace.style.padding = "0.5em";
       detailDescriptionPlace.style.border = "2px solid gray";
       detailDescriptionPlace.style.borderRadius = "5px";
       detailDescriptionPlace.style.display = "block";
-  
+
     } else {
-  
+
       editPlaceButton.innerHTML = '<i class="far fa-edit"></i> Edit Place';
-  
+
       let place_id = detailValuePlace.getAttribute('value');
-  
+
       let request = new XMLHttpRequest()
       request.onload = updatePlace;
       request.open("post", "../api/api_update_place.php", true);
       request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  
+
       console.log("place: " + place_id);
-  
-      request.send(encodeForAjax({place_id: place_id, 
-        title: detailTitlePlace.innerHTML , 
-        location: detailLocationPlace.innerHTML, 
-        description: detailDescriptionPlace.innerHTML}));
-  
-  
+
+      request.send(encodeForAjax({
+        place_id: place_id,
+        title: detailTitlePlace.innerHTML,
+        location: detailLocationPlace.innerHTML,
+        description: detailDescriptionPlace.innerHTML
+      }));
+
+
       detailTitlePlace.contentEditable = "false";
-  
+
       detailLocationPlace.contentEditable = "false";
       detailDescriptionPlace.contentEditable = "false";
-  
+
       detailTitlePlace.style.padding = "0em";
       detailTitlePlace.style.border = "0px solid gray";
       detailTitlePlace.style.borderRadius = "0px";
-  
+
       detailLocationPlace.style.padding = "0em";
       detailLocationPlace.style.border = "0px solid gray";
       detailLocationPlace.style.borderRadius = "0px";
-  
+
       detailDescriptionPlace.style.padding = "0em";
       detailDescriptionPlace.style.border = "0px solid gray";
       detailDescriptionPlace.style.borderRadius = "0px";
@@ -380,16 +464,16 @@ function initializeMapDetail() {
   var address = document.getElementById('location_detail_place').innerHTML;
 
 
-  geocoder.geocode( { 'address': address}, function(results, status) {
+  geocoder.geocode({ 'address': address }, function (results, status) {
     if (status == 'OK') {
       map.setCenter(results[0].geometry.location);
       if (marker != null)
         marker.setMap(null);
       marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
+        map: map,
+        position: results[0].geometry.location
       });
-    } else if (status == 'ZERO_RESULTS'){
+    } else if (status == 'ZERO_RESULTS') {
       alert('Couldn\'t find place refering to specified location');
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
@@ -399,16 +483,16 @@ function initializeMapDetail() {
 
 function codeAddress() {
   var address = document.getElementById('address').value;
-  geocoder.geocode( { 'address': address}, function(results, status) {
+  geocoder.geocode({ 'address': address }, function (results, status) {
     if (status == 'OK') {
       map.setCenter(results[0].geometry.location);
       if (marker != null)
         marker.setMap(null);
       marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
+        map: map,
+        position: results[0].geometry.location
       });
-    } else if (status == 'ZERO_RESULTS'){
+    } else if (status == 'ZERO_RESULTS') {
       alert('Couldn\'t find place refering to specified location');
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
@@ -416,7 +500,7 @@ function codeAddress() {
   });
 }
 
-  
+
 function teste() {
   console.log(this.responseText)
 }
@@ -436,9 +520,9 @@ function upvote(elem) {
     request.onload = teste;
     request.open("post", "../api/api_remove_upvote.php", true);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    request.send(encodeForAjax({username: username, review_id: review_id}));
+    request.send(encodeForAjax({ username: username, review_id: review_id }));
     elem.style.color = "black"
-    
+
     return;
   }
   elem.style.color = "#ff6624";
@@ -459,7 +543,7 @@ function upvote(elem) {
   request.onload = teste;
   request.open("post", "../api/api_upvote_review.php", true);
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  request.send(encodeForAjax({username: username, review_id: review_id}));
+  request.send(encodeForAjax({ username: username, review_id: review_id }));
 }
 
 function downvote(elem) {
@@ -474,7 +558,7 @@ function downvote(elem) {
     request.onload = teste;
     request.open("post", "../api/api_remove_downvote.php", true);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    request.send(encodeForAjax({username: username, review_id: review_id}));
+    request.send(encodeForAjax({ username: username, review_id: review_id }));
     elem.style.color = "black"
 
     return;
@@ -495,7 +579,7 @@ function downvote(elem) {
   request.onload = teste;
   request.open("post", "../api/api_downvote_review.php", true);
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  request.send(encodeForAjax({username: username, review_id: review_id}));
+  request.send(encodeForAjax({ username: username, review_id: review_id }));
 }
 
 [...upvoteButtons].forEach(elem => elem.addEventListener('click', (event) => {
@@ -505,7 +589,6 @@ function downvote(elem) {
 [...downvoteButtons].forEach(elem => elem.addEventListener('click', (event) => {
   downvote(elem);
 }));
-
 
 function escapeHtml(text) {
   var map = {

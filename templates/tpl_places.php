@@ -181,24 +181,28 @@ function pageDetailItem($place, $images) { ?>
       <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcrc5QbwSQOgtiw2PwSNcU2bLjyoyx96E&callback=initializeMapDetail">
       </script>
+      <section class="review_list_options">
+      <i class="fas fa-sort oldest_button"> </i> <b> Oldest </b>
+      <i class="fas fa-sort latest_button"> </i> <b> Latest </b>
+        </section>
       <section class="place_reviews">
       <?php drawPlaceReviews($place);
       if (isset($_SESSION['username'])) {
         drawInputReview($place['place_id']);
       }
       ?>
-    </section>  
+        </section>
+      <h3 class="more_reviews">Show More...</h3>  
   </section>
 <?php }
 
 function drawPlaceReviews($place) { ?>
     <?php
-      $reviews = getPlaceReviews($place['place_id']);
-      foreach(array_reverse($reviews) as $review) {
+      $reviews = getPlaceReviewsDescDate($place['place_id']);
+      foreach(($reviews) as $review) {
         drawReview($review);
       }
     ?>
-    <h3 class="more_reviews">Show More...</h3>
 <?php }
 
 function drawReview($review) { ?>

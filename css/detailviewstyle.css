@@ -108,8 +108,12 @@
     height: 100%;
 }
 
-.fas.fa-shower, .fas.fa-bed, .fas.fa-thermometer-full, .fas.fa-binoculars, .fas.fa-wifi, .fas.fa-parking {
+.fas.fa-shower, .fas.fa-bed, .fas.fa-thermometer-full, .fas.fa-binoculars, .fas.fa-wifi, .fas.fa-parking, .fas.fa-sort {
     font-size: 32px;
+}
+
+.latest_button {
+    background-color: var(--orange);
 }
 
 #place_host {
@@ -173,6 +177,10 @@ img.user_detail_content {
 
 .place_price::after {
     content: "€ / night";
+}
+
+.review_list_options {
+    margin: 1rem 1rem;
 }
 
 .place_reviews {
@@ -251,7 +259,7 @@ textarea {
     margin-top: 0.2rem;
 }
 
-.place_reviews h3 {
+.more_reviews {
     margin-left: 1em;
     margin-top: 0;
     font-weight: bold;
@@ -260,7 +268,7 @@ textarea {
     display: inline-block;
 }
 
-.place_reviews h3:hover {
+.more_reviews:hover {
     border-bottom: 2px solid var(--orange);
 }
 
