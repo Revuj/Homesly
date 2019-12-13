@@ -136,6 +136,12 @@ function pageDetailItem($place, $images) { ?>
           </div>
         </div>
       </div>
+      <div id="map"></div>
+      <!-- <input id="address" type="textbox" value="Sydney, NSW">
+      <input type="button" value="Encode" onclick="codeAddress()"> -->
+      <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcrc5QbwSQOgtiw2PwSNcU2bLjyoyx96E&callback=initializeMapDetail">
+      </script>
       <section class="place_reviews">
       <?php drawPlaceReviews($place);
       if (isset($_SESSION['username'])) {

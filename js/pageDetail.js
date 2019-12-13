@@ -183,8 +183,68 @@ function updatePlace() {
   detailTitlePlace.innerHTML = title;
   detailLocationPlace.innerHTML = location;
   detailDescriptionPlace.innerHTML = description;
+
+  initializeMapDetail();
 }
 
+var geocoder;
+var map;
+var marker;
+function initializeMapHost() {
+  geocoder = new google.maps.Geocoder();
+  var latlng = new google.maps.LatLng(-34.397, 150.644);
+  var mapOptions = {
+    zoom: 8,
+    center: latlng
+  }
+  map = new google.maps.Map(document.getElementById('map'), mapOptions);
+}
+
+function initializeMapDetail() {
+
+  geocoder = new google.maps.Geocoder();
+  var latlng = new google.maps.LatLng(-34.397, 150.644);
+  var mapOptions = {
+    zoom: 8,
+    center: latlng
+  }
+  map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+  var address = document.getElementById('location_detail_place').innerHTML;
 
 
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      if (marker != null)
+        marker.setMap(null);
+      marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else if (status == 'ZERO_RESULTS'){
+      alert('Couldn\'t find place refering to specified location');
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
 
+function codeAddress() {
+  var address = document.getElementById('address').value;
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      if (marker != null)
+        marker.setMap(null);
+      marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else if (status == 'ZERO_RESULTS'){
+      alert('Couldn\'t find place refering to specified location');
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}

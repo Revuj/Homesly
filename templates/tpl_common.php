@@ -82,12 +82,30 @@ function draw_input_place() { ?>
             <form method="post" action="../actions/action_host_place.php" enctype="multipart/form-data">
             <label>Title<input type="text" name="title" placeholder="title" required></label>
             <label>Description<input type="text" name="description" placeholder="about" required></label>
-            <label>Location<input type="text" name="location" placeholder="where" required></label>
+            <label>Location<input id="address" type="text" name="location" placeholder="where" onfocusout="codeAddress()" required></label>
             <label>Price/Day<input type="number" name="price_per_day" placeholder="price/day" min="1" required></label>
             <label> Select image to upload:
             <h6>At least 3 images with minimum dimensions of 1500x1000 and maximum size of 10MB</h6>
             <input type="file" name="files[]" multiple >
             </label>
+            <!-- <label> Select coordinates of place: -->
+            <!-- <div id="map"></div>
+            <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7NPEdc_ht7VwHueJYZBRLFYNLSyyoVOg&callback=initMap">
+            </script> -->
+            <!-- <script type="text/javascript">
+                initialize();
+            </script> -->
+            
+            <div id="map"></div>
+            <!-- <input id="address" type="textbox" value="Sydney, NSW"> -->
+            <!-- <input type="button" value="Encode" onclick="codeAddress()"> -->
+            <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcrc5QbwSQOgtiw2PwSNcU2bLjyoyx96E&callback=initializeMapHost">
+            </script>
+
+            <!-- </label> -->
+            <!-- <script type="text/javascript"> initialize(); </script> -->
             <button type="submit">Host Place</button>
             </form>
         </div>
