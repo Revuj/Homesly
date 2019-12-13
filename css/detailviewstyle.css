@@ -183,7 +183,7 @@ img.user_detail_content {
     margin: 1rem 1rem;
 }
 
-.place_reviews {
+.place_reviews, .submit_review {
     clear: both;
     margin-left: 1rem;
     margin-right: 1rem;

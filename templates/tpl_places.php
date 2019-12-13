@@ -187,7 +187,10 @@ function pageDetailItem($place, $images) { ?>
         </section>
       <section class="place_reviews">
       <?php drawPlaceReviews($place);
-      if (isset($_SESSION['username'])) {
+      ?>
+        </section>
+      <section class="submit_review">
+      <?php if (isset($_SESSION['username'])) {
         drawInputReview($place['place_id']);
       }
       ?>
