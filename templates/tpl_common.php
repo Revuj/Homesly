@@ -85,20 +85,58 @@ function draw_input_place() { ?>
             <label>Description<input type="text" name="description" placeholder="about" required></label>
             <label>Location<input id="address" type="text" name="location" placeholder="where" onfocusout="codeAddress()" required></label>
             <label>Price/Day<input type="number" name="price_per_day" placeholder="price/day" min="1" required></label>
-            <label>Showers<input type="number" name="showers" placeholder="how many" min="1" required></label>
-            <label>Bedrooms<input type="number" name="bedrooms" placeholder="how many" min="1" required></label>
-            <b>Heating:</b>
-            <input type="radio" name="heating" value="1"> Yes<br>
-            <input type="radio" name="heating" value="0" checked> No<br>
-            <b>Good View:</b>
-            <input type="radio" name="view" value="1"> Yes<br>
-            <input type="radio" name="view" value="0" checked> No<br>
-            <b>Wifi:</b>
-            <input type="radio" name="wifi" value="1"> Yes<br>
-            <input type="radio" name="wifi" value="0" checked> No<br>
-            <b>Free Parking:</b>
-            <input type="radio" name="parking" value="1"> Yes<br>
-            <input type="radio" name="parking" value="0" checked> No<br>
+            <label>Showers<input type="number" name="showers" placeholder="number of showers" min="1" required></label>
+            <label>Bedrooms<input type="number" name="bedrooms" placeholder="number of beds" min="1" required></label>
+
+            <div class="host_radio">
+            <i class="fas fa-thermometer-full"></i> <b> Heating:</b>
+                <div class="inputGroup">
+                    <input id="heating_yes" type="radio" name="heating" value="1">
+                    <label for="heating_yes">Yes</label>
+                </div>
+                <div class="inputGroup">
+                    <input id="heating_no" type="radio" name="heating" value="0" checked>
+                    <label for="heating_no">No</label>
+                </div>
+            </div>
+
+            <div class="host_radio">
+            <i class="fas fa-binoculars"></i> <b>Good View:</b>
+                <div class="inputGroup">
+                    <input id="view_yes" type="radio" name="view" value="1">
+                    <label for="view_yes">Yes</label>
+                </div>
+                <div class="inputGroup">
+                    <input id="view_no" type="radio" name="view" value="0" checked>
+                    <label for="view_no">No</label>
+                </div>
+            </div>
+
+            <div class="host_radio">
+            <i class="fas fa-wifi"></i> <b>Wifi:</b>
+                <div class="inputGroup">
+                    <input id="wifi_yes" type="radio" name="wifi" value="1">
+                    <label for="wifi_yes">Yes</label>
+                </div>
+                <div class="inputGroup">
+                    <input id="wifi_no" type="radio" name="wifi" value="0" checked>
+                    <label for="wifi_no">No</label>
+                </div>
+            </div>
+
+            <div class="host_radio">
+            <i class="fas fa-parking"></i> <b>Free Parking:</b>
+                <div class="inputGroup">
+                    <input id="parking_yes" type="radio" name="parking" value="1">
+                    <label for="parking_yes">Yes</label>
+                </div>
+                <div class="inputGroup">
+                    <input id="parking_no" type="radio" name="parking" value="0" checked>
+                    <label for="parking_no">No</label>
+                </div>
+            </div>
+
+
             <label> Select image to upload:
             <h6>At least 3 images with minimum dimensions of 1500x1000 and maximum size of 10MB</h6>
             <input type="file" name="files[]" multiple >
