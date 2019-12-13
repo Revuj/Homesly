@@ -106,7 +106,7 @@ function receiveReviews() {
     ratingHTML = ratingHTML.concat('<i class="far fa-star"></i> ')
     counter++;
   }
-  ratingHTML = ratingHTML.concat('</div> <p class="review_content" contentEditable=false>' + text + '</p>      <div class="votes"> </p>  <input type="hidden" value=' + username + ' /> <i class="fas fa-chevron-up upvote" value=' + review_id + ' style="color:#ff6624;"></i><div>1</div><i value=' + review_id + ' class="fas fa-chevron-down downvote"></i></div>')
+  ratingHTML = ratingHTML.concat('</div> <p class="review_content" contentEditable=false>' + escapeHtml(text) + '</p>      <div class="votes"> </p>  <input type="hidden" value=' + username + ' /> <i class="fas fa-chevron-up upvote" value=' + review_id + ' style="color:#ff6624;"></i><div>1</div><i value=' + review_id + ' class="fas fa-chevron-down downvote"></i></div>')
 
   review.innerHTML = review.innerHTML.concat(ratingHTML);
 
@@ -505,3 +505,16 @@ function downvote(elem) {
 [...downvoteButtons].forEach(elem => elem.addEventListener('click', (event) => {
   downvote(elem);
 }));
+
+
+function escapeHtml(text) {
+  var map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+
+  return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+}

@@ -42,10 +42,10 @@ function listItem($place) { ?>
         <i class="fas fa-heart"></i>
       </div>
       <div class="place_details">
-        <p class="place_location"> <?=$place['place_location']?> </p>
-        <p class="place_title"> <?=$place['place_title']?> </p>
-        <p class="place_price"> <?=$place['place_price_per_day']?> </p>
-        <p class="place_description"> <?=$place['place_description']?> </p>
+        <p class="place_location"> <?=htmlspecialchars($place['place_location'])?> </p>
+        <p class="place_title"> <?=htmlspecialchars($place['place_title'])?> </p>
+        <p class="place_price"> <?=htmlspecialchars($place['place_price_per_day'])?> </p>
+        <p class="place_description"> <?=htmlspecialchars($place['place_description'])?> </p>
       </div>
     </a>
   </article>
@@ -110,8 +110,8 @@ function pageDetailItem($place, $images) { ?>
 
       <div class="container_detail_content">
         <div id="col-1">
-            <h1 id="title_detail_place" class="detail_title" contentEditable=false> <?=$place['place_title']?> </h2>
-            <h3 id="location_detail_place" class="detail_location"> <?=$place['place_location']?> </h3>
+            <h1 id="title_detail_place" class="detail_title" contentEditable=false> <?=htmlspecialchars($place['place_title'])?> </h2>
+            <h3 id="location_detail_place" class="detail_location"> <?=htmlspecialchars($place['place_location'])?> </h3>
             <div class="rating review_rating place_rating">
             <?php
              $place_rating = getPlaceRating($place['place_id']);
@@ -133,7 +133,7 @@ function pageDetailItem($place, $images) { ?>
             ?>
           </div>
 
-            <p id="description_detail_place" class="detail_description"> <?=$place['place_description']?> </p>
+            <p id="description_detail_place" class="detail_description"> <?=htmlspecialchars($place['place_description'])?> </p>
 
             
             <h4 id="place_extras" class="extras">Included benefits:</h4>
@@ -246,7 +246,7 @@ function drawReview($review) { ?>
           }
         ?>
       </div>
-      <p class="review_content" contentEditable=false><?=$review['content']?> </p>
+      <p class="review_content" contentEditable=false><?=htmlspecialchars($review['content'])?> </p>
       <div class="votes">
         <?php if (isset($_SESSION['username'])) {
           echo '<input type="hidden" value=' .  $_SESSION['username'] . ' />';
