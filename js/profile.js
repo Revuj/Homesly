@@ -59,6 +59,8 @@ let saveProfileButton = document.getElementById('save_profile');
 
 let editableItems = document.querySelectorAll('#user_details li + li');
 
+let profileForm = document.getElementById('upload_profile_image');
+
 editProfileButton.addEventListener('click', (event) => {
   if (userBio.contentEditable == "false") {
     userBio.contentEditable = "true";
@@ -68,6 +70,7 @@ editProfileButton.addEventListener('click', (event) => {
     userBio.style.borderRadius = "5px";
     userBio.parentElement.style.opacity = "1";
     saveProfileButton.style.display = "block";
+    profileForm.style.display = "block";
 
     [...editableItems].forEach(elem => elem.contentEditable = "true");
 
@@ -87,7 +90,7 @@ saveProfileButton.addEventListener('click', (event) => {
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   request.send(encodeForAjax({username: username, bio: bio}));
 
-
+  profileForm.style.display = "none";
   saveProfileButton.style.display = "none";
   userBio.contentEditable = "false";
   userBio.focus = "false";
@@ -96,6 +99,8 @@ saveProfileButton.addEventListener('click', (event) => {
   userBio.style.borderRadius = "0";
   userBio.parentElement.style.opacity = "0.5";
   [...editableItems].forEach(elem => elem.contentEditable = "false");
+
+  document.getElementById('upload_profile_image').submit();
 
 })
 
