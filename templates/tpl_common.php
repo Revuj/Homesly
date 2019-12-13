@@ -140,25 +140,11 @@ function draw_input_place() { ?>
             <label> Select image to upload:
             <h6>At least 3 images with minimum dimensions of 1500x1000 and maximum size of 10MB</h6>
             <input type="file" name="files[]" multiple >
-            </label>
-            <!-- <label> Select coordinates of place: -->
-            <!-- <div id="map"></div>
-            <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7NPEdc_ht7VwHueJYZBRLFYNLSyyoVOg&callback=initMap">
-            </script> -->
-            <!-- <script type="text/javascript">
-                initialize();
-            </script> -->
-            
+            </label>            
             <div id="map"></div>
-            <!-- <input id="address" type="textbox" value="Sydney, NSW"> -->
-            <!-- <input type="button" value="Encode" onclick="codeAddress()"> -->
             <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcrc5QbwSQOgtiw2PwSNcU2bLjyoyx96E&callback=initializeMapHost">
             </script>
-
-            <!-- </label> -->
-            <!-- <script type="text/javascript"> initialize(); </script> -->
             <button type="submit">Host Place</button>
             </form>
         </div>

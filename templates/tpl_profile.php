@@ -6,9 +6,12 @@
     <section id="profile">
         <?php drawRemoveModal() ?>
         <div id="profile_sidebar">
-            <img id="profile_image" src="https://avatars0.githubusercontent.com/u/41621540?s=400&v=4" alt=<?=$username?> value=<?=$username?> />
+            <img id="profile_image" src="../images/users/<?=$username?>.png" onerror="this.onerror=null; this.src='../images/profile_icon.png'" alt=<?=$username?> value=<?=$username?> />
             <ul id="user_details">
-                <li><h4> Hi, I'm <?=$username?>!</h4></li>
+            <li><h4> Hi, I'm <?=$username?>!</h4></li>
+            <form id="upload_profile_image" method="post" action="../actions/action_change_profile_image.php" enctype="multipart/form-data">
+                <input type="file" name="fileUpload" >
+            </form>
                 <button id="edit_profile"><i class="far fa-edit"></i> Edit Profile</button>
                 <li><p contentEditable=false id="user_bio"><?php getUserBio($username)?></p></li>
                 <li><i class="far fa-envelope"></i> <span id="email">teste111@gmail.com</span></li>

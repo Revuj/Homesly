@@ -2,6 +2,10 @@
     --orange: #ff6624;
 }
 
+#upload_profile_image {
+    display: none;
+}
+
 #profile {
     max-width: 1280px;
     margin: 1em auto;
