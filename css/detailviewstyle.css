@@ -183,13 +183,13 @@ img.user_detail_content {
     margin: 1rem 1rem;
 }
 
-.place_reviews, .submit_review {
+.place_reviews, .review_input {
     clear: both;
     margin-left: 1rem;
     margin-right: 1rem;
 }
 
-.place_review {
+.place_review, .submit_review {
     padding: 0.1rem 1rem;
     background-color: rgba(177, 177, 177, 0.1);
     margin: 2em 0;
@@ -197,16 +197,16 @@ img.user_detail_content {
     position: relative;
 }
 
-.place_review form {
+.submit_review form {
     padding-left: 0;
     padding-right: 0;
 }
 
-.place_review textarea {
+.submit_review textarea {
     width: 100%;
 }
 
-.place_review form button {
+.submit_review form button {
     width: 10rem;
     margin-top: 1rem;
 }
@@ -223,7 +223,7 @@ textarea {
     resize: none;
 }
 
-.place_review h3 {
+.place_review h3, .submit_review h3 {
     position: absolute;
     margin: 0 auto;
     top: 10px;
@@ -250,11 +250,11 @@ textarea {
     display: none;
 }
 
-.place_review:nth-child(-n+5), .place_review:last-of-type{
+.place_review:nth-child(-n+5) {
     display:block;
 }
 
-.place_review img {
+.place_review img, .submit_review img {
     width: 3.5rem;
     margin-top: 0.2rem;
 }

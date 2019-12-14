@@ -66,6 +66,7 @@ rightImageScroll.addEventListener('click', function () {
 let oldestButton = document.getElementsByClassName('oldest_button')[0];
 let latestButton = document.getElementsByClassName('latest_button')[0];
 let reviews = document.getElementsByClassName('place_review');
+let moreReviewsButton = document.querySelector('.more_reviews');
 
 oldestButton.addEventListener('click', function () {
   oldestButton.style.background = "#ff6624";
@@ -232,24 +233,20 @@ function submitReview(event) {
   request.send(encodeForAjax({ place_id: place_id, username: username, text: text, rating: rating }));
 }
 
-let moreReviewsButton = document.querySelector('.more_reviews');
-
 function showLessReviews() {
   let reviews = document.getElementsByClassName('place_review');
-  for (let i = 0; i < reviews.length - 1; i++) {
+  for (let i = 0; i < reviews.length; i++) {
     reviews[i].style.display = "block";
     if (i == 5)
       break;
   }
-  for (let i = 5; i < reviews.length - 1; i++)
+  for (let i = 5; i < reviews.length; i++)
     reviews[i].style.display = "none";
   moreReviewsButton.removeEventListener('click', showLessReviews);
   moreReviewsButton.addEventListener('click', showMoreReviews);
   moreReviewsButton.innerHTML = "Show More...";
 
 }
-
-showLessReviews();
 
 function showMoreReviews() {
   let reviews = document.getElementsByClassName('place_review');

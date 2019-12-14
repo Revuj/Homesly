@@ -189,7 +189,7 @@ function pageDetailItem($place, $images) { ?>
       <?php drawPlaceReviews($place);
       ?>
         </section>
-      <section class="submit_review">
+      <section class="review_input">
       <?php if (isset($_SESSION['username'])) {
         drawInputReview($place['place_id']);
       }
@@ -295,7 +295,7 @@ function drawReview($review) { ?>
 <?php }
 
 function drawInputReview($place_id) { ?>
-  <div class="place_review">
+  <div class="submit_review">
       <h3><?=$_SESSION['username']?> </h3>
       <img src="../images/profile_icon.png" />
       <form class="input_review">
