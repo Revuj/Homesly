@@ -15,8 +15,7 @@ function draw_header() { ?>
         <link rel="stylesheet" type="text/css" href="../css/detailviewstyle.css">
         <link rel="stylesheet" type="text/css" href="../css/profilestyle.css">
         <link rel="stylesheet" type="text/css" href="../css/hostplacestyle.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
         <script src="../js/main.js" defer></script>
         <script src="../js/pageDetail.js" defer></script>

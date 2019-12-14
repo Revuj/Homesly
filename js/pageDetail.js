@@ -89,6 +89,9 @@ oldestButton.addEventListener('click', function () {
   topKarmaButton.style.background = "#ffffff";
   bestRatingButton.style.background ="#ffffff";
   worstRatingButton.style.background ="#ffffff";
+
+  document.getElementById('selected_view').innerHTML = "<i class='fas fa-scroll'></i> Oldest"
+
 })
 
 latestButton.addEventListener('click', function () {
@@ -109,6 +112,9 @@ latestButton.addEventListener('click', function () {
   topKarmaButton.style.background = "#ffffff";
   bestRatingButton.style.background ="#ffffff";
   worstRatingButton.style.background ="#ffffff";
+
+  document.getElementById('selected_view').innerHTML = "<i class='fas fa-sun'></i> Latest"
+
 })
 
 topKarmaButton.addEventListener('click', function () {
@@ -132,6 +138,9 @@ topKarmaButton.addEventListener('click', function () {
   oldestButton.style.background = "#ffffff";
   bestRatingButton.style.background ="#ffffff";
   worstRatingButton.style.background ="#ffffff";
+
+  document.getElementById('selected_view').innerHTML = "<i class='fas fa-burn'></i> Top"
+
 })
 
 bestRatingButton.addEventListener('click', function () {
@@ -151,6 +160,9 @@ bestRatingButton.addEventListener('click', function () {
   oldestButton.style.background = "#ffffff";
   topKarmaButton.style.background ="#ffffff";
   worstRatingButton.style.background ="#ffffff";
+
+  document.getElementById('selected_view').innerHTML = "<i class='far fa-smile-beam'></i> Best Ratings"
+
 })
 
 worstRatingButton.addEventListener('click', function () {
@@ -170,6 +182,9 @@ worstRatingButton.addEventListener('click', function () {
   oldestButton.style.background = "#ffffff";
   topKarmaButton.style.background ="#ffffff";
   bestRatingButton.style.background ="#ffffff";
+
+  document.getElementById('selected_view').innerHTML = "<i class='far fa-sad-tear'></i> Worst Ratings"
+
 })
 
 let firstResponse;
@@ -419,6 +434,8 @@ function editReview() {
   let saveReviewButton = document.querySelector('.save_review');
   let editRating = document.querySelector('.edit_rating');
   let oldRating = document.querySelector('.review_rating');
+
+  console.log(oldRating)
 
   editReviewButton.style.display = "none";
   oldRating.style.display = "none";

@@ -112,7 +112,7 @@ function pageDetailItem($place, $images) { ?>
         <div id="col-1">
             <h1 id="title_detail_place" class="detail_title" contentEditable=false> <?=htmlspecialchars($place['place_title'])?> </h2>
             <h3 id="location_detail_place" class="detail_location"> <?=htmlspecialchars($place['place_location'])?> </h3>
-            <div class="rating review_rating place_rating">
+            <div class="rating place_rating">
             <?php
              $place_rating = getPlaceRating($place['place_id']);
               $whole_stars = floor($place_rating);
@@ -182,12 +182,18 @@ function pageDetailItem($place, $images) { ?>
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcrc5QbwSQOgtiw2PwSNcU2bLjyoyx96E&callback=initializeMapDetail">
       </script>
       <section class="review_list_options">
-      <i class="fas fa-sort oldest_button"> </i> <b> Oldest </b>
-      <i class="fas fa-sort latest_button"> </i> <b> Latest </b>
-      <i class="fas fa-sort top_karma_button"> </i> <b> Top Karma </b>
-      <i class="fas fa-sort best_rating_button"> </i> <b> Best Rating </b>
-      <i class="fas fa-sort worst_rating_button"> </i> <b> Worst Rating </b>
-        </section>
+        <div class="dropdown">
+          <button class="dropbtn">Sort By</button>
+          <span id="selected_view"><i class='fas fa-sun'></i> Latest</span>
+          <div class="dropdown-content">
+            <span class="latest_button"><i class='fas fa-sun'></i> Latest</span>
+            <span class="oldest_button"><i class='fas fa-scroll'></i> Oldest</span>
+            <span class="top_karma_button"><i class='fas fa-burn'></i> Top</span>
+            <span class="best_rating_button"><i class='far fa-smile-beam'></i> Best Ratings</span>
+            <span class="worst_rating_button"><i class='far fa-sad-tear'></i> Worst Ratings</span>
+          </div>
+        </div> 
+      </section>
       <section class="place_reviews">
       <?php drawPlaceReviews($place);
       ?>
