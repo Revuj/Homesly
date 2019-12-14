@@ -65,6 +65,7 @@ rightImageScroll.addEventListener('click', function () {
 
 let oldestButton = document.getElementsByClassName('oldest_button')[0];
 let latestButton = document.getElementsByClassName('latest_button')[0];
+let reviews = document.getElementsByClassName('place_review');
 
 oldestButton.addEventListener('click', function () {
   oldestButton.style.background = "#ff6624";
@@ -105,19 +106,21 @@ function order() {
   let strs = [];
   let i = 0;
   let startIndex;
+  let midIndex;
   let endIndex;
   let tempstr;
   while (true) {
-    startIndex = str.indexOf("<div class=\"place_review\">");
+    startIndex = str.indexOf("<div class=\"place_review\"");
+    midIndex = str.indexOf(">");
     if (startIndex == -1)
       break;
-    tempstr = str.substring(startIndex + 25);
-    endIndex = tempstr.indexOf("<div class=\"place_review\">");
+    tempstr = str.substring(midIndex);
+    endIndex = tempstr.indexOf("<div class=\"place_review\"");
     if (endIndex == -1)
       tempstr = str.substring(startIndex);
     else
-      tempstr = str.substring(startIndex, startIndex + endIndex + 25);
-    str = str.substring(startIndex + endIndex + 25);
+      tempstr = str.substring(startIndex, midIndex + endIndex);
+    str = str.substring(midIndex + endIndex);
     strs[i] = tempstr;
     i++;
     if (endIndex == -1)
@@ -143,6 +146,7 @@ function order() {
     finalstr = finalstr + orderedStrings[j];
   }
   reviews.innerHTML = finalstr;
+  showLessReviews();
 }
 
 let guestsNumber = document.querySelector('input[name="guests"]');
@@ -229,9 +233,14 @@ function submitReview(event) {
 }
 
 let moreReviewsButton = document.querySelector('.more_reviews');
-let reviews = document.getElementsByClassName('place_review');
 
 function showLessReviews() {
+  let reviews = document.getElementsByClassName('place_review');
+  for (let i = 0; i < reviews.length - 1; i++) {
+    reviews[i].style.display = "block";
+    if (i == 5)
+      break;
+  }
   for (let i = 5; i < reviews.length - 1; i++)
     reviews[i].style.display = "none";
   moreReviewsButton.removeEventListener('click', showLessReviews);
@@ -240,9 +249,12 @@ function showLessReviews() {
 
 }
 
+showLessReviews();
+
 function showMoreReviews() {
+  let reviews = document.getElementsByClassName('place_review');
   let invisibleReviews = [...reviews].filter(r => r.offsetParent === null);
-  for (let i = 0; i < 5 && i < invisibleReviews.length - 1; i++)
+  for (let i = 0; i < 5 && i < invisibleReviews.length; i++)
     invisibleReviews[i].style.display = "block";
 
   if (invisibleReviews.length <= 4) {
@@ -599,5 +611,5 @@ function escapeHtml(text) {
     "'": '&#039;'
   };
 
-  return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+  return text.replace(/[&<>"']/g, function (m) { return map[m]; });
 }
