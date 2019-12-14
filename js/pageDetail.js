@@ -65,43 +65,55 @@ rightImageScroll.addEventListener('click', function () {
 
 let oldestButton = document.getElementsByClassName('oldest_button')[0];
 let latestButton = document.getElementsByClassName('latest_button')[0];
-let topRatingButton = document.getElementsByClassName('top_button')[0];
+let topKarmaButton = document.getElementsByClassName('top_karma_button')[0];
+let bestRatingButton = document.getElementsByClassName('best_rating_button')[0];
+let worstRatingButton = document.getElementsByClassName('worst_rating_button')[0];
 let reviews = document.getElementsByClassName('place_review');
 let moreReviewsButton = document.querySelector('.more_reviews');
 
 oldestButton.addEventListener('click', function () {
-  oldestButton.style.background = "#ff6624";
-  latestButton.style.background = "#ffffff";
-  topRatingButton.style.background = "#ffffff";
+  if (oldestButton.style.background == "rgb(255, 102, 36)")
+    return;
 
   let request = new XMLHttpRequest();
 
   let detailValuePlace = document.getElementById('value_detail_place');
   let place_id = detailValuePlace.getAttribute('value');
 
-  request.onload = orderByDate;
+  request.onload = orderReviewIDs;
   request.open("post", "../api/api_order_review_asc_date.php", true);
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   request.send(encodeForAjax({ place_id: place_id }));
+  oldestButton.style.background = "#ff6624";
+  latestButton.style.background = "#ffffff";
+  topKarmaButton.style.background = "#ffffff";
+  bestRatingButton.style.background ="#ffffff";
+  worstRatingButton.style.background ="#ffffff";
 })
 
 latestButton.addEventListener('click', function () {
-  latestButton.style.background = "#ff6624";
-  oldestButton.style.background = "#ffffff";
-  topRatingButton.style.background = "#ffffff";
+  if (latestButton.style.background == "rgb(255, 102, 36)")
+    return;
 
   let request = new XMLHttpRequest();
 
   let detailValuePlace = document.getElementById('value_detail_place');
   let place_id = detailValuePlace.getAttribute('value');
 
-  request.onload = orderByDate;
+  request.onload = orderReviewIDs;
   request.open("post", "../api/api_order_review_desc_date.php", true);
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   request.send(encodeForAjax({ place_id: place_id }));
+  latestButton.style.background = "#ff6624";
+  oldestButton.style.background = "#ffffff";
+  topKarmaButton.style.background = "#ffffff";
+  bestRatingButton.style.background ="#ffffff";
+  worstRatingButton.style.background ="#ffffff";
 })
 
-topRatingButton.addEventListener('click', function () {
+topKarmaButton.addEventListener('click', function () {
+  if (topKarmaButton.style.background == "rgb(255, 102, 36)")
+    return;
   let request = new XMLHttpRequest();
 
   let detailValuePlace = document.getElementById('value_detail_place');
@@ -115,9 +127,49 @@ topRatingButton.addEventListener('click', function () {
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   request.send(encodeForAjax({ place_id: place_id }));
 
-  topRatingButton.style.background = "#ff6624";
+  topKarmaButton.style.background = "#ff6624";
   latestButton.style.background = "#ffffff";
   oldestButton.style.background = "#ffffff";
+  bestRatingButton.style.background ="#ffffff";
+  worstRatingButton.style.background ="#ffffff";
+})
+
+bestRatingButton.addEventListener('click', function () {
+  if (bestRatingButton.style.background == "rgb(255, 102, 36)")
+    return;
+  let request = new XMLHttpRequest();
+
+  let detailValuePlace = document.getElementById('value_detail_place');
+  let place_id = detailValuePlace.getAttribute('value');
+
+  request.onload = orderReviewIDs;
+  request.open("post", "../api/api_order_review_best_rating.php", true);
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  request.send(encodeForAjax({ place_id: place_id }));
+  bestRatingButton.style.background = "#ff6624";
+  latestButton.style.background = "#ffffff";
+  oldestButton.style.background = "#ffffff";
+  topKarmaButton.style.background ="#ffffff";
+  worstRatingButton.style.background ="#ffffff";
+})
+
+worstRatingButton.addEventListener('click', function () {
+  if (worstRatingButton.style.background == "rgb(255, 102, 36)")
+    return;
+  let request = new XMLHttpRequest();
+
+  let detailValuePlace = document.getElementById('value_detail_place');
+  let place_id = detailValuePlace.getAttribute('value');
+
+  request.onload = orderReviewIDs;
+  request.open("post", "../api/api_order_review_worst_rating.php", true);
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  request.send(encodeForAjax({ place_id: place_id }));
+  worstRatingButton.style.background = "#ff6624";
+  latestButton.style.background = "#ffffff";
+  oldestButton.style.background = "#ffffff";
+  topKarmaButton.style.background ="#ffffff";
+  bestRatingButton.style.background ="#ffffff";
 })
 
 let firstResponse;
@@ -133,13 +185,13 @@ function getKarma() {
   review_ids = JSON.stringify(review_ids);
   let request = new XMLHttpRequest();
 
-  request.onload = orderByKarma;
+  request.onload = orderReviewIDsByKarma;
   request.open("post", "../api/api_get_reviews_karma.php", true);
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   request.send(encodeForAjax({ review_ids: review_ids }));
 }
 
-function orderByDate() {
+function orderReviewIDs() {
   let response = JSON.parse(this.responseText);
   if (response.length == 0 || response.length == 1)
     return;
@@ -150,7 +202,7 @@ function orderByDate() {
   orderReviews(orderedIDs);
 }
 
-function orderByKarma() {
+function orderReviewIDsByKarma() {
   let response = JSON.parse(this.responseText);
   let orderedIDs = [];
   let count = 0;

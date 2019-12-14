@@ -150,6 +150,26 @@ function getPlaceReviewsDescDate($place_id) {
 }
 
 /**
+ * Gets reviews for a specific place, ordered by best to worst rating
+ */
+function getPlaceReviewsBestRating($place_id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare("SELECT * FROM review WHERE place_id = ? ORDER BY rating DESC");
+    $stmt->execute(array($place_id));
+    return $stmt->fetchAll();
+}
+
+/**
+ * Gets reviews for a specific place, ordered by worst to best rating
+ */
+function getPlaceReviewsWorstRating($place_id) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare("SELECT * FROM review WHERE place_id = ? ORDER BY rating ASC");
+    $stmt->execute(array($place_id));
+    return $stmt->fetchAll();
+}
+
+/**
  * Gets place's average rating
  */
  function getPlaceRating($place_id) {

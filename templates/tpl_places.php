@@ -184,7 +184,9 @@ function pageDetailItem($place, $images) { ?>
       <section class="review_list_options">
       <i class="fas fa-sort oldest_button"> </i> <b> Oldest </b>
       <i class="fas fa-sort latest_button"> </i> <b> Latest </b>
-      <i class="fas fa-sort top_button"> </i> <b> Top Rating </b>
+      <i class="fas fa-sort top_karma_button"> </i> <b> Top Karma </b>
+      <i class="fas fa-sort best_rating_button"> </i> <b> Best Rating </b>
+      <i class="fas fa-sort worst_rating_button"> </i> <b> Worst Rating </b>
         </section>
       <section class="place_reviews">
       <?php drawPlaceReviews($place);
