@@ -379,8 +379,10 @@ textarea {
 }
 
 #map {
-    max-width: 1248px;
+    max-width: 1240px;
+    width: calc(100% - 2rem);
     margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 
@@ -444,6 +446,15 @@ border: 1px solid var(--orange);
         min-width: 100%;
         border-radius: 0;
         margin-top: 0;
+    }
+
+    #side_images {
+        display: none;
+    }
+
+    
+    .right_arrow_image {
+        right: 16px;
     }
 
     .detail_description {
