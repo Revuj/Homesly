@@ -65,19 +65,21 @@ rightImageScroll.addEventListener('click', function () {
 
 let oldestButton = document.getElementsByClassName('oldest_button')[0];
 let latestButton = document.getElementsByClassName('latest_button')[0];
+let topRatingButton = document.getElementsByClassName('top_button')[0];
 let reviews = document.getElementsByClassName('place_review');
 let moreReviewsButton = document.querySelector('.more_reviews');
 
 oldestButton.addEventListener('click', function () {
   oldestButton.style.background = "#ff6624";
   latestButton.style.background = "#ffffff";
+  topRatingButton.style.background = "#ffffff";
 
   let request = new XMLHttpRequest();
 
   let detailValuePlace = document.getElementById('value_detail_place');
   let place_id = detailValuePlace.getAttribute('value');
 
-  request.onload = order;
+  request.onload = orderByDate;
   request.open("post", "../api/api_order_review_asc_date.php", true);
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   request.send(encodeForAjax({ place_id: place_id }));
@@ -86,23 +88,84 @@ oldestButton.addEventListener('click', function () {
 latestButton.addEventListener('click', function () {
   latestButton.style.background = "#ff6624";
   oldestButton.style.background = "#ffffff";
+  topRatingButton.style.background = "#ffffff";
 
   let request = new XMLHttpRequest();
 
   let detailValuePlace = document.getElementById('value_detail_place');
   let place_id = detailValuePlace.getAttribute('value');
 
-  request.onload = order;
+  request.onload = orderByDate;
   request.open("post", "../api/api_order_review_desc_date.php", true);
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   request.send(encodeForAjax({ place_id: place_id }));
 })
 
-function order() {
+topRatingButton.addEventListener('click', function () {
+  let request = new XMLHttpRequest();
+
+  let detailValuePlace = document.getElementById('value_detail_place');
+  let place_id = detailValuePlace.getAttribute('value');
+
+  request.onload = getKarma;
+  if (oldestButton.style.background == "rgb(255, 102, 36)")
+    request.open("post", "../api/api_order_review_asc_date.php", true);
+  else
+    request.open("post", "../api/api_order_review_desc_date.php", true);
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  request.send(encodeForAjax({ place_id: place_id }));
+
+  topRatingButton.style.background = "#ff6624";
+  latestButton.style.background = "#ffffff";
+  oldestButton.style.background = "#ffffff";
+})
+
+let firstResponse;
+
+function getKarma() {
+  firstResponse = JSON.parse(this.responseText);
+  if (firstResponse.length == 0 || firstResponse.length == 1)
+    return;
+  let review_ids = [];
+  for (let j = 0; j < firstResponse.length; j++) {
+    review_ids[j] = firstResponse[j].id;
+  }
+  review_ids = JSON.stringify(review_ids);
+  let request = new XMLHttpRequest();
+
+  request.onload = orderByKarma;
+  request.open("post", "../api/api_get_reviews_karma.php", true);
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  request.send(encodeForAjax({ review_ids: review_ids }));
+}
+
+function orderByDate() {
   let response = JSON.parse(this.responseText);
-  let reviews = document.getElementsByClassName('place_reviews')[0];
   if (response.length == 0 || response.length == 1)
     return;
+  let orderedIDs = [];
+  for (let j = 0; j < response.length; j++) {
+    orderedIDs[j] = response[j].id;
+  }
+  orderReviews(orderedIDs);
+}
+
+function orderByKarma() {
+  let response = JSON.parse(this.responseText);
+  let orderedIDs = [];
+  let count = 0;
+  while (response.length) {
+    let i = response.indexOf(Math.max(...response));
+    orderedIDs[count] = firstResponse[i].id;
+    count++;
+    response.splice(i, 1);
+    firstResponse.splice(i, 1);
+  }
+  orderReviews(orderedIDs);
+}
+
+function orderReviews(orderedIDs) {
+  let reviews = document.getElementsByClassName('place_reviews')[0];
   let str = reviews.innerHTML;
   let strs = [];
   let i = 0;
@@ -129,19 +192,19 @@ function order() {
   }
   let orderedStrings = [];
   let count = 0;
-  response.forEach(element => {
+  for (let k = 0; k < orderedIDs.length; k++) {
     for (let j = 0; j < strs.length; j++) {
       startIndex = strs[j].indexOf("\"id\">");
       tempstr = strs[j].substring(startIndex);
       endIndex = tempstr.indexOf("<");
       tempstr = strs[j].substring(startIndex + 5, startIndex + endIndex);
-      if (tempstr == element.id) {
+      if (tempstr == orderedIDs[k]) {
         orderedStrings[count] = strs[j];
         count++;
         break;
       }
     }
-  });
+  }
   let finalstr = orderedStrings[0];
   for (let j = 1; j < orderedStrings.length; j++) {
     finalstr = finalstr + orderedStrings[j];
