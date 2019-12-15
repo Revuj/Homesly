@@ -80,6 +80,7 @@ function draw_input_place() { ?>
         <div class="form-3">
             <h2>Host your Place!</h2>
             <form method="post" action="../actions/action_host_place.php" enctype="multipart/form-data">
+            <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
             <label>Title<input type="text" name="title" placeholder="title" required></label>
             <label>Description<input type="text" name="description" placeholder="about" required></label>
             <label>Location<input id="address" type="text" name="location" placeholder="where" onfocusout="codeAddress()" required></label>

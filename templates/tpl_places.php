@@ -165,6 +165,7 @@ function pageDetailItem($place, $images) { ?>
           <div class="form-1 book-form">
           <h3 class="place_price"><?=$place['place_price_per_day']?></h3>
             <form method="post" action="../actions/action_book_place.php">
+                <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
                 <input type="hidden" name="place_id" value="<?=$place['place_id']?>">
                 <label>Checkin<input type="date" value="" name="checkin" placeholder="mm/dd/yyyy" ></label>
                 <label>Checkout<input type="date" value="" name="checkout" placeholder="mm/dd/yyyy" ></label>
