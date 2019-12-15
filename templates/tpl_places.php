@@ -17,6 +17,17 @@ function listPlaces($places) { ?>
         <i class="fas fa-list"></i>
       </div>
   </section>
+  <section class="places_list_options">
+        <div class="dropdown">
+          <button class="dropbtn">Sort By</button>
+          <span id="selected_option"><i class='fas fa-times'></i> No Sorting</span>
+          <div class="dropdown-content">
+            <span class="no_sorting_button"><i class="fas fa-times"></i> No Sorting</span>
+            <span class="best_rating_button"><i class='far fa-smile-beam'></i> Best Rating</span>
+            <span class="most_visited_button"><i class='fas fa-burn'></i> Most Visited</span>
+          </div>
+        </div> 
+  </section>
   <article class="places_list">
       <?php
         foreach($places as $place) { 
@@ -208,8 +219,8 @@ function pageDetailItem($place, $images) { ?>
             <span class="latest_button"><i class='fas fa-sun'></i> Latest</span>
             <span class="oldest_button"><i class='fas fa-scroll'></i> Oldest</span>
             <span class="top_karma_button"><i class='fas fa-burn'></i> Top</span>
-            <span class="best_rating_button"><i class='far fa-smile-beam'></i> Best Ratings</span>
-            <span class="worst_rating_button"><i class='far fa-sad-tear'></i> Worst Ratings</span>
+            <span class="best_ratings_button"><i class='far fa-smile-beam'></i> Best Ratings</span>
+            <span class="worst_ratings_button"><i class='far fa-sad-tear'></i> Worst Ratings</span>
           </div>
         </div> 
       </section>

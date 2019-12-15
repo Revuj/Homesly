@@ -66,8 +66,8 @@ rightImageScroll.addEventListener('click', function () {
 let oldestButton = document.getElementsByClassName('oldest_button')[0];
 let latestButton = document.getElementsByClassName('latest_button')[0];
 let topKarmaButton = document.getElementsByClassName('top_karma_button')[0];
-let bestRatingButton = document.getElementsByClassName('best_rating_button')[0];
-let worstRatingButton = document.getElementsByClassName('worst_rating_button')[0];
+let bestRatingsButton = document.getElementsByClassName('best_ratings_button')[0];
+let worstRatingsButton = document.getElementsByClassName('worst_ratings_button')[0];
 let reviews = document.getElementsByClassName('place_review');
 let moreReviewsButton = document.querySelector('.more_reviews');
 
@@ -87,8 +87,8 @@ oldestButton.addEventListener('click', function () {
   oldestButton.style.background = "#ff6624";
   latestButton.style.background = "#ffffff";
   topKarmaButton.style.background = "#ffffff";
-  bestRatingButton.style.background ="#ffffff";
-  worstRatingButton.style.background ="#ffffff";
+  bestRatingsButton.style.background ="#ffffff";
+  worstRatingsButton.style.background ="#ffffff";
 
   document.getElementById('selected_view').innerHTML = "<i class='fas fa-scroll'></i> Oldest"
 
@@ -110,8 +110,8 @@ latestButton.addEventListener('click', function () {
   latestButton.style.background = "#ff6624";
   oldestButton.style.background = "#ffffff";
   topKarmaButton.style.background = "#ffffff";
-  bestRatingButton.style.background ="#ffffff";
-  worstRatingButton.style.background ="#ffffff";
+  bestRatingsButton.style.background ="#ffffff";
+  worstRatingsButton.style.background ="#ffffff";
 
   document.getElementById('selected_view').innerHTML = "<i class='fas fa-sun'></i> Latest"
 
@@ -136,15 +136,15 @@ topKarmaButton.addEventListener('click', function () {
   topKarmaButton.style.background = "#ff6624";
   latestButton.style.background = "#ffffff";
   oldestButton.style.background = "#ffffff";
-  bestRatingButton.style.background ="#ffffff";
-  worstRatingButton.style.background ="#ffffff";
+  bestRatingsButton.style.background ="#ffffff";
+  worstRatingsButton.style.background ="#ffffff";
 
   document.getElementById('selected_view').innerHTML = "<i class='fas fa-burn'></i> Top"
 
 })
 
-bestRatingButton.addEventListener('click', function () {
-  if (bestRatingButton.style.background == "rgb(255, 102, 36)")
+bestRatingsButton.addEventListener('click', function () {
+  if (bestRatingsButton.style.background == "rgb(255, 102, 36)")
     return;
   let request = new XMLHttpRequest();
 
@@ -155,18 +155,18 @@ bestRatingButton.addEventListener('click', function () {
   request.open("post", "../api/api_order_review_best_rating.php", true);
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   request.send(encodeForAjax({ place_id: place_id }));
-  bestRatingButton.style.background = "#ff6624";
+  bestRatingsButton.style.background = "#ff6624";
   latestButton.style.background = "#ffffff";
   oldestButton.style.background = "#ffffff";
   topKarmaButton.style.background ="#ffffff";
-  worstRatingButton.style.background ="#ffffff";
+  worstRatingsButton.style.background ="#ffffff";
 
   document.getElementById('selected_view').innerHTML = "<i class='far fa-smile-beam'></i> Best Ratings"
 
 })
 
-worstRatingButton.addEventListener('click', function () {
-  if (worstRatingButton.style.background == "rgb(255, 102, 36)")
+worstRatingsButton.addEventListener('click', function () {
+  if (worstRatingsButton.style.background == "rgb(255, 102, 36)")
     return;
   let request = new XMLHttpRequest();
 
@@ -177,11 +177,11 @@ worstRatingButton.addEventListener('click', function () {
   request.open("post", "../api/api_order_review_worst_rating.php", true);
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   request.send(encodeForAjax({ place_id: place_id }));
-  worstRatingButton.style.background = "#ff6624";
+  worstRatingsButton.style.background = "#ff6624";
   latestButton.style.background = "#ffffff";
   oldestButton.style.background = "#ffffff";
   topKarmaButton.style.background ="#ffffff";
-  bestRatingButton.style.background ="#ffffff";
+  bestRatingsButton.style.background ="#ffffff";
 
   document.getElementById('selected_view').innerHTML = "<i class='far fa-sad-tear'></i> Worst Ratings"
 
