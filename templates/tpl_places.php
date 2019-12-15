@@ -128,10 +128,6 @@ function pageDetailItem($place, $images) { ?>
       <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
       <script type='text/javascript'>
       <?php 
-        $images2 = getAllImagesFromPlace($place['place_id']);
-        foreach($images2 as $image) {
-            array_push($images, "../images/uploads/" . $image['image_id'] . ".png");
-        }
         echo 'let imgs = '.json_encode($images).';'; 
       ?>
       </script>
@@ -141,7 +137,7 @@ function pageDetailItem($place, $images) { ?>
         </div>
         <div id="side_images">
           <img class="side_image" src=<?=$images[1]?> />
-          <img class="side_image" src=<?=$images[2]?> />
+          <img class="side_image" src=<?=$images[3]?> />
         </div>
         <i class="fas fa-chevron-left left_arrow_image"></i>
         <i class="fas fa-chevron-right right_arrow_image"></i>
@@ -154,7 +150,6 @@ function pageDetailItem($place, $images) { ?>
             <i class="date_reservation" data-first=<?=$res['first_night']?> data-last=<?=$res['last_night']?> ></i>
             <?php
         }
-        // echo 'let imgs = '.json_encode($images).';'; 
       ?>
 
       <div class="container_detail_content">
