@@ -10,6 +10,9 @@
         //Javascript alert to the client
         $message = "You must be logged in to host a place!";
         echo "<script type='text/javascript'>alert('$message');</script>";
+    } else if ($_SESSION['csrf'] !== $_POST['csrf']){
+        $message = "Not a legit request!";
+        echo "<script type='text/javascript'>alert('$message');</script>";
     }
     else {
         // echo "The new biggest id is " . $new_id_image . "<br>";

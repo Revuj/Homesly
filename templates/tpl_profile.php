@@ -10,6 +10,7 @@
             <ul id="user_details">
             <li><h4> Hi, I'm <?=$username?>!</h4></li>
             <form id="upload_profile_image" method="post" action="../actions/action_change_profile_image.php" enctype="multipart/form-data">
+                <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
                 <input type="file" name="fileUpload" >
             </form>
                 <button id="edit_profile"><i class="far fa-edit"></i> Edit Profile</button>
