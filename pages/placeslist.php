@@ -6,31 +6,24 @@
     draw_search_bar(); 
     
     // Gets list with all the places -> later to be filtered with search input
-
-    // não está a funcionar bem -> perguntar à stora
-    /*
-    if (isset($location)) {
+    $location = null;
+    $checkin = null;
+    $checkout = null;
+    $guests = null;
+    if (isset($_GET['location'])) 
         $location = $_GET['location'];
-    }
-    else {
-        $location = '';
-    }
-    if (isset($checkin)) 
+
+
+    if (isset($_GET['checkin'])) 
         $checkin = $_GET['checkin'];
-    else
-        $checkin = '';
-    if (isset($checkout)) 
+
+    if (isset($_GET['checkout'])) 
         $checkout = $_GET['checkout'];
-    else
-        $checkout = '';
-    if (isset($guests)) 
+
+    if (isset($_GET['guests'])) 
         $guests = $_GET['guests'];
-    else
-        $guests = '';
     
-    $places_list = getPlacesFiltered($_GET['location'], $checkin, $checkout, $guests);
-    */
-    $places_list = getAllPlaces();
-    listPlaces($places_list);
+    $filtered_places = getPlacesFiltered($location, $checkin, $checkout, $guests);
+    listPlaces($filtered_places);
     draw_footer();
 ?>

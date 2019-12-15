@@ -9,7 +9,38 @@ function getAllPlaces() {
     $stmt = $db->prepare("SELECT * FROM place");
     $stmt->execute();
     return $stmt->fetchAll();
-}   
+}
+
+/**
+ * Returns the list of places available according to input filters
+ */
+function getPlacesFiltered($location, $checkin, $checkout, $guests) {
+    $db = Database::instance()->db();
+    $query = 'SELECT * FROM place WHERE 1 ';
+    $query_arguements = array();
+    if ($location) {
+        $query .= 'AND place_location = ?';
+        array_push($query_arguements, $location);
+    }
+    if ($guests) {
+        $query .= 'AND place_bedrooms >= ?';
+        array_push($query_arguements, $guests);
+    }
+    if ($checkin && $checkout) {
+        $query .= 'AND place_id NOT IN (SELECT place_id FROM place, reservation
+        WHERE place.place_id = reservation.place
+        AND ((reservation.first_night >= ?  AND reservation.first_night <= ?)
+        OR (reservation.last_night >= ?  AND reservation.last_night <= ?)
+        OR (reservation.first_night <= ? AND reservation.last_night >= ?)))';
+        array_push($query_arguements, $checkin, $checkout, $checkin, $checkout, $checkin, $checkout);
+    }
+
+    $stmt = $db->prepare($query);
+    $stmt->execute($query_arguements);
+
+    return $stmt->fetchAll();
+}
+
 
 /**
  * Gets place whose ID equals $id
@@ -52,24 +83,7 @@ function getUserReviews($username) {
     $stmt = $db->prepare('SELECT * FROM review WHERE username = ?');
     $stmt->execute(array($username));
     return $stmt->fetchAll(); 
-}
-
-/**
-* Returns the list with all places available that respect the filters
-*/
-function getPlacesFiltered($location, $checkin, $checkout, $guests) {
-    $db = Database::instance()->db();
-    echo $location;
-    if ($location != '') {
-        $stmt = $db->prepare("SELECT * FROM place WHERE place_location = ?");
-        $stmt->execute(array($location));
-    }
-    else {
-        $stmt = $db->prepare("SELECT * FROM place");
-        $stmt->execute();
-    }
-    return $stmt->fetchAll();
-}   
+} 
 
 /**
  * Inserts place on databse
