@@ -8,7 +8,7 @@
 
   $place = getPlaceWithId($_GET['id']);
 
-  if (!isset($place))
+  if (!isset($place) || empty($place))
     die("The place you where looking for is unnavailable!");
 
   draw_header();
