@@ -288,6 +288,7 @@ function orderReviews(orderedIDs) {
 }
 
 let guestsNumber = document.querySelector('input[name="guests"]');
+let numberDays = 1;
 let placePrice
 if (document.getElementsByClassName('place_price')[0] != null)
 placePrice = Number(document.getElementsByClassName('place_price')[0].innerHTML);
@@ -295,7 +296,7 @@ let calculatedPrice = document.getElementById('calculated_price');
 
 if (guestsNumber != null)
 guestsNumber.addEventListener('change', (event) => {
-  calculatedPrice.innerHTML = 'Total: ' + placePrice * Number(guestsNumber.value) + '€';
+  calculatedPrice.innerHTML = 'Total: ' + placePrice * Number(guestsNumber.value) * numberDays + '€';
 })
 
 
@@ -771,5 +772,14 @@ $('input[name="date_range"]').daterangepicker({
         if (date >= first && date <= last)
           return true;
       }
-  }
-});
+  },
+},
+  function(start, end) {
+    // console.log(start.toLocaleString() + end.toLocaleString());
+    const diffTime = Math.abs(end - start);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    // console.log(diffDays);
+    numberDays = diffDays;
+    calculatedPrice.innerHTML = 'Total: ' + placePrice * Number(guestsNumber.value) * numberDays + '€';
+    }
+);

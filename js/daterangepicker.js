@@ -1339,7 +1339,7 @@
 
                 allDates.forEach(element => {
                     var d = new Date(element);
-                    console.log(d);
+                    // console.log(d);
                     if (this.isInvalidDate(d))
                         possible = false;
                 });
