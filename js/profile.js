@@ -40,6 +40,7 @@ function updateDescription() {
   let bio = response[1];
   let userBio = document.getElementById('user_bio');
   userBio.innerHTML = bio;
+  document.getElementById('upload_profile_image').submit();
 }
 
 function removeReservation() {
@@ -85,13 +86,6 @@ editProfileButton.addEventListener('click', (event) => {
 
 if (saveProfileButton != null)
 saveProfileButton.addEventListener('click', (event) => {
-  let bio = document.getElementById('user_bio').innerHTML;
-  let username = document.getElementById('profile_image').alt;
-  let request = new XMLHttpRequest()
-  request.onload = updateDescription;
-  request.open("post", "../api/api_update_description.php", true);
-  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  request.send(encodeForAjax({username: username, bio: bio}));
 
   profileForm.style.display = "none";
   saveProfileButton.style.display = "none";
@@ -103,8 +97,15 @@ saveProfileButton.addEventListener('click', (event) => {
   userBio.parentElement.style.opacity = "0.5";
   [...editableItems].forEach(elem => elem.contentEditable = "false");
 
-  document.getElementById('upload_profile_image').submit();
+  let bio = document.getElementById('user_bio').innerHTML;
+  let username = document.getElementById('profile_image').alt;
+  let request = new XMLHttpRequest();
+  request.onload = updateDescription;
+  request.open("post", "../api/api_update_description.php", true);
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  request.send(encodeForAjax({username: username, bio: bio}));
 
+  // document.getElementById('upload_profile_image').submit();
 })
 
 
