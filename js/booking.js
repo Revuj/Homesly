@@ -159,3 +159,12 @@ mostVisitedButton.addEventListener('click', function () {
 
   document.getElementById('selected_option').innerHTML = "<i class='fas fa-burn'></i> Most Visited"
 })
+
+let placesMapButtons = document.querySelectorAll('.places_list .fa-map');
+
+[...placesMapButtons].forEach(elem => elem.addEventListener('click', (event) => {
+    
+  console.log(elem.getAttribute('value'))
+  codeGivenAddress(elem.getAttribute('value'));
+
+}))

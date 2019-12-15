@@ -635,6 +635,24 @@ function initializeMapDetail() {
   });
 }
 
+function codeGivenAddress(address) {
+  geocoder.geocode({ 'address': address }, function (results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      if (marker != null)
+        marker.setMap(null);
+      marker = new google.maps.Marker({
+        map: map,
+        position: results[0].geometry.location
+      });
+    } else if (status == 'ZERO_RESULTS') {
+      alert('Couldn\'t find place refering to specified location');
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
 function codeAddress() {
   var address = document.getElementById('address').value;
   geocoder.geocode({ 'address': address }, function (results, status) {
