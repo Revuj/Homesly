@@ -137,7 +137,7 @@ function pageDetailItem($place, $images) { ?>
         </div>
         <div id="side_images">
           <img class="side_image" src=<?=$images[1]?> />
-          <img class="side_image" src=<?=$images[3]?> />
+          <img class="side_image" src=<?=$images[2]?> />
         </div>
         <i class="fas fa-chevron-left left_arrow_image"></i>
         <i class="fas fa-chevron-right right_arrow_image"></i>

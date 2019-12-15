@@ -30,6 +30,7 @@ function decrementImageIndex(index, length) {
   return newIndex;
 }
 
+if (leftImageScroll != null)
 leftImageScroll.addEventListener('click', function () {
   imgIndex = incrementImageIndex(imgIndex, imgs.length)
 
@@ -47,6 +48,7 @@ leftImageScroll.addEventListener('click', function () {
 
 })
 
+if (rightImageScroll != null)
 rightImageScroll.addEventListener('click', function () {
   imgIndex = decrementImageIndex(imgIndex, imgs.length)
 
@@ -71,6 +73,7 @@ let worstRatingsButton = document.getElementsByClassName('worst_ratings_button')
 let reviews = document.getElementsByClassName('place_review');
 let moreReviewsButton = document.querySelector('.more_reviews');
 
+if (oldestButton != null)
 oldestButton.addEventListener('click', function () {
   if (oldestButton.style.background == "rgb(255, 102, 36)")
     return;
@@ -94,6 +97,7 @@ oldestButton.addEventListener('click', function () {
 
 })
 
+if (latestButton != null)
 latestButton.addEventListener('click', function () {
   if (latestButton.style.background == "rgb(255, 102, 36)")
     return;
@@ -117,6 +121,7 @@ latestButton.addEventListener('click', function () {
 
 })
 
+if (topKarmaButton != null)
 topKarmaButton.addEventListener('click', function () {
   if (topKarmaButton.style.background == "rgb(255, 102, 36)")
     return;
@@ -143,6 +148,7 @@ topKarmaButton.addEventListener('click', function () {
 
 })
 
+if (bestRatingsButton != null)
 bestRatingsButton.addEventListener('click', function () {
   if (bestRatingsButton.style.background == "rgb(255, 102, 36)")
     return;
@@ -165,6 +171,7 @@ bestRatingsButton.addEventListener('click', function () {
 
 })
 
+if (worstRatingsButton != null)
 worstRatingsButton.addEventListener('click', function () {
   if (worstRatingsButton.style.background == "rgb(255, 102, 36)")
     return;
@@ -281,15 +288,19 @@ function orderReviews(orderedIDs) {
 }
 
 let guestsNumber = document.querySelector('input[name="guests"]');
-let placePrice = Number(document.getElementsByClassName('place_price')[0].innerHTML);
+let placePrice
+if (document.getElementsByClassName('place_price')[0] != null)
+placePrice = Number(document.getElementsByClassName('place_price')[0].innerHTML);
 let calculatedPrice = document.getElementById('calculated_price');
 
+if (guestsNumber != null)
 guestsNumber.addEventListener('change', (event) => {
   calculatedPrice.innerHTML = 'Total: ' + placePrice * Number(guestsNumber.value) + '€';
 })
 
 
 let reviewForm = document.getElementsByClassName('input_review')[0];
+if (reviewForm != null)
 reviewForm.addEventListener('submit', submitReview);
 
 function receiveReviews() {
@@ -392,6 +403,7 @@ function showMoreReviews() {
 
 }
 
+if (moreReviewsButton != null)
 moreReviewsButton.addEventListener('click', showMoreReviews);
 
 let editReviewButton = document.querySelector('.edit_review');
@@ -745,6 +757,7 @@ function escapeHtml(text) {
 
 let reservationItems = document.querySelectorAll('.date_reservation');
 
+if (leftImageScroll != null)
 $('input[name="date_range"]').daterangepicker({
   // singleDatePicker: true,
   "locale": {

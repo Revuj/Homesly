@@ -2,6 +2,7 @@
 
 let profileNavItems = document.querySelectorAll('#user_info ul li');
 let profileContent = document.querySelectorAll('#user_info section');
+if (profileContent[0] != null)
 profileContent[0].style.display="block" //reservations start visible
 
 profileNavItems.forEach(item => item.addEventListener('click', (event) => {
@@ -61,6 +62,7 @@ let editableItems = document.querySelectorAll('#user_details li + li');
 
 let profileForm = document.getElementById('upload_profile_image');
 
+if (editProfileButton != null)
 editProfileButton.addEventListener('click', (event) => {
   if (userBio.contentEditable == "false") {
     userBio.contentEditable = "true";
@@ -81,6 +83,7 @@ editProfileButton.addEventListener('click', (event) => {
   }
 })
 
+if (saveProfileButton != null)
 saveProfileButton.addEventListener('click', (event) => {
   let bio = document.getElementById('user_bio').innerHTML;
   let username = document.getElementById('profile_image').alt;
@@ -175,4 +178,5 @@ let placesDeleteButtons = document.querySelectorAll('#user_places .fa-trash');
     buttons[1].addEventListener('click', (event) => {
         removeModal.style.display = "none";
     })
+
 }))

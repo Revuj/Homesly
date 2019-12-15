@@ -19,7 +19,7 @@ navbarToggle.addEventListener('click', function () {
 })
 
 let searchbarToggle = document.getElementsByClassName('searchMenu')[0];
-console.log(searchbarToggle)
+// console.log(searchbarToggle)
 searchbarToggle.addEventListener('click', function () {
   console.log('oi')
   let searchForm = document.querySelector('.form-2');
@@ -99,7 +99,7 @@ function resizeTextArea (text) {
 }
 
 let textAreaElems = document.querySelectorAll('textarea');
-console.log(textAreaElems);
+// console.log(textAreaElems);
 [...textAreaElems].forEach(elem => resizeTextArea(elem));
 
 

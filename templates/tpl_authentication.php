@@ -11,7 +11,6 @@
       <h2>Welcome Back</h2>
 
       <form method="post" action="../actions/action_login.php">
-        <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
         <input type="text" name="username" placeholder="username" required>
         <input type="password" name="password" placeholder="password" required>
         <button type="submit">Login</button>
@@ -41,7 +40,6 @@
       
 
       <form method="post" action="../actions/action_signup.php">
-        <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
         <input type="text" name="username" placeholder="username" required>
         <input type="password" name="password" placeholder="password" required>
         <button type="submit">Signup</button>

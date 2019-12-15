@@ -11,12 +11,14 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+if (listButton != null)
 listButton.addEventListener('click', function () {
   listButton.style.background = "#ff6624";
   gridButton.style.background = "#ffffff";
   placesList.style.display = "block";
 })
 
+if (gridButton != null)
 gridButton.addEventListener('click', function () {
   gridButton.style.background = "#ff6624";
   listButton.style.background = "#ffffff";
@@ -26,6 +28,7 @@ gridButton.addEventListener('click', function () {
 let ratingCount = 0;
 let storedRatings = [];
 
+if (bestRatingButton != null)
 bestRatingButton.addEventListener('click', function () {
   if (bestRatingButton.style.background == "rgb(255, 102, 36)")
     return;
@@ -133,6 +136,7 @@ function storeRating() {
   ratingCount++;
 }
 
+if (mostVisitedButton != null)
 mostVisitedButton.addEventListener('click', function () {
   if (mostVisitedButton.style.background == "rgb(255, 102, 36)")
     return;
