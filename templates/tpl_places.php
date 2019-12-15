@@ -90,14 +90,20 @@ function listReservation($reservation) { ?>
       <div class="place_img">
         <img src="../images/test.jpg" />
         <time class="icon checkin" datetime= <?=$reservation['first_night']?> >
-          <em>Sat</em>
-          <strong>Sep</strong>
-          <span>20</span>
+          <?php 
+          $firstDate = DateTime::createFromFormat('Y-m-d', $reservation['first_night']);
+          ?> 
+          <em><?=date_format($firstDate,"D")?></em>
+          <strong><?=date_format($firstDate,"M")?></strong>
+          <span><?=date_format($firstDate,"j")?></span>
         </time>
         <time class="icon checkout" datetime= <?=$reservation['last_night']?> >
-          <em>Sun</em>
-          <strong>Sep</strong>
-          <span>28</span>
+          <?php 
+          $lastDate = DateTime::createFromFormat('Y-m-d', $reservation['last_night']);
+          ?> 
+          <em><?=date_format($lastDate,"D")?></em>
+          <strong><?=date_format($lastDate,"M")?></strong>
+          <span><?=date_format($lastDate,"j")?></span>
         </time>  
       </div>
       <div class="place_details">

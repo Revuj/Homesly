@@ -70,7 +70,8 @@ function getUserReservations($username) {
     $stmt = $db->prepare('SELECT * 
                         FROM place, reservation 
                         WHERE reservation.place = place.place_id
-                        AND reservation.guest = ?');
+                        AND reservation.guest = ?
+                        ORDER BY reservation.first_night');
     $stmt->execute(array($username));
     return $stmt->fetchAll(); 
 }
