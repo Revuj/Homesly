@@ -186,10 +186,10 @@ function pageDetailItem($place, $images) { ?>
               <?php if ($place['place_showers'] == 1) echo 'Shower'; else echo 'Showers'?> </p>
               <p id="place_bedrooms" class="bedrooms"> <i class="fas fa-bed"></i> <?=$place['place_bedrooms']?>
               <?php if ($place['place_bedrooms'] == 1) echo 'Bedroom'; else echo 'Bedrooms'?> </p> 
-              <p id="place_heating" class="heating"> <?php if ($place['place_heating']) echo '<i class="fas fa-thermometer-full"></i> Heating'?> </p>
-              <p id="place_view" class="view"> <?php if ($place['place_view']) echo '<i class="fas fa-binoculars"></i> Good view'?> </p>
-              <p id="place_wifi" class="wifi"> <?php if ($place['place_wifi']) echo '<i class="fas fa-wifi"></i> Wifi'?> </p>
-              <p id="place_parking" class="parking"> <?php if ($place['place_parking']) echo '<i class="fas fa-parking"></i> Free parking'?> </p>
+              <?php if ($place['place_heating']) echo '<p id="place_heating" class="heating"> <i class="fas fa-thermometer-full"></i> Heating</p>'?>
+              <?php if ($place['place_view']) echo '<p id="place_view" class="view"> <i class="fas fa-binoculars"></i> Good view</p>'?> 
+              <?php if ($place['place_wifi']) echo '<p id="place_wifi" class="wifi"> <i class="fas fa-wifi"></i> Wifi</p>'?> 
+              <?php if ($place['place_parking']) echo '<p id="place_parking" class="parking"> <i class="fas fa-parking"></i> Free parking</p>'?>
             </div>
         </div>
         <div id="col-2">
