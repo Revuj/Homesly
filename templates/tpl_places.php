@@ -36,10 +36,28 @@ function listItem($place) { ?>
   <article class="place_overview">
     <i value=<?=$place['place_id']?> class="fas fa-trash"></i>
     <a href="../pages/item.php?id=<?=$place['place_id']?>">
-      <div class="place_img">
+    <div class="place_img">
         <img src="../images/test.jpg" />
-        <i class="far fa-heart"></i>
-        <i class="fas fa-heart"></i>
+        <div class="rating place_rating">
+            <?php
+             $place_rating = getPlaceRating($place['place_id']);
+              $whole_stars = floor($place_rating);
+              $half_stars = $place_rating - $whole_stars;
+              $counter = 0;
+              while($counter < $whole_stars) {
+                echo '<i class="fas fa-star"></i> ';
+                $counter++;
+              }
+              if ($half_stars != 0) {
+                echo '<i class="fas fa-star-half-alt"></i> ';
+                $counter++;
+              }
+              while($counter < 5) {
+                echo '<i class="far fa-star"></i> ';
+                $counter++;
+              }
+            ?>
+          </div>
       </div>
       <div class="place_details">
         <p class="place_location"> <?=htmlspecialchars($place['place_location'])?> </p>
