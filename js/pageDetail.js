@@ -742,3 +742,21 @@ function escapeHtml(text) {
 
   return text.replace(/[&<>"']/g, function (m) { return map[m]; });
 }
+
+let reservationItems = document.querySelectorAll('.date_reservation');
+
+$('input[name="date_range"]').daterangepicker({
+  // singleDatePicker: true,
+  "locale": {
+      format: 'YYYY-MM-DD'
+  },
+  isInvalidDate: function(date) {
+      for (let i = 0; i < reservationItems.length; i++){
+        var first = new Date(reservationItems[i].getAttribute('data-first'));
+        var last = new Date(reservationItems[i].getAttribute('data-last'));
+
+        if (date >= first && date <= last)
+          return true;
+      }
+  }
+});

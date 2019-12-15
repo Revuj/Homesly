@@ -76,6 +76,18 @@ function getUserReservations($username) {
 }
 
 /**
+ * Returns the places belonging to a certain user.
+ */
+function getPlaceReservations($place) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('SELECT * 
+                        FROM reservation 
+                        WHERE reservation.place = ?');
+    $stmt->execute(array($place));
+    return $stmt->fetchAll(); 
+}
+
+/**
  * Returns the reviews done by a certain user.
  */
 function getUserReviews($username) {

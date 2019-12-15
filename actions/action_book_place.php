@@ -15,11 +15,26 @@
         echo "<script type='text/javascript'>alert('$message');</script>";
     } else {
         $place_guest = $_SESSION['username'];
-        $place_checkin = $_POST['checkin'];
-        $place_checkout = $_POST['checkout'];
         $place_id = $_POST['place_id'];
 
-        insertReservation($place_checkin, $place_checkout, $place_guest, $place_id);
+        list($place_checkin, $place_checkout) = explode(' - ', $_POST['date_range']);
+
+        if (validateDate($place_checkin) && validateDate($place_checkout)){
+            insertReservation($place_checkin, $place_checkout, $place_guest, $place_id);
+        }
+
+        // $place_range = $_POST['date_range'];
+
+        
     }
     header('Location: ../pages/placeslist.php');
+
+
+
+    function validateDate($date, $format = 'Y-m-d')
+    {
+        $d = DateTime::createFromFormat($format, $date);
+        // The Y ( 4 digits year ) returns TRUE for any integer with any number of digits so changing the comparison from == to === fixes the issue.
+        return $d && $d->format($format) === $date;
+    }
 ?>

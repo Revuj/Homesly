@@ -116,6 +116,10 @@ function listReservation($reservation) { ?>
 function pageDetailItem($place, $images) { ?>
   <section class="container_detail">
       <i value=<?=$place['place_id']?> id="value_detail_place"></i>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+      <script type="text/javascript" src="../js/daterangepicker.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
       <script type='text/javascript'>
       <?php 
         $images2 = getAllImagesFromPlace($place['place_id']);
@@ -136,6 +140,16 @@ function pageDetailItem($place, $images) { ?>
         <i class="fas fa-chevron-left left_arrow_image"></i>
         <i class="fas fa-chevron-right right_arrow_image"></i>
       </div>
+
+      <?php 
+        $reservations = getPlaceReservations($place['place_id']);
+        foreach($reservations as $res) {
+          ?>
+            <i class="date_reservation" data-first=<?=$res['first_night']?> data-last=<?=$res['last_night']?> ></i>
+            <?php
+        }
+        // echo 'let imgs = '.json_encode($images).';'; 
+      ?>
 
       <div class="container_detail_content">
         <div id="col-1">
@@ -193,11 +207,10 @@ function pageDetailItem($place, $images) { ?>
 
           <div class="form-1 book-form">
           <h3 class="place_price"><?=$place['place_price_per_day']?></h3>
-            <form method="post" action="../actions/action_book_place.php">
+            <form id="form_book" method="post" action="../actions/action_book_place.php">
                 <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
                 <input type="hidden" name="place_id" value="<?=$place['place_id']?>">
-                <label>Checkin<input type="date" value="" name="checkin" placeholder="mm/dd/yyyy" ></label>
-                <label>Checkout<input type="date" value="" name="checkout" placeholder="mm/dd/yyyy" ></label>
+                <label>Dates<input type="text" name="date_range" placeholder="yyyy-mm-dd - yyyy-mm-dd" readonly></label>
                 <label>Guests<input type="number" value="1" min="1" name="guests" placeholder="Guests" ></label>
                 <p id="calculated_price">Total: <?=$place['place_price_per_day']?> €</p>
                 <button type="submit">Book</button>
