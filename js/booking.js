@@ -1,71 +1,69 @@
 'use strict'
 
 let listButton = document.getElementsByClassName('fas fa-list')[0];
+let place_overviews = document.getElementsByClassName("place_overview");
 let gridButton = document.getElementsByClassName('fas fa-th')[0];
 let placesList = document.getElementsByClassName('places_list')[0];
 let noSortingButton = document.getElementsByClassName('no_sorting_button')[0];
 let bestRatingButton = document.getElementsByClassName('best_rating_button')[0];
 let mostVisitedButton = document.getElementsByClassName('most_visited_button')[0];
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 if (listButton != null)
-  listButton.addEventListener('click', function () {
-    listButton.style.background = "#ff6624";
-    gridButton.style.background = "#ffffff";
-    placesList.style.display = "block";
+listButton.addEventListener('click', function () {
+  listButton.style.background = "#ff6624";
+  gridButton.style.background = "#ffffff";
+  placesList.style.display = "inline-block";
+  placesList.style.width = "33%";
+  let map = document.getElementById("map");
+
+  map.style.display = "block";
+  map.style.position = "sticky";
+
+  [...place_overviews].forEach(elem => {
+    console.log(elem);
+    elem.style.width = "100%";
   })
+})
 
 if (gridButton != null)
-  gridButton.addEventListener('click', function () {
-    gridButton.style.background = "#ff6624";
-    listButton.style.background = "#ffffff";
-    placesList.style.cssText = "display: flex; flex-wrap: wrap; align-content: flex-start;"
-  })
+gridButton.addEventListener('click', function () {
+  gridButton.style.background = "#ff6624";
+  listButton.style.background = "#ffffff";
+  placesList.style.cssText = "display: flex; flex-wrap: wrap; align-content: flex-start;"
+  let map = document.getElementById("map");
+  map.style.display = "none";
 
-function sortByRating() {
+  [...place_overviews].forEach(elem => {
+    console.log(elem);
+    elem.style.width = "22.5%";
+  })
+})
+
+let ratingCount = 0;
+let storedRatings = [];
+
+if (bestRatingButton != null)
+bestRatingButton.addEventListener('click', function () {
   if (bestRatingButton.style.background == "rgb(255, 102, 36)")
     return;
 
-  mostVisitedButton.removeEventListener('click', sortByVisits);
-  getPlaceIDs("rating");
+  orderPlaces();
 
   bestRatingButton.style.background = "#ff6624";
   mostVisitedButton.style.background = "#ffffff";
   noSortingButton.style.display = "none";
 
-  document.getElementById('selected_option').innerHTML = "<i class='fas fa-smile-beam'></i> Best Rating";
-  mostVisitedButton.addEventListener('click', sortByVisits);
-}
+  document.getElementById('selected_option').innerHTML = "<i class='fas fa-smile-beam'></i> Best Rating"
+})
 
-function sortByVisits() {
-  if (mostVisitedButton.style.background == "rgb(255, 102, 36)")
-    return;
-
-  bestRatingButton.removeEventListener('click', sortByRating);
-  getPlaceIDs("visits");
-
-  mostVisitedButton.style.background = "#ff6624";
-  bestRatingButton.style.background = "#ffffff";
-  noSortingButton.style.display = "none";
-
-  document.getElementById('selected_option').innerHTML = "<i class='fas fa-burn'></i> Most Visited";
-  bestRatingButton.addEventListener('click', sortByRating);
-}
-
-if (bestRatingButton != null)
-  bestRatingButton.addEventListener('click', sortByRating);
-
-if (mostVisitedButton != null)
-  mostVisitedButton.addEventListener('click', sortByVisits);
-
-let placesToSort = [];
-let placeStrs = [];
-let storedIDs = [];
-
-function getPlaceIDs(option) {
-  placesToSort = [];
-  placeStrs = [];
-  storedIDs = [];
-  let str = placesList.innerHTML;
+async function orderPlaces() {
+  let places = document.getElementsByClassName('places_list')[0];
+  let str = places.innerHTML;
+  let strs = [];
   let i = 0;
   let startIndex;
   let midIndex;
@@ -83,111 +81,57 @@ function getPlaceIDs(option) {
     else
       tempstr = str.substring(startIndex, midIndex + endIndex);
     str = str.substring(midIndex + endIndex);
-    placeStrs[i] = tempstr;
+    strs[i] = tempstr;
     i++;
     if (endIndex == -1)
       break;
   }
-  if (placeStrs.length == 0)
+  if (strs.length == 0)
     return;
 
-  for (let j = 0; j < placeStrs.length; j++) {
-    startIndex = placeStrs[j].indexOf("value=\"");
-    tempstr = placeStrs[j].substring(startIndex + 7);
+  let orderedStrings = [];
+  let storedIDs = [];
+
+  for (let j = 0; j < strs.length; j++) {
+    startIndex = strs[j].indexOf("value=\"");
+    tempstr = strs[j].substring(startIndex + 7);
     endIndex = tempstr.indexOf("\"") + 7;
-    tempstr = placeStrs[j].substring(startIndex + 7, startIndex + endIndex);
-    storedIDs[j] = parseInt(tempstr);
-    let place = new Object();
-    place.id = parseInt(tempstr);
-    placesToSort[j] = place;
-  }
-
-  let request = new XMLHttpRequest();
-  if (option == "rating") {
-    request.onload = orderPlacesByRating;
-    request.open("post", "../api/api_get_places_ratings.php", true);
-  }
-  else if (option == "visits") {
-    request.onload = orderPlacesByVisits;
-    request.open("post", "../api/api_get_places_reservations.php", true);
-  }
-  else {
-    return;
-  }
-  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  request.send(encodeForAjax({}));
-}
-
-function orderPlacesByRating() {
-  let response = JSON.parse(this.responseText);
-  let ratingsAdded = 0;
-  placesToSort.forEach(element => {
-    element.rating = 0;
-    for (let j = 0; j < response.length; j++) {
-      if (element.id == parseInt(response[j].place_id)) {
-        element.rating = element.rating + parseFloat(response[j].rating);
-        ratingsAdded++;
-      }
+    tempstr = strs[j].substring(startIndex + 7, startIndex + endIndex);
+    storedIDs[j] = tempstr;
+    let request = new XMLHttpRequest();
+    request.onload = storeRating;
+    request.open("post", "../api/api_get_place_rating.php", true);
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    request.send(encodeForAjax({ place_id: tempstr }));
+    let exit = 0;
+    while (j != (ratingCount - 1)) {
+      await sleep(50);
+      exit++;
+      if (exit == 10)
+        return;
     }
-    if (ratingsAdded != 0)
-      element.rating = element.rating / ratingsAdded;
-    ratingsAdded = 0;
-  });
+  }
 
   let count = 0;
   let orderedIDs = [];
-  let storedRatings = [];
-  for (let j = 0; j < placesToSort.length; j++) {
-    storedRatings[j] = placesToSort[j].rating;
+  let tempIDs = [];
+  for (let j = 0; j < storedIDs.length; j++) {
+    tempIDs[j] = storedIDs[j];
   }
-
-  while (placesToSort.length) {
+  
+  while (storedRatings.length) {
     let i = storedRatings.indexOf(Math.max(...storedRatings));
-    orderedIDs[count] = placesToSort[i].id;
+    orderedIDs[count] = tempIDs[i];
     count++;
     storedRatings.splice(i, 1);
-    placesToSort.splice(i, 1);
+    tempIDs.splice(i, 1);
   }
 
-  orderPlaces(orderedIDs);
-}
-
-function orderPlacesByVisits() {
-  let response = JSON.parse(this.responseText);
-  placesToSort.forEach(element => {
-    element.visits = 0;
-    for (let j = 0; j < response.length; j++) {
-      if (element.id == parseInt(response[j].place_id)) {
-        element.visits++;
-      }
-    }
-  });
-
-  let count = 0;
-  let orderedIDs = [];
-  let storedVisits = [];
-  for (let j = 0; j < placesToSort.length; j++) {
-    storedVisits[j] = placesToSort[j].visits;
-  }
-
-  while (placesToSort.length) {
-    let i = storedVisits.indexOf(Math.max(...storedVisits));
-    orderedIDs[count] = placesToSort[i].id;
-    count++;
-    storedVisits.splice(i, 1);
-    placesToSort.splice(i, 1);
-  }
-
-  orderPlaces(orderedIDs);
-}
-
-function orderPlaces(orderedIDs) {
-  let orderedStrings = [];
-  let count = 0;
+  count = 0;
   for (let k = 0; k < orderedIDs.length; k++) {
-    for (let j = 0; j < placeStrs.length; j++) {
+    for (let j = 0; j < strs.length; j++) {
       if (storedIDs[j] == orderedIDs[k]) {
-        orderedStrings[count] = placeStrs[j];
+        orderedStrings[count] = strs[j];
         count++;
         break;
       }
@@ -198,14 +142,64 @@ function orderPlaces(orderedIDs) {
   for (let j = 1; j < orderedStrings.length; j++) {
     finalstr = finalstr + orderedStrings[j];
   }
-  placesList.innerHTML = finalstr;
+  places.innerHTML = finalstr;
 }
+
+function storeRating() {
+  let response = JSON.parse(this.responseText);
+  if (response == null)
+    storedRatings[ratingCount] = 0.0;
+  else
+    storedRatings[ratingCount] = parseFloat(response);
+  ratingCount++;
+}
+
+if (mostVisitedButton != null)
+mostVisitedButton.addEventListener('click', function () {
+  if (mostVisitedButton.style.background == "rgb(255, 102, 36)")
+    return;
+
+  /*
+  let request = new XMLHttpRequest();
+
+  let detailValuePlace = document.getElementById('value_detail_place');
+  let place_id = detailValuePlace.getAttribute('value');
+
+  request.onload = orderReviewIDs;
+  request.open("post", "../api/api_order_review_desc_date.php", true);
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  request.send(encodeForAjax({ place_id: place_id }));
+  */
+
+  mostVisitedButton.style.background = "#ff6624";
+  bestRatingButton.style.background = "#ffffff";
+  noSortingButton.style.display = "none";
+
+  document.getElementById('selected_option').innerHTML = "<i class='fas fa-burn'></i> Most Visited"
+})
 
 let placesMapButtons = document.querySelectorAll('.places_list .fa-map');
 
 [...placesMapButtons].forEach(elem => elem.addEventListener('click', (event) => {
-    
+  event.stopPropagation();
+  event.preventDefault();
   console.log(elem.getAttribute('value'))
   codeGivenAddress(elem.getAttribute('value'));
+  listButton.style.background = "#ff6624";
+  gridButton.style.background = "#ffffff";
+  placesList.style.display = "block";
+
+  placesList.style.display = "inline-block";
+  placesList.style.width = "33%";
+
+  let map = document.getElementById("map");
+
+  map.style.display = "block";
+  map.style.position = "sticky";
+
+  [...place_overviews].forEach(elem => {
+    console.log(elem);
+    elem.style.width = "100%";
+  })
 
 }))

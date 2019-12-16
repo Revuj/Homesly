@@ -69,6 +69,17 @@ article.place_overview {
     margin-left: 4px;
 }
 
+.place_overview .fa-map {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    color: white;
+}
+
+.place_overview .fa-map:hover {
+    color: orange;
+}
+
 .place_overview .place_rating {
     position: absolute;
     bottom: 0px;
@@ -183,6 +194,24 @@ display: block;
 .dropdown:hover .dropbtn {
 background-color: var(--orange);
 border: 1px solid var(--orange);
+}
+
+.places_list ~ #map {
+    display: none;
+    float: left;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+    height: 100vh;
+}
+
+
+
+.places_and_map {
+    display: flex;
 }
 
 @media (max-width:60em) {

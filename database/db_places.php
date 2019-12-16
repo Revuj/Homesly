@@ -210,30 +210,6 @@ function getPlaceReviewsWorstRating($place_id) {
  }
 
 /**
- * Gets all ratings left on each place
- */
-function getAllPlacesRatings() {
-    $db = Database::instance()->db();
-    $stmt = $db->prepare("SELECT place.place_id, review.rating
-    FROM place, review
-    WHERE place.place_id = review.place_id");
-    $stmt->execute();
-    return $stmt->fetchAll();
- }
-
-/**
- * Gets all reservations booked on each place
- */
-function getAllPlacesReservations() {
-    $db = Database::instance()->db();
-    $stmt = $db->prepare("SELECT place.place_id
-    FROM place, reservation
-    WHERE place.place_id = reservation.place");
-    $stmt->execute();
-    return $stmt->fetchAll();
- } 
-
-/**
 * Adds a review to a certain place
 */
 function addReview($place_id, $username, $text, $date, $rating) {

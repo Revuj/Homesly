@@ -288,6 +288,10 @@ function orderReviews(orderedIDs) {
 }
 
 let guestsNumber = document.querySelector('input[name="guests"]');
+let dates = document.querySelector('input[name="date_range"]');
+
+console.log(dates);
+
 let numberDays = 1;
 let placePrice
 if (document.getElementsByClassName('place_price')[0] != null)

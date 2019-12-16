@@ -441,6 +441,18 @@ background-color: var(--orange);
 border: 1px solid var(--orange);
 }
 
+.daterangepicker span.drp-selected {
+    display: none;
+}
+
+.daterangepicker button.cancelBtn.btn {
+    margin-bottom: 0.5rem;
+}
+.daterangepicker button.cancelBtn.btn, .daterangepicker button.applyBtn.btn{
+    margin-right: 8px;
+    margin-left: 0;
+}
+
 @media screen and (max-width: 1280px) {
     .full_width_image {
         min-width: 100%;
