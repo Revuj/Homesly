@@ -227,7 +227,6 @@ let placesMapButtons = document.querySelectorAll('.places_list .fa-map');
 [...placesMapButtons].forEach(elem => elem.addEventListener('click', (event) => {
   event.stopPropagation();
   event.preventDefault();
-  console.log(elem.getAttribute('value'))
   codeGivenAddress(elem.getAttribute('value'));
   listButton.style.background = "#ff6624";
   gridButton.style.background = "#ffffff";
@@ -242,7 +241,6 @@ let placesMapButtons = document.querySelectorAll('.places_list .fa-map');
   map.style.position = "sticky";
 
   [...place_overviews].forEach(elem => {
-    console.log(elem);
     elem.style.width = "100%";
   })
 
