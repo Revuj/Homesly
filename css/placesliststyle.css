@@ -265,7 +265,8 @@ border: 1px solid var(--orange);
     }
 
     .form-2 form {
-        display: none;
+        display: flex;
+        flex-direction: column;
     }
 
     .form-2.responsive form {
