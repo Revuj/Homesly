@@ -1,25 +1,44 @@
 'use strict'
 
 let listButton = document.getElementsByClassName('fas fa-list')[0];
+let place_overviews = document.getElementsByClassName("place_overview");
 let gridButton = document.getElementsByClassName('fas fa-th')[0];
 let placesList = document.getElementsByClassName('places_list')[0];
 let noSortingButton = document.getElementsByClassName('no_sorting_button')[0];
 let bestRatingButton = document.getElementsByClassName('best_rating_button')[0];
 let mostVisitedButton = document.getElementsByClassName('most_visited_button')[0];
 
+
 if (listButton != null)
-  listButton.addEventListener('click', function () {
-    listButton.style.background = "#ff6624";
-    gridButton.style.background = "#ffffff";
-    placesList.style.display = "block";
+listButton.addEventListener('click', function () {
+  listButton.style.background = "#ff6624";
+  gridButton.style.background = "#ffffff";
+  placesList.style.display = "inline-block";
+  placesList.style.width = "33%";
+  let map = document.getElementById("map");
+
+  map.style.display = "block";
+  map.style.position = "sticky";
+
+  [...place_overviews].forEach(elem => {
+    console.log(elem);
+    elem.style.width = "100%";
   })
+})
 
 if (gridButton != null)
-  gridButton.addEventListener('click', function () {
-    gridButton.style.background = "#ff6624";
-    listButton.style.background = "#ffffff";
-    placesList.style.cssText = "display: flex; flex-wrap: wrap; align-content: flex-start;"
+gridButton.addEventListener('click', function () {
+  gridButton.style.background = "#ff6624";
+  listButton.style.background = "#ffffff";
+  placesList.style.cssText = "display: flex; flex-wrap: wrap; align-content: flex-start;"
+  let map = document.getElementById("map");
+  map.style.display = "none";
+
+  [...place_overviews].forEach(elem => {
+    console.log(elem);
+    elem.style.width = "22.5%";
   })
+})
 
 function sortByRating() {
   if (bestRatingButton.style.background == "rgb(255, 102, 36)")
@@ -201,11 +220,28 @@ function orderPlaces(orderedIDs) {
   placesList.innerHTML = finalstr;
 }
 
+
+
 let placesMapButtons = document.querySelectorAll('.places_list .fa-map');
 
 [...placesMapButtons].forEach(elem => elem.addEventListener('click', (event) => {
-    
-  console.log(elem.getAttribute('value'))
+  event.stopPropagation();
+  event.preventDefault();
   codeGivenAddress(elem.getAttribute('value'));
+  listButton.style.background = "#ff6624";
+  gridButton.style.background = "#ffffff";
+  placesList.style.display = "block";
+
+  placesList.style.display = "inline-block";
+  placesList.style.width = "33%";
+
+  let map = document.getElementById("map");
+
+  map.style.display = "block";
+  map.style.position = "sticky";
+
+  [...place_overviews].forEach(elem => {
+    elem.style.width = "100%";
+  })
 
 }))

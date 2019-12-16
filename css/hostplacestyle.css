@@ -24,6 +24,10 @@
 
 }
 
+#host_place button {
+    margin-top: 1rem;
+}
+
 #host_place img {
     height: 847px;
     max-width:60%;
