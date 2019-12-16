@@ -17,7 +17,6 @@
       </form>
 
       <!-- <footer> -->
-        <p>Don't have an account? <a href="signup.php">Signup!</a></p>
       <!-- </footer> -->
 
     </section>
@@ -46,7 +45,6 @@
       </form>
 
       <!-- <footer> -->
-        <p>Already have an account? <a href="login.php">Login!</a></p>
       <!-- </footer> -->
 
     </section>

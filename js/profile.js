@@ -181,3 +181,12 @@ let placesDeleteButtons = document.querySelectorAll('#user_places .fa-trash');
     })
 
 }))
+
+let profile_value = document.getElementById('profile_you');
+
+if (profile_value != null){
+  if (profile_value.getAttribute('value') == 0){
+    placesDeleteButtons.forEach(elem => elem.style.display = "none");
+    reservationsDeleteButtons.forEach(elem => elem.style.display = "none");
+  }
+}
