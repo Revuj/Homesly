@@ -9,6 +9,7 @@ function listPlaces($places) { ?>
           <label><input type="text" value="" name="location" placeholder="Where" ></label>
           <label><input type="date" value="" name="checkin" placeholder="mm/dd/yyyy" ></label>
           <label><input type="date" value="" name="checkout" placeholder="mm/dd/yyyy" ></label>
+          <label><input type="number" value="" min="1" name="price" placeholder="Price" ></label>
           <label><input type="number" value="" min="0" name="guests" placeholder="Guests" ></label>
           <button type="submit"><i class="fas fa-search"></i></button>
       </form>
