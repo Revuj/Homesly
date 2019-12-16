@@ -200,3 +200,12 @@ function orderPlaces(orderedIDs) {
   }
   placesList.innerHTML = finalstr;
 }
+
+let placesMapButtons = document.querySelectorAll('.places_list .fa-map');
+
+[...placesMapButtons].forEach(elem => elem.addEventListener('click', (event) => {
+    
+  console.log(elem.getAttribute('value'))
+  codeGivenAddress(elem.getAttribute('value'));
+
+}))

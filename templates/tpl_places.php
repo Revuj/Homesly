@@ -9,6 +9,7 @@ function listPlaces($places) { ?>
           <label><input type="text" value="" name="location" placeholder="Where" ></label>
           <label><input type="date" value="" name="checkin" placeholder="mm/dd/yyyy" ></label>
           <label><input type="date" value="" name="checkout" placeholder="mm/dd/yyyy" ></label>
+          <label><input type="number" value="" min="1" name="price" placeholder="Price" ></label>
           <label><input type="number" value="" min="0" name="guests" placeholder="Guests" ></label>
           <button type="submit"><i class="fas fa-search"></i></button>
       </form>
@@ -34,7 +35,14 @@ function listPlaces($places) { ?>
             listItem($place);
         }
       ?>
+      <div id="map"></div>
+      <!-- <input id="address" type="textbox" value="Sydney, NSW">
+      <input type="button" value="Encode" onclick="codeAddress()"> -->
+      <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcrc5QbwSQOgtiw2PwSNcU2bLjyoyx96E&callback=initializeMapHost">
+      </script>
   </article>
+  
 <?php
 }
 
@@ -46,6 +54,7 @@ function listPlaces($places) { ?>
 function listItem($place) { ?>
   <article class="place_overview">
     <i value=<?=$place['place_id']?> class="fas fa-trash"></i>
+    <i value=<?=$place['place_location']?> class="far fa-map"></i>
     <a href="../pages/item.php?id=<?=$place['place_id']?>">
     <div class="place_img">
         <img src="../images/test.jpg" />

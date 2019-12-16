@@ -10,20 +10,26 @@
     $checkin = null;
     $checkout = null;
     $guests = null;
-    if (isset($_GET['location'])) 
+    $price = null;
+
+    if (isset($_GET['location']) && $_GET['location'] != "") {
         $location = $_GET['location'];
+    }
 
-
-    if (isset($_GET['checkin'])) 
+    if (isset($_GET['checkin']) && $_GET['checkin'] != "") 
         $checkin = $_GET['checkin'];
 
-    if (isset($_GET['checkout'])) 
+    if (isset($_GET['checkout']) && $_GET['checkout'] != "") 
         $checkout = $_GET['checkout'];
 
-    if (isset($_GET['guests'])) 
+    if (isset($_GET['guests']) && $_GET['guests'] != "") 
         $guests = $_GET['guests'];
-    
-    $filtered_places = getPlacesFiltered($location, $checkin, $checkout, $guests);
+
+    if (isset($_GET['price']) && $_GET['price'] != "") 
+        $price = $_GET['price'];
+
+
+    $filtered_places = getPlacesFiltered($location, $checkin, $checkout, $guests, $price);
     listPlaces($filtered_places);
     draw_footer();
 ?>

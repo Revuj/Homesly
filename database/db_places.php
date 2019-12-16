@@ -14,7 +14,7 @@ function getAllPlaces() {
 /**
  * Returns the list of places available according to input filters
  */
-function getPlacesFiltered($location, $checkin, $checkout, $guests) {
+function getPlacesFiltered($location, $checkin, $checkout, $guests, $price) {
     $db = Database::instance()->db();
     $query = 'SELECT * FROM place WHERE 1 ';
     $query_arguements = array();
@@ -25,6 +25,10 @@ function getPlacesFiltered($location, $checkin, $checkout, $guests) {
     if ($guests) {
         $query .= 'AND place_bedrooms >= ?';
         array_push($query_arguements, $guests);
+    }
+    if ($price) {
+        $query .= 'AND place_price_per_day <= ?';
+        array_push($query_arguements, $price);
     }
     if ($checkin && $checkout) {
         $query .= 'AND place_id NOT IN (SELECT place_id FROM place, reservation
@@ -37,7 +41,6 @@ function getPlacesFiltered($location, $checkin, $checkout, $guests) {
 
     $stmt = $db->prepare($query);
     $stmt->execute($query_arguements);
-
     return $stmt->fetchAll();
 }
 
