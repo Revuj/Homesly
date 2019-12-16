@@ -120,6 +120,8 @@
     width: 100px;
     display: inline-block;
     vertical-align: middle; 
+    border: 2px solid gray;
+    border-radius: 50%;
 }
 
 .user_detail_content h5 {

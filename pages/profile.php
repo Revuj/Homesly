@@ -7,6 +7,10 @@
         header('Location: ../pages/homepage.php');
     }
     draw_header();
-    draw_profile($_SESSION['username']);
+
+    if (isset($_GET['username']))
+        draw_profile($_GET['username']);
+    else
+        draw_profile($_SESSION['username']);
     draw_footer();
 ?>

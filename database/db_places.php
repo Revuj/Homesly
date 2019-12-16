@@ -91,6 +91,17 @@ function getUserReviews($username) {
     $stmt->execute(array($username));
     return $stmt->fetchAll(); 
 } 
+
+/**
+ * Returns user's profile image.
+ */
+function getUserImage($username) {
+    $db = Database::instance()->db();
+    $stmt = $db->prepare('SELECT * FROM review WHERE username = ?');
+    $stmt->execute(array($username));
+    return $stmt->fetchAll(); 
+} 
+
 /**
  * Inserts place on databse
  */

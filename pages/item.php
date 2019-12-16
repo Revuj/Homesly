@@ -13,13 +13,13 @@
 
   draw_header();
   
-  $images = ["../images/test.jpg", "../images/test2.jpg", "../images/test3.jpg"];
 
-  $images2 = getAllImagesFromPlace($place['place_id']);
-  foreach($images2 as $image) {
-      array_push($images2, "../images/uploads/" . $image['image_id'] . ".png");
+  $place_images = getAllImagesFromPlace($place['place_id']);
+  $images_paths = [];
+  foreach($place_images as $image) {
+      array_push($images_paths, "../images/uploads/" . $image['image_id'] . ".png");
   }
 
-  pageDetailItem($place, $images2);
+  pageDetailItem($place, $images_paths);
   draw_footer();
 ?>

@@ -58,7 +58,11 @@ function listItem($place) { ?>
     <i value=<?=$place['place_id']?> class="fas fa-trash"></i>
     <a href="../pages/item.php?id=<?=$place['place_id']?>">
     <div class="place_img">
-        <img src="../images/test.jpg" />
+    <?php
+      $images = getAllImagesFromPlace($place['place_id']);
+      echo '<img src="../images/uploads/' . $images[0]['image_id'] . '.png" />';
+    ?>
+        
         <i value=<?=$place['place_location']?> class="far fa-map"></i>
         <div class="rating place_rating">
             <?php
@@ -210,19 +214,22 @@ function pageDetailItem($place, $images) { ?>
           }
           ?>
           <div class="host_info">
-            <img id="place_host" src="../images/profile_icon.png"/>
+            <a href="../pages/profile.php?username=<?=$place['place_owner']?>" >
+            <img id="place_host" src="../images/users/<?=$place['place_owner']?>.png" onerror="this.onerror=null; this.src='../images/profile_icon.png'" alt=<?=$place['place_owner']?> value=<?=$place['place_owner']?> />
             <div class="user_detail_content">
               <h4>Owner</h4>
               <h5> <?=$place['place_owner']?> </h5>
-            </div>           
+            </div>
+            </a>           
           </div>
 
           <div class="form-1 book-form">
           <h3 class="place_price"><?=$place['place_price_per_day']?></h3>
             <form id="form_book" method="post" action="../actions/action_book_place.php">
                 <?php if(isset($_SESSION['csrf']))
-                  echo '<input type="hidden" name="csrf" value="<?=$_SESSION["csrf"]?>">'; ?>
-                <input type="hidden" name="place_id" value="<?=$place['place_id']?>">
+                  echo '<input type="hidden" name="csrf" value="' . $_SESSION['csrf'] . '" />'; 
+                ?>
+                <input type="hidden" name="place_id" value="<?=$place['place_id']?>" />
                 <label>Dates<input type="text" name="date_range" placeholder="yyyy-mm-dd - yyyy-mm-dd" readonly></label>
                 <label>Guests<input type="number" value="1" min="1" name="guests" placeholder="Guests" ></label>
                 <p id="calculated_price">Total: <?=$place['place_price_per_day']?> €</p>
