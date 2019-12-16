@@ -17,9 +17,9 @@
 
   $images2 = getAllImagesFromPlace($place['place_id']);
   foreach($images2 as $image) {
-      array_push($images, "../images/uploads/" . $image['image_id'] . ".png");
+      array_push($images2, "../images/uploads/" . $image['image_id'] . ".png");
   }
 
-  pageDetailItem($place, $images);
+  pageDetailItem($place, $images2);
   draw_footer();
 ?>
