@@ -9,11 +9,18 @@
             <img id="profile_image" src="../images/users/<?=$username?>.png" onerror="this.onerror=null; this.src='../images/profile_icon.png'" alt=<?=$username?> value=<?=$username?> />
             <ul id="user_details">
             <li><h4> Hi, I'm <?=$username?>!</h4></li>
+            <i id="profile_you" value=<?=($username == $_SESSION['username']) ? 1 : 0?> ></i>
+            <?php 
+            if ($username == $_SESSION['username']) {
+                ?>
             <form id="upload_profile_image" method="post" action="../actions/action_change_profile_image.php" enctype="multipart/form-data">
                 <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
                 <input type="file" name="fileUpload" >
             </form>
                 <button id="edit_profile"><i class="far fa-edit"></i> Edit Profile</button>
+                <?php 
+            }
+                ?>
                 <li><p contentEditable=false id="user_bio"><?php getUserBio($username)?></p></li>
                 <li><i class="far fa-envelope"></i> <span id="email">teste111@gmail.com</span></li>
                 <li><i class="fas fa-phone"></i> <span id="phone"><em><strong>936 382 932</strong></em></span></li>

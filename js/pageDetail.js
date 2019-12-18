@@ -685,13 +685,18 @@ let upvoteButtons = document.getElementsByClassName('upvote');
 let downvoteButtons = document.getElementsByClassName('downvote');
 
 function upvote(elem) {
+  let karma = elem.nextElementSibling;
+  let tempstr = karma.innerHTML;
+  let startIndex = tempstr.indexOf("</i>");
+  let cons = '<i class="far fa-thumbs-up"></i> '
+  tempstr = tempstr.substring(startIndex + 5);
   if (elem.style.color == "rgb(255, 102, 36)") {
     let username = elem.previousElementSibling.value;
     let review_id = elem.getAttribute("value")
     let request = new XMLHttpRequest()
 
-    let karma = elem.nextElementSibling;
-    karma.innerHTML = parseInt(karma.innerHTML) - 1;
+    let num = parseInt(tempstr) - 1;
+    karma.innerHTML = cons + num;
 
     request.onload = teste;
     request.open("post", "../api/api_remove_upvote.php", true);
@@ -702,12 +707,15 @@ function upvote(elem) {
     return;
   }
   elem.style.color = "#ff6624";
-  let karma = elem.nextElementSibling;
   let downvote = karma.nextElementSibling
-  if (downvote.style.color == "rgb(255, 102, 36)")
-    karma.innerHTML = parseInt(karma.innerHTML) + 2;
-  else
-    karma.innerHTML = parseInt(karma.innerHTML) + 1;
+  if (downvote.style.color == "rgb(255, 102, 36)") {
+    let num = parseInt(tempstr) + 2;
+    karma.innerHTML = cons + num;
+  }
+  else {
+    let num = parseInt(tempstr) + 1;
+    karma.innerHTML = cons + num;
+  }
 
   downvote.style.color = "black";
 
@@ -723,13 +731,18 @@ function upvote(elem) {
 }
 
 function downvote(elem) {
+  let karma = elem.previousElementSibling;
+  let tempstr = karma.innerHTML;
+  let startIndex = tempstr.indexOf("</i>");
+  let cons = '<i class="far fa-thumbs-up"></i> '
+  tempstr = tempstr.substring(startIndex + 5);
   if (elem.style.color == "rgb(255, 102, 36)") {
     let username = elem.previousElementSibling.previousElementSibling.previousElementSibling.value;
     let review_id = elem.getAttribute("value")
     let request = new XMLHttpRequest()
 
-    let karma = elem.previousElementSibling;
-    karma.innerHTML = parseInt(karma.innerHTML) + 1;
+    let num = parseInt(tempstr) + 1;
+    karma.innerHTML = cons + num;
 
     request.onload = teste;
     request.open("post", "../api/api_remove_downvote.php", true);
@@ -740,12 +753,15 @@ function downvote(elem) {
     return;
   }
   elem.style.color = "#ff6624";
-  let karma = elem.previousElementSibling;
   let upvote = karma.previousElementSibling;
-  if (upvote.style.color == "rgb(255, 102, 36)")
-    karma.innerHTML = parseInt(karma.innerHTML) - 2;
-  else
-    karma.innerHTML = parseInt(karma.innerHTML) - 1;
+  if (upvote.style.color == "rgb(255, 102, 36)") {
+    let num = parseInt(tempstr) - 2;
+    karma.innerHTML = cons + num;
+  }
+  else {
+    let num = parseInt(tempstr) - 1;
+    karma.innerHTML = cons + num;
+  }
 
   upvote.style.color = "black";
 
